@@ -1,0 +1,87 @@
+
+
+## 系列专题
+- [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
+
+## 工程杂谈
+- [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)
+
+- [前端工程与性能优化](https://github.com/fouber/blog/issues/3)
+- [前端开发体系建设日记](https://github.com/fouber/blog/issues/2)
+- [前端开发体与模块化框架](https://github.com/fouber/blog/issues/4)
+- [大公司里怎样开发和部署前端代码？](https://github.com/fouber/blog/issues/6)
+- [如何进行前端自动化测试？](https://github.com/fouber/blog/issues/7)
+- [md5戳计算过程](https://github.com/fouber/blog/issues/5)
+
+## 业界实践
+- [前端组件化开发实践](http://tech.meituan.com/frontend-component-practice.html) by 美团 
+- [2015前端组件化框架之路](https://github.com/xufei/blog/issues/19) by [@民工精髓](http://weibo.com/sharpmaster)
+- [前端工程之模块化](http://fex.baidu.com/blog/2014/03/fis-module/) by [@沈洪顺](http://weibo.com/u/1916384703)
+- 前端xss防火墙系列文章 by [@ＥtherＤream](https://github.com/zjcqoo)
+	- [内联事件拦截](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1/)
+	- [可疑模块拦截](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/)
+	- [无懈可击的钩子](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-3/)
+	- [天衣无缝的防护](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-4/)
+	- [整装待发](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-5)
+	
+## 经典图书
+★越少越简单,越适合入门,★多的要么是难度比较高,要么是比较适合在后面看,比如讲性能之类的书.
+
+### CSS
+- [Eric Meyer 谈 CSS（卷二）](http://www.amazon.cn/Eric-Meyer-谈-CSS-迈耶/dp/B00170M84I/)★★★
+- [CSS权威指南 （第3版）](http://book.douban.com/subject/2308234/)★★
+- [精通CSS](http://book.douban.com/subject/4736167/)★★★
+- [HTML & CSS设计与构建网站](http://book.douban.com/subject/21338365/)★
+
+### JavaScript
+- [JavaScript & jQuery交互式Web前端开发](http://book.douban.com/subject/26433805/)★
+- [JavaScript DOM编程艺术 （第2版）](http://book.douban.com/subject/6038371/)★
+- [JavaScript高级程序设计（第3版）](http://book.douban.com/subject/10546125/)★★
+- [锋利的jQuery](http://book.douban.com/subject/10792216/)★★
+- [高性能JavaScript](http://book.douban.com/subject/5362856/)★★★
+- [JavaScript语言精粹](http://book.douban.com/subject/3590768/)★★★
+- [JavaScript权威指南](http://book.douban.com/subject/10549733/)★★★
+- [编写可维护的JavaScript](http://book.douban.com/subject/21792530/)★★★
+- [JAVASCRIPT语言精髓与编程实践](http://book.douban.com/subject/3012828/)★★★
+- [Effective Javascript](http://www.amazon.com/Effective-JavaScript-Specific-Software-Development/dp/0321812182)★★★
+- [Secrets of the JavaScript Ninja](http://book.douban.com/subject/3176860/)★★★
+- [JavaScript模式](http://book.douban.com/subject/11506062/)★★★
+- [JavaScript设计模式](http://book.douban.com/subject/3329540/)★★★★
+- [基于MVC的JavaScript Web富应用开发](http://book.douban.com/subject/10733304/)★★★
+
+### 性能实践
+- [高性能网站建设指南](https://book.douban.com/subject/3132277/)★
+- [高性能网站建设进阶指南](https://book.douban.com/subject/4719162/)★★
+- [Web性能实践日志](http://book.douban.com/subject/25891125/)★★★
+- [Web性能权威指南](http://book.douban.com/subject/25856314/)★★★
+
+
+### 版本控制工具
+- [版本控制之道 (git)](http://book.douban.com/subject/4813786/)★★
+- [Pro Git](http://iissnan.com/progit/)★★★
+- [Git权威指南](http://book.douban.com/subject/6526452/)★★★★
+
+
+
+## 经典文章
+- [Best Practices for Speeding Up Your Web Site（雅虎35条）](https://developer.yahoo.com/performance/rules.html)
+- [Facebook静态网页资源的管理和优化](http://v.youku.com/v_show/id_XMjI5OTUxMjE2.html) [[PDF](http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf)] by [@David Wei](http://weibo.com/weixiaoliang9)
+- [Facebook移动互联网应用的性能优化](http://v.youku.com/v_show/id_XMzUwOTQzMzA4.html) [[PDF](http://velocity.oreilly.com.cn/2011/ppts/MobilePerformanceVelocity2011_DavidWei.pdf)] by [@David Wei](http://weibo.com/weixiaoliang9)
+- [PageSpeed Insights规则](https://developers.google.com/speed/docs/insights/rules?csw=1)
+- [Mobile Analysis in PageSpeed Insights](https://developers.google.com/speed/docs/insights/mobile)
+- Optimizing the Critical Rendering Path for Instant Mobile Websites [[slides](https://docs.google.com/presentation/d/1IRHyU7_crIiCjl0Gvue0WY3eY_eYvFQvSfwQouW9368/present?slide=id.p19),[video](https://www.youtube.com/watch?v=YV1nKLWoARQ)]
+- Instant Mobile Websites: Techniques and Best Practices [[slides](http://storage.googleapis.com/io-2013/presentations/239-%20Instant%20Mobile%20Websites-%20Techniques%20and%20Best%20Practices.pdf), [video](https://www.youtube.com/watch?v=Bzw8-ZLpwtw)]
+- [Critical Rendering Path（关键呈现路径）](https://developers.google.com/web/fundamentals/performance/critical-rendering-path/)
+- [Optimizing Content Efficienc（优化内容效率）](https://developers.google.com/web/fundamentals/performance/optimizing-content-efficiency/?hl=zh-cn)
+- [Rendering（渲染性能）](https://developers.google.com/web/fundamentals/performance/rendering/?hl=zh-cn)
+- [How browsers work](http://taligarsiel.com/Projects/howbrowserswork1.htm)
+
+
+## 前端面试题
+[前端工作面试问题](https://github.com/h5bp/Front-end-Developer-Interview-Questions
+)
+
+[前端开发面试题（中文）](https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers)
+
+
+

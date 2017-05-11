@@ -6,7 +6,7 @@
 ## 工程杂谈
 - [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)
 
-- [前端工程与性能优化](https://github.com/fouber/blog/issues/3)
+- [前端工程与性能优化](https://github.com/fyuanfen/note/blob/master/article/2.md)
 - [前端开发体系建设日记](https://github.com/fouber/blog/issues/2)
 - [前端开发体与模块化框架](https://github.com/fouber/blog/issues/4)
 - [大公司里怎样开发和部署前端代码？](https://github.com/fyuanfen/note/blob/master/article/6.md)

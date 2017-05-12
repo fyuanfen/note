@@ -2,6 +2,7 @@
 
 ## 系列专题
 - [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
+- [大前端工具集](https://github.com/fyuanfen/note/blob/master/article/1.md)
 
 ## 工程杂谈
 - [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)

@@ -6,9 +6,10 @@
 
 
 <h2 id="project">工程杂谈</h2>
+
 - [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)
 
-- [前端工程与性能优化](https://github.com/fyuanfen/note/blob/master/article/2.md)
+- [前端工程与性能优化](https://github.com/fyuanfen/note/blob/master/article/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
 
 - [前端开发体系建设日记](https://github.com/fouber/blog/issues/2)
 
@@ -69,6 +70,7 @@
 
 
 <h2 id="articles">经典文章</h2>
+
 - [Best Practices for Speeding Up Your Web Site（雅虎35条）](https://developer.yahoo.com/performance/rules.html)
 - [Facebook静态网页资源的管理和优化](http://v.youku.com/v_show/id_XMjI5OTUxMjE2.html) [[PDF](http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf)] by [@David Wei](http://weibo.com/weixiaoliang9)
 - [Facebook移动互联网应用的性能优化](http://v.youku.com/v_show/id_XMzUwOTQzMzA4.html) [[PDF](http://velocity.oreilly.com.cn/2011/ppts/MobilePerformanceVelocity2011_DavidWei.pdf)] by [@David Wei](http://weibo.com/weixiaoliang9)
@@ -83,6 +85,7 @@
 
 
 <h2 id="interview">前端面试</h2>
+
 - [前端工作面试问题](https://github.com/h5bp/Front-end-Developer-Interview-Questions
 )
 

@@ -1,7 +1,8 @@
-# 大前端工具集 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
+# 大前端工具百宝箱 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-这个项目的定位是 **大前端程序猿的百宝箱**。主要针对 前端方向和 Node 方向；主要内容是国内外优秀的库、工具、套路、设计/交互或关注的前端组织/博客等等。
+这个项目是我整理的[**前端知识体系**](https://github.com/fyuanfen/note#series)的一个分支，这篇的定位是 **大前端程序猿的工具箱**。主要针对 前端方向和 后台Node 方向；主要内容是前端学习资源合集、国内外优秀的库、工具、设计/交互或关注的前端组织/博客等等。
 
+本合集其他系列之[前端工程杂谈](https://github.com/fyuanfen/note#project)，[前端面试经验](https://github.com/fyuanfen/note#interview)，[经典图书](https://github.com/fyuanfen/note#books)，不定期更新中。。。。。
 
 
 > 感谢和期待大家的 PR，我会及时回复的~
@@ -10,8 +11,8 @@
 
 <h2 id="catalog">目录</h2>
 
-- [前端综合资源前端博客](#resource)
-- [前端博客](#blogs)
+- [前端综合资源](#resource)
+- [优秀前端博客](#blogs)
 - [博客搭建](#blog_build)
 - [HTML](#html)
 	- [HTML5](#html5)
@@ -19,8 +20,8 @@
 	- [Template](#template)
 - [CSS](#css)
 - [JS](#javascript)
-  - [React & RN](#react)
-  - [Vuejs](#vue)
+	- [React & RN](#react)
+	- [Vuejs](#vue)
 - [构建工具](#project_build)
 - [Webgl／数据可视化](#visualize)
 - [动画](#animate)
@@ -60,10 +61,10 @@
 -  [fks 前端技能汇总](https://github.com/JacksonTian/fks) - 包含前端知识架构，后端知识，linux，书籍推荐等。star:10000+
 - [mobile-web-favorites](https://github.com/hoosin/mobile-web-favorites) - 移动端web开发收藏夹。
 
-- [慕课](http://www.imooc.com/) - 大量的在线计算机课程。 虽然初、中级居多，但是不乏有巨作值得细细品尝
 
+<h3 id="blogs">优秀前端博客</h3>
 
-<h3 id="blogs">前端综合/前端博客</h3>- [阮一峰](http://javascript.ruanyifeng.com/) - 关注多年，拜读其 [ES6](http://es6.ruanyifeng.com/) 系列。虽网传靠写书进了阿里，但博客内容确实够丰富
+- [阮一峰](http://javascript.ruanyifeng.com/) - 关注多年，拜读其 [ES6](http://es6.ruanyifeng.com/) 系列。虽网传靠写书进了阿里，但博客内容确实够丰富
 - [W3Cplus](http://www.w3cplus.com/) - 大漠(《图解 CSS3》作者)在国内的影响力杠杠的，```Sass``` 专家级
 - [淘宝前端团队](http://taobaofed.org/) - 内容涵盖 ```Web``` 和 ```Node```，要深度有深度，要广度有广度
 - [网易FEG前端团队](http://feg.netease.com/) - 也是很高产的团队
@@ -167,7 +168,6 @@
 
 
 <h3 id="javascript">JS</h3>
-
 - [awesome-javascript](https://github.com/sorrycc/awesome-javascript) - 一系列很棒的javascript 库，资源。star:9000+
   
 - [todomvc](https://github.com/tastejs/todomvc) - 帮你挑选一款框架，它使用不同的最流行的js MV框架实现了一个相同的Todo应用。star:20K
@@ -198,7 +198,7 @@
 - [NProgress](https://github.com/rstacruz/nprogress/) - 使页面加载时有更好的loading效果
 - [Noticejs](https://github.com/jaredreich/notie.js) - 一个简单的通知库，木有依赖
 - [onepage-scroll](https://github.com/peachananr/onepage-scroll) - 依赖 jQuery 的单页滚动库，和 [fullPage](http://alvarotrigo.com/fullPage/) 类似
-- [videojs](http://videojs.com/) - 当下视频需求都用上```<video>```. 样式和交互统一的问题交给 videojs 搞定:)
+
 - [clipboard](http://zenorocha.github.io/clipboard.js/) - 仅 2KB 大小，搞定剪贴板功能，屌不屌~ 但是，Safari 不支持...
 - [Cropper](http://fengyuanchen.github.io/cropper/) - 国人开发的图片裁剪库
 
@@ -631,15 +631,31 @@ _暂无_
 - [CSS字母](http://yusugomori.com/projects/css-sans/fonts) - 用 CSS 实现英文字母，叼叼的
 - [墨刀](https://modao.cc/) - 一个在线移动应用原型制作工具。 旨在帮助产品经理快速制作可在手机端展示的移动应用原型。
 
+<h3 id="summary">小结</h3>
+这里面是我自己学习的时候收集了很多资料丢在云笔记里，现在整理出来，并结合其他人的实践做出的资料合集。
 
+其中一部分是我亲身实践过的，一部分是列在自己的todolist里面。希望可以和大家一起学习进步！！
 
+<h3 id="todo">TODO</h3>
+1. 继续完善和扩充内容
+
+2. 在“备注/说明”中增加自己的理解与实践的学习笔记外链，让这篇记录更生动。
+
+3. 因为六月要入职腾讯，后续会增加Webgl相关的资料和学习心得，以及读书笔记。
+
+------------
+
+本篇文章持续更新中，欢迎star,watch。
+
+文章已推送至我的[github](https://github.com/fyuanfen/note/tree/master/tools/fe_tools.md)，欢迎PR
 ---
+
+- [小结](#summary)
+- [TODO](#todo)
+
 
 **[⬆ 返回顶部](#catalog)**
 
-本篇文章持续更新中，欢迎star,watch,PR。
-
-文章已推送至我的github]()，欢迎pullrequest：https://github.com/webpushsky
 
 
 

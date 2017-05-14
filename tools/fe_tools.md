@@ -1,6 +1,6 @@
 # 大前端工具百宝箱 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sindresorhus/awesome)
 
-这个项目是我整理的[**前端知识体系**](https://github.com/fyuanfen/note#series)的一个分支，这篇的定位是 **大前端程序猿的工具箱**。主要针对 前端方向和 后台Node 方向；主要内容是前端学习资源合集、国内外优秀的库、工具、设计/交互或关注的前端组织/博客等等。
+这个项目是我整理的[**前端知识体系**](https://github.com/fyuanfen/note)的一个分支，这篇的定位是 **大前端程序猿的工具箱**。主要针对 前端方向和 后台Node 方向；主要内容是前端学习资源合集、国内外优秀的库、工具、设计/交互或关注的前端组织/博客等等。
 
 本合集其他系列之[前端工程杂谈](https://github.com/fyuanfen/note#project)，[前端面试经验](https://github.com/fyuanfen/note#interview)，[经典图书](https://github.com/fyuanfen/note#books)，不定期更新中。。。。。
 
@@ -168,6 +168,7 @@
 
 
 <h3 id="javascript">JS</h3>
+
 - [awesome-javascript](https://github.com/sorrycc/awesome-javascript) - 一系列很棒的javascript 库，资源。star:9000+
   
 - [todomvc](https://github.com/tastejs/todomvc) - 帮你挑选一款框架，它使用不同的最流行的js MV框架实现了一个相同的Todo应用。star:20K
@@ -301,7 +302,8 @@
 
   
 <h3 id="node">Node</h3>
-> 作为一名大前端甚至是多端，```Node```绝逼是必备的一块
+
+> 作为一名大前端甚至是多端，```Node```绝对是必备的一块
 
 <h4 id="node_read">Node学习资料</h4>
 
@@ -366,8 +368,6 @@
 <h4 id="node_project">Node Project</h4>
 
 _待更新_
-https://github.com/driftyco/ionic
-
 
 
 <h2 id="read">精选阅读</h2>
@@ -403,7 +403,7 @@ https://github.com/driftyco/ionic
 
 <h3 id="proxy">翻墙软件</h3>
 
-- [Shadowsocks](https://shadowsocks.com/)  - 翻墙软件小飞机Shadowsocks 也非常棒，同样推荐：“轻量级科学上网姿势，改变您的生活体验！”
+- [Shadowsocks](https://www.shadowsocks.com.hk/)  - 翻墙软件小飞机Shadowsocks 也非常棒，同样推荐：“轻量级科学上网姿势，改变您的生活体验！”
 
 - [Lantern](https://www.getlantern.org/) -**免费版**有流量限制，不过也还ok
 
@@ -517,7 +517,7 @@ Mac 下的软件那么多，又是免费又是付费，应该怎么选呢？我�
 
 <h3 id="BrowserPlugins">Chrome 浏览器插件</h3>
 
-> ```Chrome``` 应用商店必定是需要[翻墙](https://shadowsocks.com/)的哈。
+> ```Chrome``` 应用商店必定是需要[翻墙](https://www.shadowsocks.com.hk/)的哈。
 
 以下插件都是俺多年积累淘出来的，数量不多，所以就不区分 ```Github``` 插件和非 ```Github``` 插件了。按照俺推荐的强度自上向下展示，且大多数插件就是偶工作和生活必备，希望能对大家有用。后续如有新发现好插件，偶也会及时更新哒。
 
@@ -539,7 +539,8 @@ Mac 下的软件那么多，又是免费又是付费，应该怎么选呢？我�
 - [Wide Github](https://chrome.google.com/webstore/detail/wide-github/kaalofacklcidaampbokdplbklpeldpj/related) - 无聊又实用的 ```Github``` 插件。无聊是因为这个插件就特么一个功能，**加宽**，能让 ```Github``` 页面变宽，每行展示更多的内容，尤其配合着[Octotree](https://chrome.google.com/webstore/detail/octotree/bkhaagjahfmjljalopjnoealnfndnagc)，展示效果极佳。非常推荐 ```Mac``` 用户实用，因为屏幕比较不大，变宽后阅读感觉更好
 
 - [Imagus](https://chrome.google.com/webstore/detail/imagus/immpkjjlgappgfkkfieppnmlhakdmaab) 鼠标指针悬停在链接或缩略图上时直接在当前页面的弹出视图上显示这些图片、HTML5 视频/音频和内容专辑...看新浪微博时贼有用:)
-- [DevTools Author](https://chrome.google.com/webstore/detail/devtools-author/egfhcfdfnajldliefpdoaojgahefjhhi) - 纯装逼的插件，可以选择你的 ```Chrome``` 开发者工具的主题，且支持的主题超过25种，视觉装逼控必备。设置分大概三步，官网有文字说明，```youtube``` 上的视频教程奉上(Customization With DevTools Author)[https://www.youtube.com/watch?v=AUZagMLMAJc]
+- [DevTools Author](https://chrome.google.com/webstore/detail/devtools-author/egfhcfdfnajldliefpdoaojgahefjhhi) - 纯装逼的插件，可以选择你的 ```Chrome``` 开发者工具的主题，且支持的主题超过25种，视觉装逼控必备。设置分大概三步，官网有文字说明，```youtube``` 上的视频教程奉上[Customization With DevTools Author](https://www.youtube.com/watch?v=AUZagMLMAJc)
+
 - [GitPlug](https://chrome.google.com/webstore/detail/porter-plug/lngoojfoglemfpbeiomhgheccpdheilp) - 在 ```Github``` 项目页中嵌入有关的图表信息，直观的展示当前项目的 ```Star Trend```，能方便看到当前这个开源项目的发起时间，火爆趋势；对比较知名的项目还有相关的 ```News``` 展示
 - [OctoLinker](https://chrome.google.com/webstore/detail/octolinker/jlmafbaeoofdegohdhinkhilhclaklkp) - 在 ```package.json``` 或任意 ```.js``` 文件中，可以方便的对 ```require()``` 的 ```package``` 进去点击，跳转去对应的 ```Github``` 页面。PS：特么不太好表达，建议你去这个插件的概述页，里面有个十来秒的视频，看完就明白鸟
 - [GitHub Hovercard](https://github.com/Justineo/github-hovercard) - GitHub 增强工具，悬停可显示对应的用户、仓库、issue 等的详情。

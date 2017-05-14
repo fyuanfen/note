@@ -8,8 +8,11 @@
 - [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)
 
 - [前端工程与性能优化](https://github.com/fyuanfen/note/blob/master/article/2.md)
+
 - [前端开发体系建设日记](https://github.com/fouber/blog/issues/2)
+
 - [前端开发体与模块化框架](https://github.com/fouber/blog/issues/4)
+
 - [大公司里怎样开发和部署前端代码？](https://github.com/fyuanfen/note/blob/master/article/6.md)
 - [如何进行前端自动化测试？](https://github.com/fouber/blog/issues/7)
 - [md5戳计算过程](https://github.com/fouber/blog/issues/5)
@@ -78,13 +81,20 @@
 - [How browsers work](http://taligarsiel.com/Projects/howbrowserswork1.htm)
 
 
-## 前端面试题
-[前端工作面试问题](https://github.com/h5bp/Front-end-Developer-Interview-Questions
+## <a id="interview">前端面试</a>
+
+- [前端工作面试问题](https://github.com/h5bp/Front-end-Developer-Interview-Questions
 )
 
-[前端开发面试题（中文）](https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers)
+- [前端开发面试题（中文）](https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers)
 
-[前端面经](https://github.com/fyuanfen/note/blob/master/article/Front-end-Interview-questions-master.md)
+- [前端面经](https://github.com/fyuanfen/note/blob/master/article/Front-end-Interview-questions-master.md) --自己整理的很全面的前端面试题和相关文章解析，内容同步更新中。。。。。
 
 
+- [前端面试题](https://github.com/h5bp/Front-end-Developer-Interview-Questions/tree/master/Translations/Chinese) - Git 上非常火的前端面试题，```start17k+```
+- [前端面经](https://github.com/paddingme/Front-end-Web-Development-Interview-Question) - 主要内容是些前端面试笔试题和面试套路，值得阅读
+
+- [笔试面试知识整理](https://github.com/HIT-Alibaba/interview) - 打开其 Gitbook 上的地址我都惊呆了。虽然有部分内容待完善，但是光浏览目录都是享受。
+
+- [大漠：写给前端面试者](http://www.w3cplus.com/css/write-to-front-end-developer-interview.html) - 这篇文章不涉及任何的面试题 大漠与大家聊聊面试者与被面者之间的感受...
 

@@ -1,19 +1,14 @@
 
+
 <h2 id="series">系列专题</h2>
-
 - [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
-
-
-<h2 id="tools">大前端工具集</h2>
-
 - [大前端工具集](https://github.com/fyuanfen/note/tree/master/tools/fe_tools.md)
 
 
 <h2 id="project">工程杂谈</h2>
-
 - [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)
 
-- [前端工程与性能优化](https://github.com/fyuanfen/note/blob/master/article/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E4%B8%8E%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96.md)
+- [前端工程与性能优化](https://github.com/fyuanfen/note/blob/master/article/2.md)
 
 - [前端开发体系建设日记](https://github.com/fouber/blog/issues/2)
 
@@ -74,7 +69,6 @@
 
 
 <h2 id="articles">经典文章</h2>
-
 - [Best Practices for Speeding Up Your Web Site（雅虎35条）](https://developer.yahoo.com/performance/rules.html)
 - [Facebook静态网页资源的管理和优化](http://v.youku.com/v_show/id_XMjI5OTUxMjE2.html) [[PDF](http://velocity.oreilly.com.cn/2010/ppts/VelocityChina2010Dec7StaticResource.pdf)] by [@David Wei](http://weibo.com/weixiaoliang9)
 - [Facebook移动互联网应用的性能优化](http://v.youku.com/v_show/id_XMzUwOTQzMzA4.html) [[PDF](http://velocity.oreilly.com.cn/2011/ppts/MobilePerformanceVelocity2011_DavidWei.pdf)] by [@David Wei](http://weibo.com/weixiaoliang9)
@@ -89,7 +83,6 @@
 
 
 <h2 id="interview">前端面试</h2>
-
 - [前端工作面试问题](https://github.com/h5bp/Front-end-Developer-Interview-Questions
 )
 
@@ -104,4 +97,19 @@
 - [笔试面试知识整理](https://github.com/HIT-Alibaba/interview) - 打开其 Gitbook 上的地址我都惊呆了。虽然有部分内容待完善，但是光浏览目录都是享受。
 
 - [大漠：写给前端面试者](http://www.w3cplus.com/css/write-to-front-end-developer-interview.html) - 这篇文章不涉及任何的面试题 大漠与大家聊聊面试者与被面者之间的感受...
+
+
+
+<h2 id="resume">前端简历</h2>
+
+- [关于程序员求职简历](https://mdluo.github.io/blog/about-resume/)
+
+- [strml.net](http://strml.net/) 
+
+- [张文莉的简历](http://zhangwenli.com/cv/cn.html)
+知乎上获赞很高的前端简历，风格很好看，也有[pdf](http://zhangwenli.com/cv/Web%20Front-End%20Wenli%20Zhang.pdf)
+
+- [Clark Duvall](http://www.clarkduvall.com/) - 一枚歪果仁的个人 blog，范儿叼叼的
+
+- [Simple resume]( https://github.com/DIYgod/Resume)
 

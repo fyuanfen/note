@@ -2,7 +2,7 @@
 
 这个项目是我整理的[**前端知识体系**](https://github.com/fyuanfen/note)的一个分支，这篇的定位是 **大前端程序猿的工具箱**。主要针对 前端方向和 后台Node 方向；主要内容是前端学习资源合集、国内外优秀的库、工具、设计/交互或关注的前端组织/博客等等。
 
-本合集其他系列之[前端工程杂谈](https://github.com/fyuanfen/note#project)，[前端面试经验](https://github.com/fyuanfen/note#interview)，[经典图书](https://github.com/fyuanfen/note#books)，不定期更新中。。。。。
+本合集其他系列之[前端工程杂谈](https://github.com/fyuanfen/note#project)，[前端面试经验](https://github.com/fyuanfen/note#interview)，[经典图书](https://github.com/fyuanfen/note#books)和[前端简历](https://github.com/fyuanfen/note#resume)，不定期更新中。。。。。
 
 
 > 感谢和期待大家的 PR，我会及时回复的~
@@ -48,7 +48,6 @@
 - [设计/交互](#ux)
 - [速查手册](#handbook)
 - [杂七杂八](#other)
-- [前端炫技-炫酷狂拽叼炸天的 Web](#cool)
 - [小结](#summary)
 - [TODO](#todo)
 
@@ -166,6 +165,7 @@
 - [hamburgers](https://jonsuh.com/hamburgers/) - 简单的动画库，让 Click(or Tap) 变得美妙
 - [cssmatic](http://www.cssmatic.com) - 一个帮忙调试CSS效果的工具
 
+- [CSS字母](http://yusugomori.com/projects/css-sans/fonts) - 用 CSS 实现英文字母，很腻害呀！！！
 
 <h3 id="javascript">JS</h3>
 
@@ -615,22 +615,8 @@ _暂无_
 - [git-draw](https://github.com/ben174/git-draw) - 黑魔法，可以修改自己 Git 上的 Contributions
 - [GitBook](https://www.gitbook.com) - 写记录的好地方
 
-
-<h3 id="cool">前端炫技-_炫酷狂拽叼炸天站点_</h3>
-
-- [three.js](https://github.com/mrdoob/three.js) - JavaScript 3D 库。超多的 [examples](http://threejs.org/examples/) 等着你去发现，你只需要关注内存和风扇就行了
-- [windows93](http://www.windows93.net/) - 模拟 Win93 桌面，思路、体验和整体效果比较有意思
 - [GeekTyper](http://geektyper.com/) - 好玩又具有 Geek 精神的网站，虽然创建的目的是个恶作剧 PS：网站需要翻墙
 - [2016.makemepulse.com](http://2016.makemepulse.com/) - 帅哭了。请使用现代浏览器打开
-
-- [Mapbox](https://www.mapbox.com/) - 非常叼的开源项目，有方便的 JSAPI(还有 SDK)。 不过免费版只能浅尝，流量有限。 PS：网站需要翻墙
-- [mixitup](https://mixitup.kunkalabs.com/) 一款基于 ```jQuery``` 的 **排序/过滤** 的JS库，最关键是有着美妙的动画效果
-
-- [earth](https://github.com/cambecc/earth) - 全球天气的可视化项目
-- [SuperScrollorama](http://johnpolacek.github.io/superscrollorama/) - 好玩好看的动画库，链接是 SuperScrollorama 的展示页
-
-- [CSS字母](http://yusugomori.com/projects/css-sans/fonts) - 用 CSS 实现英文字母，叼叼的
-- [墨刀](https://modao.cc/) - 一个在线移动应用原型制作工具。 旨在帮助产品经理快速制作可在手机端展示的移动应用原型。
 
 <h3 id="summary">小结</h3>
 这里面是我自己学习的时候收集了很多资料丢在云笔记里，现在整理出来，并结合其他人的实践做出的资料合集。

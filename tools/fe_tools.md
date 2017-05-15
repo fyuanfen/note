@@ -637,9 +637,6 @@ _暂无_
 文章已推送至我的[github](https://github.com/fyuanfen/note/tree/master/tools/fe_tools.md)，欢迎PR
 ---
 
-- [小结](#summary)
-- [TODO](#todo)
-
 
 **[⬆ 返回顶部](#catalog)**
 

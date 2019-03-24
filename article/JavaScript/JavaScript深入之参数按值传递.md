@@ -88,10 +88,6 @@ console.log(obj.value); // 1
 
 所以，高程，谁叫你是红宝书嘞！
 
-## 下一篇文章
-
-[JavaScript 深入之 call 和 apply 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之call和apply的模拟实现.md)
-
 ## 深入系列
 
 [JavaScript 深入系列目录地址](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)。

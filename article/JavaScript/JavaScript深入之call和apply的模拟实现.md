@@ -306,10 +306,6 @@ Function.prototype.apply = function(context, arr) {
 };
 ```
 
-## 下一篇文章
-
-[JavaScript 深入之 bind 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之bind的模拟实现.md)
-
 ## 重要参考
 
 [知乎问题 不能使用 call、apply、bind，如何用 js 实现 call 或者 apply 的功能？](https://www.zhihu.com/question/35787390)

@@ -448,10 +448,6 @@ console.log((false || foo.bar)()); // 1
 
 此篇讲解执行上下文的 this，即便不是很理解此篇的内容，依然不影响大家了解执行上下文这个主题下其他的内容。所以，依然可以安心的看下一篇文章。
 
-## 下一篇文章
-
-[JavaScript 深入之闭包](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之闭包.md)
-
 ## 深入系列
 
 [JavaScript 深入系列目录地址](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)。

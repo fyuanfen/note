@@ -107,10 +107,6 @@ JavaScript 函数的执行用到了作用域链，这个作用域链是在函数
 
 如果要回答这个问题，就要牵涉到很多的内容，词法作用域只是其中的一小部分，让我们期待下一篇文章————《JavaScript 深入之执行上下文栈》。
 
-## 下一篇文章
-
-[JavaScript 深入之解读 this](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之解读this.md)
-
 ## 深入系列
 
 [JavaScript 深入系列目录地址](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)。

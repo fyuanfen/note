@@ -33,7 +33,7 @@ bindFoo(); // 1
 ```
 
 关于指定 this 的指向，我们可以使用 call 或者 apply 实现，关于 call 和 apply 的模拟实现，可以查看
-[JavaScript 深入之 call 和 apply 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之call和apply的模拟实现.md)
+[JavaScript 深入之 call 和 apply 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript%E6%B7%B1%E5%85%A5%E4%B9%8Bcall%E5%92%8Capply%E7%9A%84%E6%A8%A1%E6%8B%9F%E5%AE%9E%E7%8E%B0.md)
 。我们来写第一版的代码：
 
 ```js
@@ -141,10 +141,6 @@ console.log(obj.friend);
 
 注意：尽管在全局和 foo 中都声明了 value 值，最后依然返回了 undefind，说明绑定的 this 失效了，如果大家了解 new 的模拟实现，就会知道这个时候的 this 已经指向了 obj。
 
-(哈哈，我这是为我的下一篇文章
-[JavaScript 深入之 call 和 apply 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之call和apply的模拟实现.md)
-打广告)。
-
 所以我们可以通过修改返回的函数的原型来实现，让我们写一下：
 
 ```js
@@ -169,7 +165,7 @@ Function.prototype.bind2 = function(context) {
 };
 ```
 
-如果对原型链稍有困惑，可以查看[JavaScirpt 深入之从原型到原型链](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScirpt深入之从原型到原型链.md)
+如果对原型链稍有困惑，可以查看[JavaScirpt 深入之从原型到原型链](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript%E6%B7%B1%E5%85%A5%E4%B9%8B%E4%BB%8E%E5%8E%9F%E5%9E%8B%E5%88%B0%E5%8E%9F%E5%9E%8B%E9%93%BE.md)
 
 ## 构造函数效果的优化实现
 
@@ -290,18 +286,6 @@ Function.prototype.bind2 = function(context) {
   return fBound;
 };
 ```
-
-## 下一篇文章
-
-[JavaScript 深入之 new 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之new的模拟实现.md)
-
-## 相关链接
-
-[JavaScirpt 深入之从原型到原型链](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScirpt深入之从原型到原型链.md)
-
-[JavaScript 深入之 call 和 apply 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之call和apply的模拟实现.md)
-
-[JavaScript 深入之 new 的模拟实现](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之new的模拟实现.md)
 
 ## 深入系列
 

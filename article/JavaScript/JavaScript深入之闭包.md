@@ -287,10 +287,6 @@ data[0]Context 的 AO 并没有 i 值，所以会沿着作用域链从匿名函�
 
 data[1] 和 data[2] 是一样的道理。
 
-## 下一篇文章
-
-[JavaScript 深入之参数按值传递](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript深入之参数按值传递.md)
-
 ## 深入系列
 
 [JavaScript 深入系列目录地址](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)。

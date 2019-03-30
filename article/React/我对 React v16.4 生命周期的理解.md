@@ -1,3 +1,25 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [挂载阶段](#挂载阶段)
+	* [constructor](#constructor)
+	* [getDerivedStateFromProps](#getderivedstatefromprops)
+	* [render](#render)
+	* [componentDidMount](#componentdidmount)
+* [更新阶段](#更新阶段)
+	* [~~componentWillReceiveProps/UNSAFE_componentWillReceiveProps~~](#~~componentwillreceivepropsunsafe_componentwillreceiveprops~~)
+	* [getDerivedStateFromProps](#getderivedstatefromprops-1)
+	* [shouldComponentUpdate](#shouldcomponentupdate)
+	* [render](#render-1)
+	* [getSnapshotBeforeUpdate](#getsnapshotbeforeupdate)
+	* [componentDidUpdate](#componentdidupdate)
+* [卸载阶段](#卸载阶段)
+	* [componentWillUnmount](#componentwillunmount)
+* [最后](#最后)
+
+<!-- /code_chunk_output -->
+
 关于 react 生命周期的文章，网上一大堆，本人也看了许多，但是觉得大部分人写的都是照搬其它人的没有自己独到的见解，所以决定根据本人的实战经验和个人理解再写一篇 React 生命周期的文章，由于 React 目前已更新到 16.4 版本，所以重点讲解 React v16.4 变化的生命周期，之前的生命周期函数会一带而过。
 
 先总体看下 React16 的生命周期图

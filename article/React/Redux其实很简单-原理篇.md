@@ -1,3 +1,20 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [核心 API](#核心-api)
+	* [createStore](#createstore)
+	* [applyMiddleware](#applymiddleware)
+	* [combineReducers](#combinereducers)
+	* [bindActionCreators](#bindactioncreators)
+* [中间件](#中间件)
+	* [logger](#logger)
+	* [thunk](#thunk)
+* [心得体会](#心得体会)
+* [reference](#referencehttpsgithubcomansenhuangansenhuanggithubioissues30)
+
+<!-- /code_chunk_output -->
+
 在上一篇文章中，我们通过一个示例页面，了解到 Redux 的使用方法以及各个功能模块的作用。如果还不清楚 Redux 如何使用，可以先看看 Redux 其实很简单（示例篇），然后再来看本文，理解起来会更加轻松。
 
 那么在这一篇文章中，笔者将带大家编写一个完整的 Redux，深度剖析 Redux 的方方面面，读完本篇文章后，大家对 Redux 会有一个深刻的认识。

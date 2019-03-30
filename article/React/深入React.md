@@ -1,3 +1,40 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [设计思想](#设计思想)
+  _ [想表达什么？React 怎样理解 Application？](#想表达什么react-怎样理解-application)
+  _ [与 FP 有什么关系？](#与-fp-有什么关系)
+- [目标](#目标)
+  _ [想解决什么问题？定位？](#想解决什么问题定位)
+  _ [能解决什么问题？](#能解决什么问题) \* [性能目标](#性能目标)
+- [虚拟 DOM](#虚拟-dom)
+  _ [通过什么方式解决问题？](#通过什么方式解决问题)
+  _ [虚拟 DOM 有什么作用？](#虚拟-dom-有什么作用) \* [具体实现](#具体实现)
+- [单向数据流](#单向数据流)
+  _ [瀑布模型](#瀑布模型)
+  _ [state 与 props](#state-与-props)
+- [数据绑定？](#数据绑定)
+  _ [2 个环节](#2-个环节)
+  _ [3 种实现方式](#3-种实现方式)
+  _ [虚拟 DOM diff 算法](#虚拟-dom-diff-算法)
+  _ [tree diff](#tree-diff) \* [React diff](#react-diff)
+- [状态管理](#状态管理)
+  _ [状态共享与传递](#状态共享与传递)
+  _ [Flux](#flux)
+  _ [基本思路](#基本思路)
+  _ [具体做法](#具体做法)
+  _ [结构](#结构)
+  _ [container 与 view](#container-与-view)
+  _ [Redux 的取舍](#redux-的取舍)
+  _ [对比 Flux](#对比-flux)
+  _ [react-redux](#react-redux)
+  _ [container](#container)
+  _ [connect()](#connect)
+  _ [Provider 是怎么回事？](#provider-是怎么回事)
+
+<!-- /code_chunk_output -->
+
 ## 设计思想
 
 ### 想表达什么？React 怎样理解 Application？

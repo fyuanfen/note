@@ -1,17 +1,4 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [前言](#前言)
-  _ [传统 diff 算法](#传统-diff-算法)
-  _ [详解 React diff](#详解-react-diff)
-  _ [diff 策略](#diff-策略)
-  _ [tree diff](#tree-diff)
-  _ [component diff](#component-diff)
-  _ [element diff](#element-diff) \* [总结](#总结)
-
-<!-- /code_chunk_output -->
-
+[toc]
 目前，前端领域中 React 势头正盛，使用者众多却少有能够深入剖析内部实现机制和原理。本系列文章希望通过剖析 React 源码，理解其内部的实现原理，知其然更要知其所以然。
 
 React diff 作为 Virtual DOM 的加速器，其算法上的改进优化是 React 整个界面渲染的基础，以及性能提高的保障，同时也是 React 源码中最神秘、最不可思议的部分，本文从源码入手，深入剖析 React diff 的不可思议之处。

@@ -2,6 +2,7 @@
 
 - [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
 - [JavaScript 深入系列](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)
+- [React 深入系列](https://github.com/fyuanfen/note/blob/master/article/React/README.md)
 
 - [前端精读](https://github.com/dt-fe/weekly)
 

@@ -1,30 +1,4 @@
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- code_chunk_output -->
-
-- [React16 源码之 React Fiber 架构](#react16-源码之-react-fiber-架构)
-  _ [基础概念](#基础概念)
-  _ [React 基础模块](#react-基础模块)
-  _ [1、React.creatElement](#1-reactcreatelement)
-  _ [2、React.component](#2-reactcomponent)
-  _ [渲染模块：react-dom](#渲染模块react-dom)
-  _ [Reconciliation 模块](#reconciliation-模块)
-  _ [Stack Reconciler](#stack-reconciler)
-  _ [Fiber Reconciler](#fiber-reconciler)
-  _ [源码分析](#源码分析)
-  _ [Fiber](#fiber)
-  _ [源码函数调用流程](#源码函数调用流程)
-  _ [reconciliation 阶段](#reconciliation-阶段)
-  _ [第一部分](#第一部分)
-  _ [第二部分：任务协调](#第二部分任务协调)
-  _ [第三部分：beginWork](#第三部分beginwork)
-  _ [生命周期函数调用](#生命周期函数调用)
-  _ [Diff 算法](#diff-算法)
-  _ [commit 阶段](#commit-阶段)
-  _ [effectTag](#effecttag)
-  _ [总结](#总结)
-
-<!-- /code_chunk_output -->
+[toc]
 
 # React16 源码之 React Fiber 架构
 

@@ -2,21 +2,20 @@
 
 <!-- code_chunk_output -->
 
-* [挂载阶段](#挂载阶段)
-	* [constructor](#constructor)
-	* [getDerivedStateFromProps](#getderivedstatefromprops)
-	* [render](#render)
-	* [componentDidMount](#componentdidmount)
-* [更新阶段](#更新阶段)
-	* [~~componentWillReceiveProps/UNSAFE_componentWillReceiveProps~~](#~~componentwillreceivepropsunsafe_componentwillreceiveprops~~)
-	* [getDerivedStateFromProps](#getderivedstatefromprops-1)
-	* [shouldComponentUpdate](#shouldcomponentupdate)
-	* [render](#render-1)
-	* [getSnapshotBeforeUpdate](#getsnapshotbeforeupdate)
-	* [componentDidUpdate](#componentdidupdate)
-* [卸载阶段](#卸载阶段)
-	* [componentWillUnmount](#componentwillunmount)
-* [最后](#最后)
+- [挂载阶段](#挂载阶段)
+  _ [constructor](#constructor)
+  _ [getDerivedStateFromProps](#getderivedstatefromprops)
+  _ [render](#render)
+  _ [componentDidMount](#componentdidmount)
+- [更新阶段](#更新阶段)
+  _ [~~componentWillReceiveProps/UNSAFE_componentWillReceiveProps~~](#~~componentwillreceivepropsunsafe_componentwillreceiveprops~~)
+  _ [getDerivedStateFromProps](#getderivedstatefromprops-1)
+  _ [shouldComponentUpdate](#shouldcomponentupdate)
+  _ [render](#render-1)
+  _ [getSnapshotBeforeUpdate](#getsnapshotbeforeupdate)
+  _ [componentDidUpdate](#componentdidupdate)
+- [卸载阶段](#卸载阶段) \* [componentWillUnmount](#componentwillunmount)
+- [最后](#最后)
 
 <!-- /code_chunk_output -->
 
@@ -93,12 +92,14 @@ constructor(props) {
 static getDerivedStateFromProps(nextProps, prevState)
 ```
 
-一个静态方法，所以不能在这个函数里面使用 this，这个函数有两个参数 props 和 state，分别指接收到的新参数和当前的 state 对象，这个函数会返回一个对象用来更新当前的 state 对象，如果不需要更新可以返回 null
-该函数会在挂载时，接收到新的 props，调用了 setState 和 forceUpdate 时被调用
+- 该函数会在挂载时，接收到新的 `props`，调用了 `setState` 和 `forceUpdate` 时被调用。
+
+- 每次接收新的 `props` 之后都会返回一个对象作为新的 `state`，返回 `null` 则说明不需要更新 `state`.
+- 配合 `componentDidUpdate`，可以覆盖 `componentWillReceiveProps` 的所有用法
 
 ![](https://github.com/fyuanfen/note/raw/master/images/react/react16.4-diff.png)
 
-在 React v16.3 时只有在挂载时和接收到新的 props 被调用，据说这是官方的失误，后来修复了
+在 React v16.3 时只有在挂载时和接收到新的 `props` 被调用，据说这是官方的失误，后来修复了
 
 ![](https://github.com/fyuanfen/note/raw/master/images/react/react16.3-diff.png)
 
@@ -141,11 +142,11 @@ React 中最核心的方法，一个组件中必须要有这个方法
 
 > 关于 Fragment 和 Portals 是 React16 新增的，如果大家不清楚可以去阅读官方文档，在这里就不展开了
 
-render 函数是纯函数，里面只做一件事，就是返回需要渲染的东西，不应该包含其它的业务逻辑，如数据请求，对于这些业务逻辑请移到 componentDidMount 和 componentDidUpdate 中
+render 函数是纯函数，里面只做一件事，就是返回需要渲染的东西，不应该包含其它的业务逻辑，如数据请求，对于这些业务逻辑请移到 `componentDidMount` 和 `componentDidUpdate` 中
 
 ### componentDidMount
 
-组件装载之后调用，此时我们可以获取到 DOM 节点并操作，比如对 canvas，svg 的操作，服务器请求，订阅都可以写在这个里面，但是记得在 componentWillUnmount 中取消订阅
+组件装载之后调用，此时我们可以获取到 DOM 节点并操作，比如对 canvas，svg 的操作，服务器请求，订阅都可以写在这个里面，但是记得在 `componentWillUnmount` 中取消订阅
 
 ```js
 componentDidMount() {
@@ -208,7 +209,7 @@ componentDidMount() {
 
 ### getDerivedStateFromProps
 
-这个方法在装载阶段已经讲过了，这里不再赘述，记住在更新阶段，无论我们接收到新的属性，调用了 setState 还是调用了 forceUpdate，这个方法都会被调用
+这个方法在装载阶段已经讲过了，这里不再赘述，记住在更新阶段，无论我们接收到新的属性，调用了 `setState` 还是调用了 `forceUpdate`，这个方法都会被调用
 
 ### shouldComponentUpdate
 
@@ -221,8 +222,8 @@ shouldComponentUpdate(nextProps, nextState);
 **注意当我们调用 forceUpdate 并不会触发此方法**
 因为默认是返回 true，也就是只要接收到新的属性和调用了 setState 都会触发重新的渲染，这会带来一定的性能问题，所以我们需要将 this.props 与 nextProps 以及 this.state 与 nextState 进行比较来决定是否返回 false，来减少重新渲染。
 
-但是官方提倡我们使用 PureComponent 来减少重新渲染的次数而不是手工编写 shouldComponentUpdate 代码，具体该怎么选择，全凭开发者自己选择
-在未来的版本，shouldComponentUpdate 返回 false，仍然可能导致组件重新的渲染，这是官方自己说的
+但是官方提倡我们使用 `PureComponent` 来减少重新渲染的次数而不是手工编写 `shouldComponentUpdate` 代码，具体该怎么选择，全凭开发者自己选择
+在未来的版本，`shouldComponentUpdate` 返回 `false`，仍然可能导致组件重新的渲染，这是官方自己说的
 
 > Currently, if shouldComponentUpdate() returns false, then UNSAFE_componentWillUpdate(), render(), and componentDidUpdate() will not be invoked. In the future React may treat shouldComponentUpdate() as a hint rather than a strict directive, and returning false may still result in a re-rendering of the component.
 
@@ -247,10 +248,13 @@ UNSAFE_componentWillUpdate(nextProps, nextState);
 getSnapshotBeforeUpdate(prevProps, prevState);
 ```
 
-这个方法在 render 之后，componentDidUpdate 之前调用，有两个参数 prevProps 和 prevState，表示之前的属性和之前的 state，这个函数有一个返回值，会作为第三个参数传给 componentDidUpdate，如果你不想要返回值，请返回 null，不写的话控制台会有警告
+- 触发时间: update 发生的时候，在 render 之后，在组件 dom 渲染之前。
+- 返回一个值，作为 `componentDidUpdate` 的第三个参数，如果你不想要返回值，请返回 `null`，不写的话控制台会有警告
+- 配合 `componentDidUpdate`, 可以覆盖 `componentWillUpdate` 的所有用法。
+
 ![](https://github.com/fyuanfen/note/raw/master/images/react/react-warn1.png)
 
-还有这个方法一定要和 componentDidUpdate 一起使用，否则控制台也会有警告
+还有这个方法一定要和 `componentDidUpdate` 一起使用，否则控制台也会有警告
 ![](https://github.com/fyuanfen/note/raw/master/images/react/react-warn2.png)
 
 前面说过这个方法时用来代替 componentWillUpdate/UNSAVE_componentWillUpdate，下面举个例子说明下：
@@ -311,6 +315,54 @@ componentDidUpdate(prevProps, prevState, snapshot);
 注意不要在这个函数里去调用 setState，因为组件不会重新渲染了
 
 ## 最后
+
+生命周期功能替换一览
+
+```js
+  static getDerivedStateFromProps(nextProps, prevState) {
+    4. Updating state based on props
+    7. Fetching external data when props change // Clear out previously-loaded data so we dont render stale stuff
+  }
+  constructor() {
+	1. Initializing state
+  }
+  componentWillMount() {
+  	// 1. Initializing state
+  	// 2. Fetching external data
+  	// 3. Adding event listeners (or subscriptions)
+  }
+  componentDidMount() {
+	2. Fetching external data
+	3. Adding event listeners (or subscriptions)
+  }
+  componentWillReceiveProps() {
+  	// 4. Updating state based on props
+  	// 6. Side effects on props change
+  	// 7. Fetching external data when props change
+  }
+  shouldComponentUpdate() {
+  }
+  componentWillUpdate(nextProps, nextState) {
+  	// 5. Invoking external callbacks
+  	// 8. Reading DOM properties before an update
+
+  }
+  render() {
+  }
+  getSnapshotBeforeUpdate(prevProps, prevState) {
+	8. Reading DOM properties before an update
+  }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+	5. Invoking external callbacks
+	6. Side effects on props change
+  }
+
+  componentWillUnmount() {
+  }
+
+
+
+```
 
 [查看 Reactv16.4 生命周期](http://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 

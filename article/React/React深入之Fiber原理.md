@@ -2,28 +2,27 @@
 
 <!-- code_chunk_output -->
 
-* [一.目标](#一目标)
-* [二.关键特性](#二关键特性)
-* [三.fiber 与 fiber tree](#三fiber-与-fiber-tree)
-* [四.Fiber reconciler](#四fiber-reconciler)
-	* [render/reconciliation](#renderreconciliation)
-	* [requestIdleCallback](#requestidlecallback)
-	* [commit](#commit)
-	* [生命周期 hook](#生命周期-hook)
-* [五.fiber tree 与 workInProgress tree](#五fiber-tree-与-workinprogress-tree)
-* [六.优先级策略](#六优先级策略)
-* [七.总结](#七总结)
-	* [已知](#已知)
-	* [求](#求)
-	* [解](#解)
-		* [1. 拆什么？什么不能拆？](#1-拆什么什么不能拆)
-		* [2. 怎么拆？](#2-怎么拆)
-		* [3. 如何调度任务？](#3-如何调度任务)
-		* [4. 如何中断/断点恢复？](#4-如何中断断点恢复)
-		* [5. 如何收集任务结果？](#5-如何收集任务结果)
-	* [举一反三](#举一反三)
-* [八. 源码简析](#八-源码简析)
-* [参考资料](#参考资料)
+- [一.目标](#一目标)
+- [二.关键特性](#二关键特性)
+- [三.fiber 与 fiber tree](#三fiber-与-fiber-tree)
+- [四.Fiber reconciler](#四fiber-reconciler)
+  _ [render/reconciliation](#renderreconciliation)
+  _ [requestIdleCallback](#requestidlecallback)
+  _ [commit](#commit)
+  _ [生命周期 hook](#生命周期-hook)
+- [五.fiber tree 与 workInProgress tree](#五fiber-tree-与-workinprogress-tree)
+- [六.优先级策略](#六优先级策略)
+- [七.总结](#七总结)
+  _ [已知](#已知)
+  _ [求](#求)
+  _ [解](#解)
+  _ [1. 拆什么？什么不能拆？](#1-拆什么什么不能拆)
+  _ [2. 怎么拆？](#2-怎么拆)
+  _ [3. 如何调度任务？](#3-如何调度任务)
+  _ [4. 如何中断/断点恢复？](#4-如何中断断点恢复)
+  _ [5. 如何收集任务结果？](#5-如何收集任务结果) \* [举一反三](#举一反三)
+- [八. 源码简析](#八-源码简析)
+- [参考资料](#参考资料)
 
 <!-- /code_chunk_output -->
 
@@ -51,7 +50,7 @@ Fiber 是对 React 核心算法的重构，2 年重构的产物就是 Fiber reco
 
 React 希望通过 Fiber 重构来改变这种不可控的现状，进一步提升交互体验
 
-P.S.关于 Fiber 目标的更多信息，请查看 Codebase Overview
+P.S.关于 Fiber 目标的更多信息，请查看 [Codebase Overview](https://reactjs.org/docs/codebase-overview.html#fiber-reconciler)
 
 # 二.关键特性
 
@@ -65,7 +64,7 @@ Fiber 的关键特性如下：
 
 - 并发方面新的基础能力
 
-增量渲染用来解决掉帧的问题，渲染任务拆分之后，每次只做一小段，做完一段就把时间控制权交还给主线程，而不像之前长时间占用。这种策略叫做 cooperative scheduling（合作式调度），操作系统的 3 种任务调度策略之一（Firefox 还对真实 DOM 应用了这项技术）
+增量渲染用来解决掉帧的问题，渲染任务拆分之后，每次只做一小段，做完一段就把时间控制权交还给主线程，而不像之前长时间占用。这种策略叫做 `cooperative scheduling`（合作式调度），操作系统的 3 种任务调度策略之一（Firefox 还对真实 DOM 应用了这项技术）
 
 另外，React 自身的 killer feature 是 virtual DOM，2 个原因：
 
@@ -75,11 +74,11 @@ Fiber 的关键特性如下：
 
 React 实现上分为 2 部分：
 
-- reconciler 寻找某时刻前后两版 UI 的差异。包括之前的 Stack reconciler 与现在的 Fiber reconciler
+- `reconciler` 寻找某时刻前后两版 UI 的差异。包括之前的 `Stack reconciler` 与现在的 `Fiber reconciler`
 
-- renderer 插件式的，平台相关的部分。包括 React DOM、React Native、React ART、ReactHardware、ReactAframe、React-pdf、ReactThreeRenderer、ReactBlessed 等等
+- `renderer` 插件式的，平台相关的部分。包括 React DOM、React Native、React ART、ReactHardware、ReactAframe、React-pdf、ReactThreeRenderer、ReactBlessed 等等
 
-这一波是对 reconciler 的彻底改造，对 killer feature 的增强
+这一波是对 `reconciler` 的彻底改造，对 killer feature 的增强
 
 # 三.fiber 与 fiber tree
 
@@ -97,23 +96,22 @@ Instances 是根据 Elements 创建的，对组件及 DOM 节点的抽象表示�
 
 在首次渲染过程中构建出 vDOM tree，后续需要更新时（`setState()`），diff vDOM tree 得到 DOM change，并把 DOM change 应用（patch）到 DOM 树
 
-Fiber 之前的 reconciler（被称为 Stack reconciler）自顶向下的递归 mount/update，无法中断（持续占用主线程），这样主线程上的布局、动画等周期性任务以及交互响应就无法立即得到处理，影响体验
+Fiber 之前的 reconciler（被称为 Stack reconciler）自顶向下的递归 `mount`/`update`，无法中断（持续占用主线程），这样主线程上的布局、动画等周期性任务以及交互响应就无法立即得到处理，影响体验
 
 Fiber 解决这个问题的思路是把渲染/更新过程（递归 diff）拆分成一系列小任务，每次检查树上的一小部分，做完看是否还有时间继续下一个任务，有的话继续，没有的话把自己挂起，主线程不忙的时候再继续
 
-增量更新需要更多的上下文信息，之前的 vDOM tree 显然难以满足，所以扩展出了 fiber tree（即 Fiber 上下文的 vDOM tree），更新过程就是根据输入数据以及现有的 fiber tree 构造出新的 fiber tree（workInProgress tree）。因此，Instance 层新增了这些实例：
+增量更新需要更多的上下文信息，之前的 `vDOM tree` 显然难以满足，所以扩展出了 `fiber tree`（即 Fiber 上下文的 vDOM tree），更新过程就是根据输入数据以及现有的 `fiber tree` 构造出新的 `fiber tree`（workInProgress tree）。因此，Instance 层新增了这些实例：
 
 ```
 DOM
     真实DOM节点
 -------
 effect
-    每个workInProgress tree节点上都有一个effect list
-    用来存放diff结果
+    每个workInProgress tree节点上都有一个 effect list 用来存放diff结果
     当前节点更新完毕会向上merge effect list（queue收集diff结果）
 - - - -
 workInProgress
-    workInProgress tree是reconcile过程中从fiber tree建立的当前进度快照，用于断点恢复
+    workInProgress tree 是 reconcile过程中从fiber tree建立的当前进度快照，用于断点恢复
 - - - -
 fiber
     fiber tree与vDOM tree类似，用来描述增量更新所需的上下文信息
@@ -122,7 +120,7 @@ Elements
     描述UI长什么样子（type, props）
 ```
 
-注意：放在虚线上的 2 层都是临时的结构，仅在更新时有用，日常不持续维护。effect 指的就是 side effect，包括将要做的 DOM change
+注意：放在虚线上的 2 层都是临时的结构，仅在更新时有用，日常不持续维护。effect 指的就是 `side effect`，包括将要做的 DOM change
 
 fiber tree 上各节点的主要结构（每个节点称为 fiber）如下：
 
@@ -161,7 +159,7 @@ reconcile 过程分为 2 个阶段（phase）：
 
 2. 更新当前节点状态（props, state, context 等）
 
-3. 调用 shouldComponentUpdate()，false 的话，跳到 5
+3. 调用 `shouldComponentUpdate()`，false 的话，跳到 5
 
 4. 调用 render()获得新的子节点，并为子节点创建 fiber（创建过程会尽量复用现有 fiber，子节点增删也发生在这里）
 
@@ -173,7 +171,7 @@ reconcile 过程分为 2 个阶段（phase）：
 
 实际上是 1-6 的**工作循环**，7 是出口，工作循环每次只做一件事，做完看要不要喘口气。工作循环结束时，workInProgress tree 的根节点身上的 effect list 就是收集到的所有 side effect（因为每做完一个都向上归并）
 
-所以，构建 workInProgress tree 的过程就是 diff 的过程，通过 requestIdleCallback 来调度执行一组任务，每完成一个任务后回来看看有没有插队的（更紧急的），每完成一组任务，把时间控制权交还给主线程，直到下一次 requestIdleCallback 回调再继续构建 workInProgress tree
+所以，构建 workInProgress tree 的过程就是 `diff` 的过程，通过 `requestIdleCallback` 来调度执行一组任务，每完成一个任务后回来看看有没有插队的（更紧急的），每完成一组任务，把时间控制权交还给主线程，直到下一次 `requestIdleCallback` 回调再继续构建 workInProgress tree
 
 P.S.Fiber 之前的 reconciler 被称为 Stack reconciler，就是因为这些调度上下文信息是由系统栈来保存的。虽然之前一次性做完，强调栈没什么意义，起个名字只是为了便于区分 Fiber reconciler
 
@@ -221,9 +219,9 @@ P.S.一般剩余可用时间也就 10-50ms，可调度空间不很宽裕
 
 第 2 阶段直接一口气做完：
 
-1. 处理 effect list（包括 3 种处理：更新 DOM 树、调用组件生命周期函数以及更新 ref 等内部状态）
+1. 处理 effect list（包括 3 种处理：更新 DOM 树、调用组件生命周期函数以及更新 `ref` 等内部状态）
 
-2. 出队结束，第 2 阶段结束，所有更新都 commit 到 DOM 树上了
+2. 出队结束，第 2 阶段结束，所有更新都 `commit` 到 `DOM` 树上了
 
 注意，真的是一口气做完（同步执行，不能喊停）的，这个阶段的实际工作量是比较大的，所以**尽量不要在后 3 个生命周期函数里干重活儿**
 
@@ -258,7 +256,7 @@ componentWillUnmount
 
 - 节省内存分配、GC 的时间开销
 
-每个 fiber 上都有个 `alternate` 属性，也指向一个 fiber，创建 workInProgress 节点时优先取 alternate，没有的话就创建一个：
+每个 fiber 上都有个 `alternate` 属性，也指向一个 fiber，创建 `workInProgress` 节点时优先取 `alternate`，没有的话就创建一个：
 
 ```js
 let workInProgress = current.alternate;
@@ -481,3 +479,4 @@ P.S.这张[清明流程图](https://bogdan-lyashenko.github.io/Under-the-hood-Re
 [Codebase Overview](https://reactjs.org/docs/codebase-overview.html)
 
 [A look inside React Fiber – how work will get done.](http://makersden.io/blog/look-inside-fiber/)：Fiber 源码解读，小说体看着有点费劲
+[原文链接](http://www.ayqy.net/blog/dive-into-react-fiber/)

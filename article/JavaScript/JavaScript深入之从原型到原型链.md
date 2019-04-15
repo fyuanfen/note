@@ -114,9 +114,9 @@ delete person.name;
 console.log(person.name); // Kevin
 ```
 
-在这个例子中，我们给实例对象 person 添加了 name 属性，当我们打印 person.name 的时候，结果自然为 Daisy。
+在这个例子中，我们给实例对象 `person` 添加了 `name` 属性，当我们打印 `person.name` 的时候，结果自然为 Daisy。
 
-但是当我们删除了 person 的 name 属性时，读取 person.name，从 person 对象中找不到 name 属性就会从 person 的原型也就是 person.\_\_proto\_\_ ，也就是 Person.prototype 中查找，幸运的是我们找到了 name 属性，结果为 Kevin。
+但是当我们删除了 `person` 的 `name` 属性时，读取 `person.name`，从 `person` 对象中找不到 `name` 属性就会从 `person` 的原型也就是 person.\_\_proto\_\_ ，也就是 Person.prototype 中查找，幸运的是我们找到了 name 属性，结果为 Kevin。
 
 但是万一还没有找到呢？原型的原型又是什么呢？
 

@@ -88,19 +88,19 @@ WebSocket、SharedWorker；
 
 1. 方法一：使用localStorage
 
-使用localStorage.setItem(key,value);添加内容
+使用`localStorage.setItem(key,value);`添加内容
 
-使用storage事件监听添加、修改、删除的动作 
+使用storage事件监听添加、修改、删除的动作
 localstorge在另一个浏览上下文里被添加、修改或删除时，它都会触发一个storage事件，
 我们通过监听事件，控制它的值来进行页面信息通信；
 
 ```javascript
-    $(function(){   
-        window.addEventListener("storage", function(event){    
-            console.log(event.key + "=" + event.newValue);    
-        });     
-    });  
-``` 
+    $(function(){
+        window.addEventListener("storage", function(event){
+            console.log(event.key + "=" + event.newValue);
+        });
+    });
+```
 
 2. 方法二、使用cookie+setInterval
 
@@ -452,7 +452,7 @@ alert('four');
 
 输出为2
 
-- && 如果第一个值为true，返回第二个值。如果第一个值为false，返回false。 
+- && 如果第一个值为true，返回第二个值。如果第一个值为false，返回false。
 - || 如果第一个值为false，返回第二个值。如果第一个值为true，返回第一个值。
 
 ## 其他
@@ -559,11 +559,11 @@ Firefox下,只能使用getAttribute()获取自定义属性.
     var script = document.createElement('script');
     script.setAttribute('src', url);
     // 把script标签加入head，此时调用开始
-    document.getElementsByTagName('head')[0].appendChild(script); 
+    document.getElementsByTagName('head')[0].appendChild(script);
     </script>
- 
-```  
- 
+
+```
+
 ### CORS
 
 服务器端对于`CORS`的支持，主要就是通过设置`Access-Control-Allow-Origin`来进行的。如果浏览器检测到相应的设置，就可以允许`Ajax`进行跨域的访问。
@@ -822,7 +822,7 @@ HTTP工作在应用层， HTTPS工作在传输层
 2. `AMD`推荐的风格通过返回一个对象做为模块对象，`CommonJS`的风格通过对`module.exports`或`exports`的属性赋值来达到暴露模块对象的目的。
 
 
-**AMD和CMD最大的区别是对依赖模块的执行时机处理不同，注意不是加载的时机或者方式不同** 
+**AMD和CMD最大的区别是对依赖模块的执行时机处理不同，注意不是加载的时机或者方式不同**
 
 很多人说requireJS是异步加载模块，SeaJS是同步加载模块，这么理解实际上是不准确的，其实加载模块都是异步的，只不过AMD依赖前置，js可以方便知道依赖模块是谁，立即加载，而CMD就近依赖，需要使用把模块变为字符串解析一遍才知道依赖了那些模块，这也是很多人诟病CMD的一点，牺牲性能来带来开发的便利性，实际上解析模块用的时间短到可以忽略。
 
@@ -1246,7 +1246,7 @@ IE 提供了一种存储可以持久化用户数据，叫做`userdata`，从`IE5
 区别：
 
 1. cookie数据始终在同源的http请求中携带（即使不需要），即cookie在浏览器和服务器间来回传递。而sessionStorage和localStorage不会自动把数据发给服务器，仅在本地保存。
- 
+
 2. cookie数据还有路径（path）的概念，可以限制cookie只属于某个路径下。存储大小限制也不同，cookie数据不能超过4k，同时因为每次http请求都会携带cookie，所以cookie只适合保存很小的数据，如会话标识。sessionStorage和localStorage 虽然也有存储大小的限制，但比cookie大得多，可以达到5M或更大。
 
 3. 数据有效期不同，sessionStorage：仅在当前浏览器窗口关闭前有效，自然也就不可能持久保持；localStorage：始终有效，窗口或浏览器关闭也一直保存，因此用作持久数据；cookie只在设置的cookie过期时间之前一直有效，即使窗口或浏览器关闭。
@@ -2445,5 +2445,5 @@ git fetch：相当于是从远程获取最新版本到本地，不会自动merge
   [14]: http://segmentfault.com/blog/trigkit4/1190000000691919
 
   [15]: http://segmentfault.com/blog/trigkit4/1190000000733959
-  
+
   [分享一波前端面经](http://m.nowcoder.com/discuss/19662?from=ios_app_1.02.05)

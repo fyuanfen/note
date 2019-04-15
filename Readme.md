@@ -3,7 +3,9 @@
 - [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
 - [JavaScript 深入系列](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)
 
-  <h2 id="tools">前端工具集</h2>
+- [前端精读](https://github.com/dt-fe/weekly)
+
+<h2 id="tools">前端工具集</h2>
 
 - [大前端工具集](https://github.com/fyuanfen/note/tree/master/tools/fe_tools.md)
 
@@ -23,6 +25,7 @@
 
 ## 业界实践
 
+- [优秀博客收集](https://github.com/fyuanfen/note/tree/master/article/blog.md)
 - [前端组件化开发实践](http://tech.meituan.com/frontend-component-practice.html) by 美团
 - [2015 前端组件化框架之路](https://github.com/xufei/blog/issues/19) by [@民工精髓](http://weibo.com/sharpmaster)
 - [前端工程之模块化](http://fex.baidu.com/blog/2014/03/fis-module/) by [@沈洪顺](http://weibo.com/u/1916384703)

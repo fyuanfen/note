@@ -1,8 +1,8 @@
 <h2 id="series">系列专题</h2>
 
 - [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
-- [JavaScript 深入系列](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)
-- [React 深入系列](https://github.com/fyuanfen/note/blob/master/article/React/README.md)
+- [JavaScript 深入系列全 9 篇](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)
+- [React 深入系列（更新中）](https://github.com/fyuanfen/note/blob/master/article/React/README.md)
 
 - [前端精读](https://github.com/dt-fe/weekly)
 
@@ -34,14 +34,13 @@
 
 <h2 id="interview">前端面试</h2>
 
-- [前端工作面试问题](https://github.com/h5bp/Front-end-Developer-Interview-Questions)
+- [前端工作面试问题（英文）](https://github.com/h5bp/Front-end-Developer-Interview-Questions)
 
 - [前端开发面试题（中文）](https://github.com/markyun/My-blog/tree/master/Front-end-Developer-Questions/Questions-and-Answers)
 
 - [前端面经](https://github.com/fyuanfen/note/blob/master/article/Front-end-Interview-questions-master.md) --自己整理的很全面的前端面试题和相关文章解析，内容同步更新中。。。。。
 
-* [前端面试题](https://github.com/h5bp/Front-end-Developer-Interview-Questions/tree/master/Translations/Chinese) - Git 上非常火的前端面试题，`start17k+`
-* [前端面经](https://github.com/paddingme/Front-end-Web-Development-Interview-Question) - 主要内容是些前端面试笔试题和面试套路，值得阅读
+* [前端开发面试题](https://github.com/paddingme/Front-end-Web-Development-Interview-Question) - 主要内容是些前端面试笔试题和面试套路，值得阅读
 
 * [笔试面试知识整理](https://github.com/HIT-Alibaba/interview) - 打开其 Gitbook 上的地址我都惊呆了。虽然有部分内容待完善，但是光浏览目录都是享受。
 

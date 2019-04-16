@@ -1,6 +1,32 @@
-[toc]
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
-# React16 源码之 React Fiber 架构
+<!-- code_chunk_output -->
+
+* [React16 源码之 React Fiber 源码解析](#react16-源码之-react-fiber-源码解析)
+	* [基础概念](#基础概念)
+		* [React 基础模块](#react-基础模块)
+			* [1、React.creatElement](#1-reactcreatelement)
+			* [2、React.component](#2-reactcomponent)
+		* [渲染模块：react-dom](#渲染模块react-dom)
+		* [Reconciliation 模块](#reconciliation-模块)
+			* [Stack Reconciler](#stack-reconciler)
+			* [Fiber Reconciler](#fiber-reconciler)
+	* [源码分析](#源码分析)
+		* [Fiber](#fiber)
+		* [源码函数调用流程](#源码函数调用流程)
+			* [reconciliation 阶段](#reconciliation-阶段)
+				* [第一部分](#第一部分)
+				* [第二部分：任务协调](#第二部分任务协调)
+				* [第三部分：beginWork](#第三部分beginwork)
+					* [生命周期函数调用](#生命周期函数调用)
+					* [Diff 算法](#diff-算法)
+			* [commit 阶段](#commit-阶段)
+				* [effectTag](#effecttag)
+	* [总结](#总结)
+
+<!-- /code_chunk_output -->
+
+# React16 源码之 React Fiber 源码解析
 
 > 本文源码是 2018 年 8 月 10 日拉取的 React 仓库 master 分支上的代码
 
@@ -115,7 +141,7 @@ Component.prototype.forceUpdate = function(callback) {
 };
 ```
 
-从 Component 的定义上可以看到，我们常用的 `setState` 方法是调用了 `updater.enqueueSetState`，以 `react-dom` 为例，此 `updater` 对象会调用该组件构造函数时（这块会在后面的生命周期函数调用中讲到），赋值为 classComponentUpdater，源码如下：
+从 `Component` 的定义上可以看到，我们常用的 `setState` 方法是调用了 `updater.enqueueSetState`，以 `react-dom` 为例，此 `updater` 对象会调用该组件构造函数时（这块会在后面的生命周期函数调用中讲到），赋值为 `classComponentUpdater`，源码如下：
 
 ```js
 const classComponentUpdater = {
@@ -410,7 +436,7 @@ export function createWorkInProgress(
 
 以上代码为简化之后的，可以发现，`current` 与 `workInProgress` 互相持有引用。而从上图可以发现，所有更新都是在 `workInProgress` 上进行操作，等更新完毕之后，再把 `current` 指针指向 `workInProgress`，从而丢弃旧的 `Fiber Tree`
 
-从 `beginWork` 源码来看，主要分为两部分，一部分是对 `Context` 的处理，一部分是根据 `fiber` 对象的 `tag` 类型，调用对应的 update 方法。在这里我们重点关注第二部分。而在第二部分中，我们以 `ClassComponent` 类型 为例，讲讲 `updateClassComponent` 函数 中做了什么呢？
+从 `beginWork` 源码来看，主要分为两部分，一部分是对 `Context` 的处理，一部分是根据 `fiber` 对象的 `tag` 类型，调用对应的 `update` 方法。在这里我们重点关注第二部分。而在第二部分中，我们以 `ClassComponent` 类型 为例，讲讲 `updateClassComponent` 函数 中做了什么呢？
 
 主要有两部分：生命周期函数的调用及 `Diff` 算法
 
@@ -419,11 +445,11 @@ export function createWorkInProgress(
 流程图如下：
 ![](https://github.com/fyuanfen/note/raw/master/images/react/fiber11.png)
 
-current 为 null，意味着当前的 update 是组件第一次渲染
+`current` 为 null，意味着当前的 `update` 是组件第一次渲染
 
-1. 调用 `constructClassInstance` 构造组件实例，主要是调用 `constructor` 构造函数，并注入 `classComponentUpdater`（这块就是文章一开始介绍 React Component 时提到的 updater 注入）
+1. 调用 `constructClassInstance` 构造组件实例，主要是调用 `constructor` 构造函数，并注入 `classComponentUpdater`（这块就是文章一开始介绍 React Component 时提到的 `updater` 注入）
 
-2、mountClassInstance 则是调用 getDerivedStateFromProps 生命周期函数（v16） 及 UNSAFE_componentWillMount 生命周期函数
+2. `mountClassInstance` 则是调用 `getDerivedStateFromProps` 生命周期函数（v16） 及 `UNSAFE_componentWillMount` 生命周期函数
 
 `current` 不为 `null`，调用 `updateClassInstance` 方法
 
@@ -759,6 +785,6 @@ function commitAllHostEffects() {
   现在，是不是觉得整个过程都很清晰了呢~~~
 
 附上，生命周期函数汇总表：
-![](https://github.com/fyuanfen/note/raw/master/images/react/fiber14.png)
+![](https://github.com/fyuanfen/note/raw/master/images/react/fiber15.png)
 
 [原文](https://github.com/HuJiaoHJ/blog/issues/7)

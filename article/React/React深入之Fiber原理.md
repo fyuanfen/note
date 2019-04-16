@@ -1,4 +1,31 @@
-[toc]
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+* [一.目标](#一目标)
+* [二.关键特性](#二关键特性)
+* [三.fiber 与 fiber tree](#三fiber-与-fiber-tree)
+* [四.Fiber reconciler](#四fiber-reconciler)
+	* [render/reconciliation](#renderreconciliation)
+	* [requestIdleCallback](#requestidlecallback)
+	* [commit](#commit)
+	* [生命周期 hook](#生命周期-hook)
+* [五.fiber tree 与 workInProgress tree](#五fiber-tree-与-workinprogress-tree)
+* [六.优先级策略](#六优先级策略)
+* [七.总结](#七总结)
+	* [已知](#已知)
+	* [求](#求)
+	* [解](#解)
+		* [1. 拆什么？什么不能拆？](#1-拆什么什么不能拆)
+		* [2. 怎么拆？](#2-怎么拆)
+		* [3. 如何调度任务？](#3-如何调度任务)
+		* [4. 如何中断/断点恢复？](#4-如何中断断点恢复)
+		* [5. 如何收集任务结果？](#5-如何收集任务结果)
+	* [举一反三](#举一反三)
+* [八. 源码简析](#八-源码简析)
+* [参考资料](#参考资料)
+
+<!-- /code_chunk_output -->
 
 # 一.目标
 

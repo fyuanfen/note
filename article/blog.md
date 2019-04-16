@@ -1,2 +1,3 @@
 - [dwqs](https://github.com/dwqs/blog)
 - [HuJiaoHJ](https://github.com/HuJiaoHJ/blog)
+- [ruikunai](https://github.com/airuikun/blog)

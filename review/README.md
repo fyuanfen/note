@@ -1,6 +1,6 @@
 # 2019
 
-[(中篇)中高级前端大厂面试秘籍](<https://github.com/fyuanfen/note/blob/master/review/2019/3/(%E4%B8%AD%E7%AF%87)%E4%B8%AD%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E7%A7%98%E7%B1%8D.md>)作者：郭东东
+- [(中篇)中高级前端大厂面试秘籍](<https://github.com/fyuanfen/note/blob/master/review/2019/3/(%E4%B8%AD%E7%AF%87)%E4%B8%AD%E9%AB%98%E7%BA%A7%E5%89%8D%E7%AB%AF%E5%A4%A7%E5%8E%82%E9%9D%A2%E8%AF%95%E7%A7%98%E7%B1%8D.md>)作者：郭东东
 
 # 2018
 

@@ -1,8 +1,18 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [JS 深拷贝总结](#js-深拷贝总结)
+  _ [JSON.stringify 和 JSON.parse](#jsonstringify-和-jsonparse)
+  _ [递归实现](#递归实现)
+
+<!-- /code_chunk_output -->
+
 # JS 深拷贝总结
 
 JS 的原生不支持深拷贝，`Object.assign` 和`{...obj}`都属于浅拷贝，下面我们讲解如何使用 JS 实现深拷贝。
 
-## JSON.sringify 和 JSON.parse
+## JSON.stringify 和 JSON.parse
 
 这是 JS 实现深拷贝最简单的方法了，原理就是先将对象转换为字符串，再通过 JSON.parse 重新建立一个对象。 但是这种方法的局限也很多：
 

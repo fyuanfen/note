@@ -61,4 +61,5 @@
 - [前端工程之模块化](http://fex.baidu.com/blog/2014/03/fis-module/) by [@沈洪顺](http://weibo.com/u/1916384703)
 - 前端 xss 防火墙系列文章 by [@Ｅ ther Ｄ ream](https://github.com/zjcqoo) - [内联事件拦截](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-1/) - [可疑模块拦截](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-2/) - [无懈可击的钩子](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-3/) - [天衣无缝的防护](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-4/) - [整装待发](http://fex.baidu.com/blog/2014/06/xss-frontend-firewall-5)
 
-  <h2 id="book">经典图书</h2>
+<h2 id="book">经典图书</h2>
+[前端经典图书列表](https://github.com/fyuanfen/note/blob/master/article/Other/%E5%89%8D%E7%AB%AF%E7%BB%8F%E5%85%B8%E5%9B%BE%E4%B9%A6.md)

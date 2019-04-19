@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # 函数节流（throttle）与函数去抖（debounce）
 
 ## 一、前言　　　　

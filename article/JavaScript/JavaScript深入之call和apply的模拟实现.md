@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之 call 和 apply 的模拟实现
 
 > JavaScript 深入系列第十篇，通过 call 和 apply 的模拟实现，带你揭开 call 和 apply 改变 this 的真相

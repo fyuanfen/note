@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之词法作用域和动态作用域
 
 > JavaScript 深入系列的第二篇，JavaScript 采用词法作用域，什么语言采用了动态作用域？两者的区别又是什么？还有一个略难的思考题，快来看看吧。

@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之 bind 的模拟实现
 
 > JavaScript 深入系列第十一篇，通过 bind 函数的模拟实现，带大家真正了解 `bind` 的特性

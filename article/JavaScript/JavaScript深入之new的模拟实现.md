@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之 new 的模拟实现
 
 > JavaScript 深入系列第十二篇，通过 new 的模拟实现，带大家揭开使用 new 获得构造函数实例的真相

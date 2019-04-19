@@ -1,1 +1,1 @@
-- [深度优先遍历和广度优先遍历](https://github.com/fyuanfen/note/blob/master/article/%20Algorithm/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86.md)
+1. [深度优先遍历和广度优先遍历](https://github.com/fyuanfen/note/blob/master/article/Algorithm/%E6%B7%B1%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86%E5%92%8C%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E9%81%8D%E5%8E%86.md)

@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之类数组对象与 arguments
 
 > JavaScript 深入系列第十三篇，讲解类数组对象与对象的相似与差异以及 arguments 的注意要点

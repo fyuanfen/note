@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之闭包
 
 > JavaScript 深入系列第三篇，介绍理论上的闭包和实践上的闭包，以及从作用域链的角度解析经典的闭包题。

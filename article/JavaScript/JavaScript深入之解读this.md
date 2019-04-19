@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之从 ECMAScript 规范解读 this
 
 > JavaScript 深入系列第六篇，本篇我们追根溯源，从 ECMAScript5 规范解读 this 在函数调用时到底是如何确定的。

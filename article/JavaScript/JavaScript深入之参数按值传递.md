@@ -1,3 +1,5 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
 # JavaScript 深入之参数按值传递
 
 > JavaScript 深入系列第四篇，除了按值传递、引用传递，还有第三种传递方式 —— 按共享传递

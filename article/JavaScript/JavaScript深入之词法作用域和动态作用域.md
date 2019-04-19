@@ -1,5 +1,16 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [JavaScript 深入之词法作用域和动态作用域](#javascript-深入之词法作用域和动态作用域)
+	* [作用域](#作用域)
+	* [静态作用域与动态作用域](#静态作用域与动态作用域)
+	* [动态作用域](#动态作用域)
+	* [思考题](#思考题)
+	* [深入系列](#深入系列)
+
+<!-- /code_chunk_output -->
+
 # JavaScript 深入之词法作用域和动态作用域
 
 > JavaScript 深入系列的第二篇，JavaScript 采用词法作用域，什么语言采用了动态作用域？两者的区别又是什么？还有一个略难的思考题，快来看看吧。

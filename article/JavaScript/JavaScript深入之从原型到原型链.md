@@ -1,5 +1,23 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [JavaScript 深入之从原型到原型链](#javascript-深入之从原型到原型链)
+	* [构造函数创建对象](#构造函数创建对象)
+	* [prototype](#prototype)
+	* [\_\_proto\_\_](#__proto__)
+	* [constructor](#constructor)
+	* [实例与原型](#实例与原型)
+	* [原型的原型](#原型的原型)
+	* [原型链](#原型链)
+	* [补充](#补充)
+		* [constructor](#constructor-1)
+		* [\_\_proto\_\_](#__proto__)
+		* [真的是继承吗？](#真的是继承吗)
+	* [深入系列](#深入系列)
+
+<!-- /code_chunk_output -->
+
 # JavaScript 深入之从原型到原型链
 
 > JavaScript 深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。

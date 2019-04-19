@@ -1,5 +1,26 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [JavaScript 深入之从 ECMAScript 规范解读 this](#javascript-深入之从-ecmascript-规范解读-this)
+	* [前言](#前言)
+	* [Types](#types)
+	* [Reference](#reference)
+	* [GetValue](#getvalue)
+	* [如何确定 this 的值](#如何确定-this-的值)
+	* [具体分析](#具体分析)
+		* [foo.bar()](#foobar)
+		* [(foo.bar)()](#foobar-1)
+		* [(foo.bar = foo.bar)()](#foobar-foobar)
+		* [(false || foo.bar)()](#false-foobar)
+		* [(foo.bar, foo.bar)()](#foobar-foobar-1)
+		* [揭晓结果](#揭晓结果)
+		* [补充](#补充)
+	* [多说一句](#多说一句)
+	* [深入系列](#深入系列)
+
+<!-- /code_chunk_output -->
+
 # JavaScript 深入之从 ECMAScript 规范解读 this
 
 > JavaScript 深入系列第六篇，本篇我们追根溯源，从 ECMAScript5 规范解读 this 在函数调用时到底是如何确定的。

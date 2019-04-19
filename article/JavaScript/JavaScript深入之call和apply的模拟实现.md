@@ -1,5 +1,18 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [JavaScript 深入之 call 和 apply 的模拟实现](#javascript-深入之-call-和-apply-的模拟实现)
+	* [call](#call)
+	* [模拟实现第一步](#模拟实现第一步)
+	* [模拟实现第二步](#模拟实现第二步)
+	* [模拟实现第三步](#模拟实现第三步)
+	* [apply 的模拟实现](#apply-的模拟实现)
+	* [重要参考](#重要参考)
+	* [深入系列](#深入系列)
+
+<!-- /code_chunk_output -->
+
 # JavaScript 深入之 call 和 apply 的模拟实现
 
 > JavaScript 深入系列第十篇，通过 call 和 apply 的模拟实现，带你揭开 call 和 apply 改变 this 的真相

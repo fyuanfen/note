@@ -1,5 +1,22 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [函数节流（throttle）与函数去抖（debounce）](#函数节流throttle与函数去抖debounce)
+	* [一、前言](#一-前言)
+	* [二、区别：](#二-区别)
+	* [三、什么是 debounce--防抖](#三-什么是-debounce-防抖)
+		* [1. 定义](#1-定义)
+		* [2. 简单实现](#2-简单实现)
+	* [四、什么是 throttle--节流](#四-什么是-throttle-节流)
+		* [1. 定义](#1-定义-1)
+		* [2. 简单实现](#2-简单实现-1)
+	* [underscore.js 的代码实现](#underscorejs-的代码实现)
+		* [\_.throttle 函数](#_throttle-函数)
+		* [\_.debounce 函数](#_debounce-函数)
+
+<!-- /code_chunk_output -->
+
 # 函数节流（throttle）与函数去抖（debounce）
 
 ## 一、前言　　　　

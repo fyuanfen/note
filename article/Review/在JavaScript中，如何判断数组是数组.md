@@ -1,6 +1,38 @@
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [结论](#结论)
+- [判定方式](#判定方式)
+  _ [1.用 typeof 运算符来判断](#1用-typeof-运算符来判断)
+  _ [2.用 instanceof 判断](#2用-instanceof-判断)
+  _ [3.用 constructor 判断](#3用-constructor-判断)
+  _ [4.用 Object 的 `toString` 方法判断](#4用-object-的-tostring-方法判断) \* [5.用 Array 对象的 isArray 方法判断](#5用-array-对象的-isarray-方法判断)
+
+<!-- /code_chunk_output -->
+
+# 结论
+
+国际惯例，答案先行。判断一个对象是不是数组可以通过以下几种方式：
+
+```js
+var arr = [1, 2, 3];
+Array.isArray(arr);
+arr instanceof Array;
+Object.prototype.toString.call(arr) === "[object Array]";
+```
+
+但是慎用以下方式：
+
+```js
+arr.constructor === Array;
+```
+
+# 判定方式
+
 JavaScript 有五种方法可以确定一个值到底是什么类型，分别是 `typeof` 运算符，`constructor` 法，`instanceof` 运算符，`Object.prototype.toString` 方法以及 `Array.isArray` 法.
 
-# 1.用 typeof 运算符来判断
+## 1.用 typeof 运算符来判断
 
 `typeof` 是 `javascript` 原生提供的判断数据类型的运算符，它会返回一个表示参数的数据类型的字符串，例如：
 
@@ -25,7 +57,7 @@ console.log(typeof c); //Object
 
 运行上面的代码就会发现，在参数为数组，对象或者 `null` 时，`typeof` 返回的结果都是 `object`，可以使用这种方法并不能识别出数组，因此，在 JavaScript 项目中用 `typeof` 来判断一个位置类型的数据是否为数组，是非常不靠谱的。
 
-# 2.用 instanceof 判断
+## 2.用 instanceof 判断
 
 既然 `typeof` 无法用于判断数组是否为数组，那么用 `instance` 运算符来判断是否可行呢？要回答这个问题，我们首先得了解 `instanceof` 运算法是干嘛用的。
 
@@ -35,7 +67,7 @@ console.log(typeof c); //Object
 object instanceof constructor;
 ```
 
-用我的理解来说，就是要判断一个 Object 是不是数组（这里不是口误，在 JavaScript 当中，数组实际上也是一种对象），如果这个 Object 的原型链上能够找到 Array 构造函数的话，那么这个 Object 应该就是一个数组，如果这个 Object 的原型链上只能找到 Object 构造函数的话，那么它就不是一个数组。
+用我的理解来说，就是要判断一个 `Object` 是不是数组（这里不是口误，在 JavaScript 当中，数组实际上也是一种对象），**如果这个 `Object` 的原型链上能够找到 `Array` 构造函数的话，那么这个 Object 应该就是一个数组**，如果这个 Object 的原型链上只能找到 `Object` 构造函数的话，那么它就不是一个数组。
 
 ```js
 const a = [];
@@ -47,7 +79,7 @@ console.log(b instanceof Array); //false
 
 由上面的几行代码可以看出，使用 `instanceof` 运算符可以分辨数组和对象，可以判断数组是数组。
 
-# 3.用 constructor 判断
+## 3.用 constructor 判断
 
 实例化的数组拥有一个 `constructor` 属性，这个属性指向生成这个数组的方法。
 
@@ -87,9 +119,9 @@ console.log(a.constructor == Object); //true (哭脸)
 console.log(a instanceof Array); //true (instanceof 火眼金睛)
 ```
 
-可以看出，`constructor` 属性被修改之后，就无法用这个方法判断数组是数组了，除非你能保证不会发生 constructor 属性被改写的情况，否则用这种方法来判断数组也是不靠谱的。
+可以看出，`constructor` 属性被修改之后，就无法用这个方法判断数组是数组了，除非你能保证不会发生 `constructor` 属性被改写的情况，否则用这种方法来判断数组也是不靠谱的。
 
-# 4.用 Object 的 `toString` 方法判断
+## 4.用 Object 的 `toString` 方法判断
 
 另一个行之有效的方法就是使用 `Object.prototype.toString` 方法来判断，每一个继承自 Object 的对象都拥有 `toString` 的方法。
 
@@ -155,7 +187,7 @@ Object.prototype.toString.call(a); //弹框问你吃过饭没有
 
 当然了，只有在浏览器当中才能看到 alert 弹框，这个我就不解释了。
 
-# 5.用 Array 对象的 isArray 方法判断
+## 5.用 Array 对象的 isArray 方法判断
 
 为什么把这种方法放在最后讲呢？因为它是我目前遇到过的最靠谱的判断数组的方法了，当参数为数组的时候，`isArray` 方法返回 `true`，当参数不为数组的时候，`isArray` 方法返回 `false`。
 
@@ -197,22 +229,4 @@ OK，还是不影响判断的结果。
 
 `Array.isArray` 是 ES5 标准中增加的方法，部分比较老的浏览器可能会有兼容问题，所以为了增强健壮性，建议还是给 `Array.isArray` 方法进行判断，增强兼容性，重新封装的方法如下：
 
-```js
-function isArray1(arg) {
-  return Array.isArray(arg);
-}
-```
-
-```js
-function isArray2(arg) {
-  return Object.prototype.toString.call(arg) === "[object Array]";
-}
-```
-
-```js
-function isArray3(arg) {
-  return arg instanceof Array;
-}
-```
-
-[文章来源](https://segmentfault.com/a/1190000006150186)
+[来源](https://segmentfault.com/a/1190000006150186)

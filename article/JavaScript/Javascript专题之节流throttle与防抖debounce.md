@@ -4,15 +4,15 @@
 
 以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。
 
-1. window 对象的 resize、scroll 事件
+1. `window` 对象的 `resize`、`scrol`l 事件
 
-2. 拖拽时的 mousemove 事件
+2. 拖拽时的 `mousemove` 事件
 
-3. 射击游戏中的 mousedown、keydown 事件
+3. 射击游戏中的 `mousedown`、`keydown` 事件
 
-4. 文字输入、自动完成的 keyup 事件
+4. 文字输入、自动完成的 `keyup` 事件
 
-实际上对于 window 的 resize 事件，实际需求大多为停止改变大小 n 毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了 `debounce` 和 `throttle` 两种解决办法。
+实际上对于 `window` 的 `resize` 事件，实际需求大多为停止改变大小 n 毫秒后执行后续处理；而其他事件大多的需求是以一定的频率执行后续处理。针对这两种需求就出现了 `debounce` 和 `throttle` 两种解决办法。
 
 ## 二、区别：
 
@@ -91,9 +91,9 @@ var throttle = function(delay, action) {
 
 下面我列举了一些场景：
 
-input 中输入文字自动发送 ajax 请求进行自动补全： debounce
-resize window 重新计算样式或布局：debounce
-scroll 时更新样式，如随动效果：throttle
+- `input` 中输入文字自动发送 `ajax` 请求进行自动补全： `debounce`
+- resize window 重新计算样式或布局：debounce
+- scroll 时更新样式，如随动效果：throttle
 
 ## underscore.js 的代码实现
 

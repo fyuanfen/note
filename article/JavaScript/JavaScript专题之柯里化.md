@@ -1,4 +1,12 @@
-前端开发者进阶之函数柯里化 Currying
+<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+
+<!-- code_chunk_output -->
+
+- [1. 提高适用性](#1-提高适用性)
+- [2. 延迟执行](#2-延迟执行)
+- [3 固定易变因素。](#3-固定易变因素)
+
+<!-- /code_chunk_output -->
 
 在计算机科学中，柯里化（英语：Currying），又译为卡瑞化或加里化，是把接受多个参数的函数变换成接受一个单一参数（最初函数的第一个参数）的函数，并且返回接受余下的参数而且返回结果的新函数的技术。这个技术由 Christopher Strachey 以逻辑学家哈斯凯尔·加里命名的，尽管它是 Moses Schönfinkel 和 Gottlob Frege 发明的。
 

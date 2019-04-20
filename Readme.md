@@ -9,7 +9,7 @@
 - [服务器端](https://github.com/fyuanfen/note/blob/master/article/Server/README.md)
 - [浏览器与网络](https://github.com/fyuanfen/note/blob/master/article/Network/README.md)
 
-  <h2 id="tools">前端工具集</h2>
+<h2 id="tools">前端工具集</h2>
 
 - [大前端工具集](https://github.com/fyuanfen/note/tree/master/tools/fe_tools.md)
 

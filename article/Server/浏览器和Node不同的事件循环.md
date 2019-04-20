@@ -23,13 +23,13 @@
 
 # 注意
 
-> 在 Node 11 版本中，Node 的 Event Loop 已经与 浏览器趋于相同。
+> 在 Node 11 版本中，Node 的 `Event Loop` 已经与 浏览器趋于相同。
 
 # 背景
 
-Event Loop 也是 js 老生常谈的一个话题了。2 月底看了阮一峰老师的《Node 定时器详解》一文后，发现无法完全对标之前看过的 js 事件循环执行机制，又查阅了一些其他资料，记为笔记，感觉不妥，总结成文。
+`Event Loop` 也是 js 老生常谈的一个话题了。2 月底看了阮一峰老师的《Node 定时器详解》一文后，发现无法完全对标之前看过的 js 事件循环执行机制，又查阅了一些其他资料，记为笔记，感觉不妥，总结成文。
 浏览器中与 node 中事件循环与执行机制不同，不可混为一谈。
-浏览器的 [Event loop](https://www.w3.org/TR/html5/webappapis.html#event-loops) 是在 HTML5 中定义的规范，而 node 中则由 [libuv](http://thlorenz.com/learnuv/book/history/history_1.html) 库实现。同时阅读《深入浅出 nodeJs》一书时发现比较当时 node 机制已有不同，所以本文 node 部分针对为此文发布时版本。强烈推荐读下参考链接中的前三篇。
+浏览器的 [Event loop](https://www.w3.org/TR/html5/webappapis.html#event-loops) 是在 HTML5 中定义的规范，而 `node` 中则由 [libuv](http://thlorenz.com/learnuv/book/history/history_1.html) 库实现。同时阅读《深入浅出 nodeJs》一书时发现比较当时 node 机制已有不同，所以本文 node 部分针对为此文发布时版本。强烈推荐读下参考链接中的前三篇。
 
 # 浏览器环境
 
@@ -207,11 +207,12 @@ setTimeout - 1 //1 为单个 task
 
 # 参考文章
 
-[Tasks, microtasks, queues and schedules 强烈推荐](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
-[不要混淆 nodejs 和浏览器中的 event loop](https://cnodejs.org/topic/5a9108d78d6e16e56bb80882)
-[node 中的 Event 模块](https://github.com/SunShinewyf/issue-blog/issues/34)
-[理解事件循环一(浅析)](https://github.com/ccforward/cc/issues/47)
-[Node 定时器详解](http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html)
-[从一道题浅说 JavaScript 的事件循环](https://github.com/dwqs/blog/issues/61)
+- [Tasks, microtasks, queues and schedules 强烈推荐](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/)
+- [不要混淆 nodejs 和浏览器中的 event loop](https://cnodejs.org/topic/5a9108d78d6e16e56bb80882)
+- [node 中的 Event 模块](https://github.com/SunShinewyf/issue-blog/issues/34)
+- [理解事件循环一(浅析)](https://github.com/ccforward/cc/issues/47)
+- [Node 定时器详解](http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html)
+- [从一道题浅说 JavaScript 的事件循环](https://github.com/dwqs/blog/issues/61)
+
 作者：toBeTheLight
 来源：掘金

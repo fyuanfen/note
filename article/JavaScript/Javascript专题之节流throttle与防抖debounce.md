@@ -2,18 +2,17 @@
 
 <!-- code_chunk_output -->
 
-* [函数节流（throttle）与函数去抖（debounce）](#函数节流throttle与函数去抖debounce)
-	* [一、前言](#一-前言)
-	* [二、区别：](#二-区别)
-	* [三、什么是 debounce--防抖](#三-什么是-debounce-防抖)
-		* [1. 定义](#1-定义)
-		* [2. 简单实现](#2-简单实现)
-	* [四、什么是 throttle--节流](#四-什么是-throttle-节流)
-		* [1. 定义](#1-定义-1)
-		* [2. 简单实现](#2-简单实现-1)
-	* [underscore.js 的代码实现](#underscorejs-的代码实现)
-		* [\_.throttle 函数](#_throttle-函数)
-		* [\_.debounce 函数](#_debounce-函数)
+- [函数节流（throttle）与函数去抖（debounce）](#函数节流throttle与函数去抖debounce)
+  _ [一、前言](#一-前言)
+  _ [二、区别：](#二-区别)
+  _ [三、什么是 debounce--防抖](#三-什么是-debounce-防抖)
+  _ [1. 定义](#1-定义)
+  _ [2. 简单实现](#2-简单实现)
+  _ [四、什么是 throttle--节流](#四-什么是-throttle-节流)
+  _ [1. 定义](#1-定义-1)
+  _ [2. 简单实现](#2-简单实现-1)
+  _ [underscore.js 的代码实现](#underscorejs-的代码实现)
+  _ [\_.throttle 函数](#_throttle-函数) \* [\_.debounce 函数](#_debounce-函数)
 
 <!-- /code_chunk_output -->
 
@@ -43,7 +42,7 @@
 
 **throttle**电梯很忙，每次就只等 10 秒，不管是来了妹纸还是好基友，电梯每隔 10 秒准时送一波人。
 
-因此，简单来说，debounce 适合只执行一次的情况，例如 搜索框中的自动完成。在停止输入后提交一次 ajax 请求;而 throttle 适合指定每隔一定时间间隔内执行不超过一次的情况，例如拖动滚动条，移动鼠标的事件处理等。
+因此，简单来说，`debounce` 适合只执行一次的情况，例如 搜索框中的自动完成。在停止输入后提交一次 `ajax` 请求;而 `throttle` 适合指定每隔一定时间间隔内执行不超过一次的情况，例如拖动滚动条，移动鼠标的事件处理等。
 
 ## 三、什么是 debounce--防抖
 

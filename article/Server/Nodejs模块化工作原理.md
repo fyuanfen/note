@@ -21,7 +21,7 @@
 Node 提供了两个核心模块来管理模块依赖：
 
 - require 模块在全局范围内可用，不需要写 `require('require')`.
-- module 模块同样在全局范围内可用，不需要写 `require('module')`.
+- `module` 模块同样在全局范围内可用，不需要写 `require('module')`.
 
 你可以将 `require` 模块理解为命令，将 `module` 模块理解为所有引入模块的组织者。
 
@@ -53,7 +53,7 @@ mkdir ~/learn-node && cd ~/learn-node
 
 首先，让我来介绍一下 `module` 对象。你可以在一个简单的 REPL 会话中查看该对象：
 
-```
+```shell
 ~/learn-node $ node
 > module
 Module {
@@ -68,9 +68,9 @@ Module {
 
 每个模块对象都有一个用于识别该对象的 `id` 属性。这个 `id` 通常是该文件的完整路径，但在 REPL 会话中只会显示为 `<repl>`。
 
-Node 模块与文件系统中的文件有着一对一的关系。我们通过加载模块对应的文件内容到内存中来实现模块引用。
+`Node` 模块与文件系统中的文件有着一对一的关系。我们通过加载模块对应的文件内容到内存中来实现模块引用。
 
-然而，由于 Node 允许使用多种方式引入文件（例如，使用相对路径或预先配置的路径），我们需要在将文件的内容加载到内存前找到该文件的绝对位置。
+然而，由于 `Node` 允许使用多种方式引入文件（例如，使用相对路径或预先配置的路径），我们需要在将文件的内容加载到内存前找到该文件的绝对位置。
 
 例如，我们不声明路径，直接引入一个 `'find-me'` 模块时：
 
@@ -78,9 +78,9 @@ Node 模块与文件系统中的文件有着一对一的关系。我们通过加
 require("find-me");
 ```
 
-Node 会在 `module.paths` 声明的所有路径中依次查找 `find-me.js` 。
+`Node` 会在 `module.paths` 声明的所有路径中依次查找 `find-me.js` 。
 
-```
+```shell
 ~/learn-node $ node
 > module.paths
 [ '/Users/samer/learn-node/repl/node_modules',
@@ -95,11 +95,11 @@ Node 会在 `module.paths` 声明的所有路径中依次查找 `find-me.js` 。
 
 ```
 
-Node 从当前目录开始一级级向上寻找 `node_modules` 目录，这个数组大致就是当前目录到所有 `node_modules` 目录的相对路径。其中还包括一些为了兼容性保留的目录，不推荐使用。
+`Node` 从当前目录开始一级级向上寻找 `node_modules` 目录，这个数组大致就是当前目录到所有 `node_modules` 目录的相对路径。其中还包括一些为了兼容性保留的目录，不推荐使用。
 
 如果 Node 在以上路径中都无法找到 `find-me.js` ，将抛出一个 “找不到该模块” 错误。
 
-```
+```shell
 ~/learn-node $ node
 > require('find-me')
 Error: Cannot find module 'find-me'
@@ -119,7 +119,7 @@ Error: Cannot find module 'find-me'
 
 如果你现在创建一个本地的 `node_modules` 目录，并向目录中添加一个 `find-me.js` 文件，就能通过 `require('find-me')` 找到它了。
 
-```
+```shell
 ~/learn-node $ mkdir node_modules
 
 ~/learn-node $ echo "console.log('I am not lost');" > node_modules/find-me.js
@@ -133,14 +133,14 @@ I am not lost
 
 如果在其他路径下也有 `find-me.js` 文件呢？例如，我们在主目录下的 `node_modules` 目录中放置一个不同的 `find-me.js` 文件：
 
-```
+```shell
 $ mkdir ~/node_modules
 $ echo "console.log('I am the root of all problems');" > ~/node_modules/find-me.js
 ```
 
 当我们在 `learn-node` 目录下执行 `require('find-me')` 时，`learn-node` 目录会加载自己的 `node_modules/find-me.js`，主目录下的 `find-me.js` 文件并不会被加载：
 
-```
+```shell
 ~/learn-node $ node
 > require('find-me')
 I am not lost
@@ -150,7 +150,7 @@ I am not lost
 
 此时，如果我们将 `~/learn-node` 下的 `node_modules` 移除，再一次引入 `find-me` 模块，那么主目录下的 `node_modules` 将会被加载：
 
-```
+```shell
 ~/learn-node $ rm -r node_modules/
 
 ~/learn-node $ node
@@ -163,7 +163,7 @@ I am the root of all problems
 
 模块不一定是单个文件。我们也可以在 `node_modules` 目录下创建一个 `find-me` 文件夹，然后向其中添加一个 `index.js` 文件。`require('find-me')` 会引用该文件夹下的 `index.js` 文件：
 
-```
+```shell
 ~/learn-node \$ mkdir -p node_modules/find-me
 
 ~/learn-node \$ echo "console.log('Found again.');" > node_modules/find-me/index.js
@@ -179,7 +179,7 @@ I am the root of all problems
 
 当我们引入一个文件夹时，将默认使用 `index.js` 文件，但是我们可以通过 `package.json` 中的 `main` 属性指定主入口文件。例如，要令 `require('find-me')` 解析到 `find-me` 文件夹下的另一个文件，我们只需要在该文件夹下添加一个 `package.json` 文件来声明解析该文件夹时引用的文件：
 
-```
+```shell
 ~/learn-node $ echo "console.log('I rule');" > node_modules/find-me/start.js
 
 ~/learn-node $ echo '{ "name": "find-me-folder", "main": "start.js" }' > node_modules/find-me/package.json
@@ -196,7 +196,7 @@ I rule
 
 如果你只想解析模块而不运行，此时可以使用 `require.resolve` 函数。这个方法与 `require` 的主要功能完全相同，但是不加载文件。如果文件不存在，它仍会抛出错误；如果找到了文件，则会返回文件的完整路径。
 
-```
+```shell
 > require.resolve('find-me');
 > '/Users/samer/learn-node/node_modules/find-me/start.js'
 > require.resolve('not-there');
@@ -274,7 +274,7 @@ paths: [...] }
 
 注意：`index` 主模块 (`id: '.'`) 现在被列为 `lib/util` 模块的父模块。但 `lib/util` 模块并没有被列为 `index` 模块的子模块。相反，我们在这里得到的值是 `[Circular]`，因为这是一个循环引用。如果 Node 打印 lib/util 模块对象，将进入一个无限循环。 因此 Node 使用 `[Circular]` 代替了 `lib/util`引用。
 
-重点来了，如果我们在 `lib/util` 模块中引入 `index` 主模块会发生什么？这就是 Node 中所支持的循环依赖。
+重点来了，如果我们在 `lib/util` 模块中引入 `index` 主模块会发生什么？这就是 `Node` 中所支持的循环依赖。
 
 为了更好理解循环依赖，我们先来了解一些关于 `module` 对象的概念。
 
@@ -282,12 +282,12 @@ paths: [...] }
 
 在所有模块中，`exports` 都是一个特殊对象。你可能注意到了，以上我们每打印一个 `module` 对象时，它都有一个空的 `exports` 属性。我们可以向这个特殊的 `exports` 对象添加任意属性。例如，我们现在为 `index.js` 和 `lib/util.js` 的 `exports` 对象添加一个 `id` 属性：
 
-```
+```js
 // 在 lib/util.js 顶部添加以下代码
-exports.id = 'lib/util';
+exports.id = "lib/util";
 
 // 在 index.js 顶部添加以下代码
-exports.id = 'index';
+exports.id = "index";
 ```
 
 然后运行 `index.js`，我们将看到：
@@ -360,7 +360,7 @@ setImmediate(() => {
 
 以上输出将得到：
 
-````
+````shell
 The index.js module object is now loaded! Module {
 id: '.',
 exports: [Function],
@@ -384,7 +384,7 @@ paths:
 
 注意：这个延迟的 `console.log` 的输出显示了 `lib/util.js` 和 `index.js` 都已完全加载。
 
-在 Node 完成加载模块（并标记为完成）时，`exports` 对象也就完成了。引入一个模块的整个过程是 同步的，因此我们才能在一个事件循环后看见模块被完全加载。
+在 `Node` 完成加载模块（并标记为完成）时，`exports` 对象也就完成了。引入一个模块的整个过程是 同步的，因此我们才能在一个事件循环后看见模块被完全加载。
 
 这也意味着我们无法异步地更改 `exports` 对象。例如，我们在任何模块中都无法执行以下操作：
 ```js
@@ -397,7 +397,7 @@ exports.data = data; // 无效
 
 ## 模块的循环依赖
 
-我们现在来回答关于 Node 中循环依赖的重要问题：当我们在模块 1 中引用模块 2，在模块 2 中引用模块 1 时会发生什么？
+我们现在来回答关于 `Node` 中循环依赖的重要问题：当我们在模块 1 中引用模块 2，在模块 2 中引用模块 1 时会发生什么？
 
 为了找到答案，我们在 `lib/` 下创建 `module1.js` 和 `module2.js` 两个文件并让它们互相引用：
 
@@ -426,7 +426,9 @@ Module1 is partially loaded here { a: 1 }
 
 我们在 `module1` 加载完成前引用了 `module2`，而此时 `module1` 尚未加载完，我们从当前的 `exports` 对象中得到的是在循环依赖之前导出的所有属性。这里被列出的只有属性 `a`，因为属性 `b` 和 `c` 都是在 `module2` 引入并打印了 `module1` 后才导出的。
 
-Node 使这个过程变得非常简单。它在模块加载时构建 `exports` 对象。你可以在该模块完成加载前引用它，而你将得到此时已定义的部分导出对象。
+`Node` 使这个过程变得非常简单。它在模块加载时构建 `exports` 对象。你可以在该模块完成加载前引用它，而你将得到此时已定义的部分导出对象。
+
+模块依赖加载相关可参考[require 和 import 的区别](https://github.com/fyuanfen/note/blob/master/article/Server/require%E5%92%8C%20import%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 
 ## 使用 JSON 文件和 C/C++ 插件
 
@@ -459,7 +461,7 @@ Server will run at [http://localhost:8080](http://localhost:8080)
 
 如果 Node 找不到 `.js` 或 .`json` 文件，它会寻找 `.node` 文件并将其作为一个编译好的插件模块进行解析。
 
-Node 文档中有一个用 `C++` 编写的[插件示例](https://nodejs.org/api/addons.html#addons_hello_world)，该示例模块提供了一个输出 “world” 的 `hello()` 函数。
+`Node` 文档中有一个用 `C++` 编写的[插件示例](https://nodejs.org/api/addons.html#addons_hello_world)，该示例模块提供了一个输出 “world” 的 `hello()` 函数。
 
 你可以使用 `node-gyp` 插件将 `.cc` 文件编译成 `.addon` 文件。只需要配置一个 `binding.gyp` 文件来告诉 `node-gyp` 要做什么。
 
@@ -501,9 +503,9 @@ var answer = 42;
 
 `answer` 变量对声明该变量的脚本后的所有脚本来说都是全局的。
 
-然而在 Node 中却不是这样的。我们在一个模块中定义了变量，项目中的其他模块却将无法访问该变量。那么 Node 是如何神奇地做到为变量限定作用域的呢？
+然而在 `Node` 中却不是这样的。我们在一个模块中定义了变量，项目中的其他模块却将无法访问该变量。那么 `Node` 是如何神奇地做到为变量限定作用域的呢？
 
-答案很简单。在编译模块前，Node 就将模块代码封装在一个函数中，我们可以使用 `module` 模块的 `wrapper` 属性来查看。
+答案很简单。在编译模块前，`Nod`e 就将模块代码封装在一个函数中，我们可以使用 `module` 模块的 `wrapper` 属性来查看。
 
 ```shell
 ~ $ node
@@ -513,7 +515,7 @@ var answer = 42;
 >
 ```
 
-Node 并不会直接执行你在文件中写入的代码。它执行的是封装着你的代码的函数。这就保证了所有模块中定义的顶级变量的作用域都被限定在该模块中。
+`Node` 并不会直接执行你在文件中写入的代码。它执行的是封装着你的代码的函数。这就保证了所有模块中定义的顶级变量的作用域都被限定在该模块中。
 
 这个封装函数包含五个参数：`exports`、`require`、`module`、`__filename` 和 `__dirname`。这些参数看起来像是全局的，实际上却是每个模块特定的。
 
@@ -535,7 +537,7 @@ ReferenceError: euaohseu is not defined
 
 此外，由于每个模块都被封装在一个函数中，我们可以使用 `arguments` 关键字访问该函数的参数：
 
-```
+```shell
 ~/learn-node \$ echo "console.log(arguments)" > index.js
 
 ~/learn-node \$ node index.js

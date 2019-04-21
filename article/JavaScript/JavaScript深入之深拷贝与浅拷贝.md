@@ -2,29 +2,30 @@
 
 <!-- code_chunk_output -->
 
-- [一、数据类型](#一-数据类型)
-- [二、浅拷贝与深拷贝](#二-浅拷贝与深拷贝)
-- [三、赋值和浅拷贝的区别](#三-赋值和浅拷贝的区别)
-- [四、浅拷贝的实现方式](#四-浅拷贝的实现方式)
-  _ [1、Object.assign()](#1-objectassign)
-  _ [2、Array.prototype.concat()](#2-arrayprototypeconcat) \* [3、Array.prototype.slice()](#3-arrayprototypeslice)
-- [五、深拷贝的实现方式](#五-深拷贝的实现方式)
-  _ [JSON.stringify 和 JSON.parse](#jsonstringify-和-jsonparse)
-  _ [不能复制 `function`、正则、`Symbol`](#不能复制-function-正则-symbol)
-  _ [循环引用报错](#循环引用报错)
-  _ [相同的引用会被重复复制](#相同的引用会被重复复制)
-  _ [解决方案](#解决方案)
-  _ [环](#环)
-  _ [特殊对象的拷贝](#特殊对象的拷贝)
-  _ [函数的拷贝](#函数的拷贝)
-- [后记](#后记)
-- [参考文档:](#参考文档)
+* [一、数据类型](#一-数据类型)
+* [二、浅拷贝与深拷贝](#二-浅拷贝与深拷贝)
+* [三、赋值和浅拷贝的区别](#三-赋值和浅拷贝的区别)
+* [四、浅拷贝的实现方式](#四-浅拷贝的实现方式)
+	* [1、Object.assign()](#1-objectassign)
+	* [2、Array.prototype.concat()](#2-arrayprototypeconcat)
+	* [3、Array.prototype.slice()](#3-arrayprototypeslice)
+* [五、深拷贝的实现方式](#五-深拷贝的实现方式)
+	* [JSON.stringify 和 JSON.parse](#jsonstringify-和-jsonparse)
+		* [不能复制 `function`、正则、`Symbol`](#不能复制-function-正则-symbol)
+		* [循环引用报错](#循环引用报错)
+		* [相同的引用会被重复复制](#相同的引用会被重复复制)
+	* [解决方案](#解决方案)
+		* [环](#环)
+		* [特殊对象的拷贝](#特殊对象的拷贝)
+		* [函数的拷贝](#函数的拷贝)
+* [后记](#后记)
+* [参考文档:](#参考文档)
 
 <!-- /code_chunk_output -->
 
 # 一、数据类型
 
-JavaScript 数据分为基本数据类型(String, Number, Boolean, Null, Undefined，Symbol)和对象数据类型。
+`JavaScript` 数据分为基本数据类型(`String`, `Number`, `Boolean`, `Null`, `Undefined`，`Symbol`)和对象数据类型。
 
 - 基本数据类型的特点：直接存储在栈(stack)中的数据
 
@@ -34,7 +35,7 @@ JavaScript 数据分为基本数据类型(String, Number, Boolean, Null, Undefin
 
 # 二、浅拷贝与深拷贝
 
-深拷贝和浅拷贝是只针对 Object 和 Array 这样的引用数据类型的。
+深拷贝和浅拷贝是只针对 `Object` 和 `Array` 这样的引用数据类型的。
 
 深拷贝和浅拷贝的示意图大致如下：
 ![](https://github.com/fyuanfen/note/raw/master/images/js/copy1.jpg)
@@ -334,5 +335,5 @@ JavaScript 的深拷贝还不止上面所说的这些坑，还存在的问题有
 
 # 参考文档:
 
-[面试题之如何实现一个深拷贝](https://github.com/yygmind/blog/issues/29)
-[JavaScript 深拷贝的一些坑](https://juejin.im/post/5b235b726fb9a00e8a3e4e88)
+- [面试题之如何实现一个深拷贝](https://github.com/yygmind/blog/issues/29)
+- [JavaScript 深拷贝的一些坑](https://juejin.im/post/5b235b726fb9a00e8a3e4e88)

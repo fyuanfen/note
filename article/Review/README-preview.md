@@ -1411,10 +1411,6 @@ function create(obj) {
 ![](https://github.com/fyuanfen/note/raw/master/images/other/element-mask.jpg)
 
 
-
-
-![](https://github.com/fyuanfen/note/raw/master/images/other/sort-compare.png)
-![](https://github.com/fyuanfen/note/raw/master/images/other/display-adjust.png)
 ```html
 <style>
 #target {
@@ -1544,7 +1540,7 @@ obj.postC('checkfy');
 
 ![](https://github.com/fyuanfen/note/raw/master/images/other/tip-box.jpg)
 ### 编写 javascript 深度克隆函数 deepClone
-
+```js
     function deepClone(obj) {
         var _toString = Object.prototype.toString;
 
@@ -1599,7 +1595,7 @@ obj.postC('checkfy');
     var b = deepClone(c);
     console.log(c.a === b.a);
     console.log(c, b);
-
+```
 ### 补充代码,鼠标单击 Button1 后将 Button1 移动到 Button2 的后面
 
     <!doctype html>

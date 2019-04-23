@@ -12,6 +12,7 @@
 		* [HTML 全局属性(global attribute)有哪些](#html-全局属性global-attribute有哪些)
 		* [什么是 web 语义化,有什么好处](#什么是-web-语义化有什么好处)
 		* [HTTP method](#http-method)
+		* [get和post区别](#get和post区别)
 		* [从浏览器地址栏输入 url 到显示页面的步骤(以 HTTP 为例)](#从浏览器地址栏输入-url-到显示页面的步骤以-http-为例)
 		* [HTTP request 报文结构是怎样的](#http-request-报文结构是怎样的)
 		* [HTTP response 报文结构是怎样的](#http-response-报文结构是怎样的)
@@ -187,6 +188,15 @@ css 命名的语义化是指：为 html 标签添加有意义的 class，id 补�
 7. **OPTIONS**方法请求 web 服务器告知其支持的各种功能。可以查询服务器支持哪些方法或者对某些特殊资源支持哪些方法。
 8. **DELETE**请求服务器删除请求 URL 指定的资源
 
+### get和post区别
+1. GET产生一个TCP数据包，POST产生两个TCP数据包。对于GET方式的请求，浏览器会把http header和data一并发送出去，服务器响应200（返回数据）；而对于POST，浏览器先发送header，服务器响应100 continue，浏览器再发送data，服务器响应200 ok（返回数据）。
+2. GET和POST最大的区别主要是GET请求是幂等性的，POST请求不是。这个是它们本质区别，上面的只是在使用上的区别
+3. GET使用URL或Cookie传参，而POST将数据放在BODY中
+4. GET方式提交的数据有长度限制，则POST的数据则可以非常大
+    导致URL长度限制的两方面的原因：
+    - 浏览器。早期的浏览器会对URL长度做限制。而现在的具体限制是怎么样的，我自己没有亲测过，就不复制网上的说法啦。
+
+    - 服务器。URL长了，对服务器处理也是一种负担。原本一个会话就没有多少数据，现在如果有人恶意地构造几个M大小的URL，并不停地访问你的服务器。服务器的最大并发数显然会下降。另一种攻击方式是，告诉服务器Content-Length是一个很大的数，然后只给服务器发一点儿数据，服务器你就傻等着去吧。哪怕你有超时设置，这种故意的次次访问超时也能让服务器吃不了兜着走。有鉴于此，多数服务器出于安全啦、稳定啦方面的考虑，会给URL长度加限制。但是这个限制是针对所有HTTP请求的，与GET、POST没有关系。
 ### 从浏览器地址栏输入 url 到显示页面的步骤(以 HTTP 为例)
 
 1. 在浏览器地址栏输入 URL
@@ -331,7 +341,7 @@ Content-Type: text/html; charset=iso-8859-1
 - css 方面
   1. 将样式表放到页面顶部
   2. 不使用 CSS 表达式
-  3. 使用<link>不使用@import
+  3. 使用`<link>`不使用@import
   4. 不使用 IE 的 Filter
 - Javascript 方面
   1. 将脚本放到页面底部
@@ -366,7 +376,7 @@ Content-Type: text/html; charset=iso-8859-1
 
 - 1XX：信息状态码
   - **100 Continue**：客户端应当继续发送请求。这个临时相应是用来通知客户端它的部分请求已经被服务器接收，且仍未被拒绝。客户端应当继续发送请求的剩余部分，或者如果请求已经完成，忽略这个响应。服务器必须在请求万仇向客户端发送一个最终响应
-  - **101 Switching Protocols**：服务器已经理解力客户端的请求，并将通过 Upgrade 消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到 Upgrade 消息头中定义的那些协议。
+  - **101 Switching Protocols**：服务器已经理解力客户端的请求，并将通过 Upgrade 消息头通知客户端采用不同的协议来完成这个请求。在发送完这个响应最后的空行后，服务器将会切换到 `Upgrade` 消息头中定义的那些协议。
 - 2XX：成功状态码
   - **200 OK**：请求成功，请求所希望的响应头或数据体将随此响应返回
   - **201 Created**：
@@ -756,7 +766,7 @@ if (target.attachEvent) {
 2. 父元素触发块级格式化上下文(见块级可视化上下文部分)
 3. 设置容器元素伪元素进行清理[推荐的清理浮动方法](http://nicolasgallagher.com/micro-clearfix-hack/)
 
-```
+```css
 /**
 * 在标准浏览器下使用
 * 1 content内容为空格用于修复opera下文档中出现
@@ -858,7 +868,7 @@ z 轴上的默认层叠顺序如下（从下到上）：
 - 如果需要居中的元素为**常规流中 inline 元素**，为父元素设置`text-align: center;`即可实现
 - 如果需要居中的元素为**常规流中 block 元素**，1）为元素设置宽度，2）设置左右 margin 为 auto。3）IE6 下需在父元素上设置`text-align: center;`,再给子元素恢复需要的值
 
-```
+```html
 <body>
     <div class="content">
     aaaaaa aaaaaa a a a a a a a a
@@ -882,7 +892,7 @@ z 轴上的默认层叠顺序如下（从下到上）：
 
 - 如果需要居中的元素为**浮动元素**，1）为元素设置宽度，2）`position: relative;`，3）浮动方向偏移量（left 或者 right）设置为 50%，4）浮动方向上的 margin 设置为元素宽度一半乘以-1
 
-```
+```html
 <body>
     <div class="content">
     aaaaaa aaaaaa a a a a a a a a

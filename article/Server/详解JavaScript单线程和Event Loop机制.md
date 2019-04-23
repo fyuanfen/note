@@ -2,44 +2,44 @@
 
 <!-- code_chunk_output -->
 
-* [关于 JavaScript 单线程的一些事](#关于-javascript-单线程的一些事)
-	* [建议](#建议)
-	* [JavaScript 是单线程的](#javascript-是单线程的)
-	* [浏览器不是单线程的](#浏览器不是单线程的)
-	* [浏览器环境下 js 引擎的事件循环机制](#浏览器环境下-js-引擎的事件循环机制)
-		* [Runtime 概念](#runtime-概念)
-			* [Stack（栈）](#stack栈)
-			* [Heap（堆）](#heap堆)
-			* [Queue（队列）](#queue队列)
-		* [Event Loop](#event-loop)
-			* [macro task 与 micro task](#macro-task-与-micro-task)
-				* [具体过程](#具体过程)
-				* [注意](#注意)
-				* [伪代码](#伪代码)
-				* [示例](#示例)
-	* [node 环境下的事件循环机制](#node-环境下的事件循环机制)
-		* [与浏览器环境有何不同?](#与浏览器环境有何不同)
-		* [事件循环模型](#事件循环模型)
-			* [poll 阶段](#poll-阶段)
-			* [check 阶段](#check-阶段)
-			* [close 阶段](#close-阶段)
-			* [timer 阶段](#timer-阶段)
-			* [I/O callback 阶段](#io-callback-阶段)
-		* [执行机制](#执行机制)
-			* [几个队列](#几个队列)
-			* [循环之前](#循环之前)
-			* [开始循环](#开始循环)
-		* [注意](#注意-1)
-		* [伪代码](#伪代码-1)
-* [测试代码](#测试代码)
-		* [定时器](#定时器)
-			* [定时器的一些概念](#定时器的一些概念)
-			* [深入了解定时器](#深入了解定时器)
-				* [零延迟 setTimeout(func, 0)](#零延迟-settimeoutfunc-0)
-				* [setTimeout(func, 0) 的作用](#settimeoutfunc-0-的作用)
-					* [正版与翻版 setInterval 的区别](#正版与翻版-setinterval-的区别)
-	* [总结](#总结)
-	* [参考资料：](#参考资料)
+- [关于 JavaScript 单线程的一些事](#关于-javascript-单线程的一些事)
+  _ [建议](#建议)
+  _ [JavaScript 是单线程的](#javascript-是单线程的)
+  _ [浏览器不是单线程的](#浏览器不是单线程的)
+  _ [浏览器环境下 js 引擎的事件循环机制](#浏览器环境下-js-引擎的事件循环机制)
+  _ [Runtime 概念](#runtime-概念)
+  _ [Stack（栈）](#stack栈)
+  _ [Heap（堆）](#heap堆)
+  _ [Queue（队列）](#queue队列)
+  _ [Event Loop](#event-loop)
+  _ [macro task 与 micro task](#macro-task-与-micro-task)
+  _ [具体过程](#具体过程)
+  _ [注意](#注意)
+  _ [伪代码](#伪代码)
+  _ [示例](#示例)
+  _ [node 环境下的事件循环机制](#node-环境下的事件循环机制)
+  _ [与浏览器环境有何不同?](#与浏览器环境有何不同)
+  _ [事件循环模型](#事件循环模型)
+  _ [poll 阶段](#poll-阶段)
+  _ [check 阶段](#check-阶段)
+  _ [close 阶段](#close-阶段)
+  _ [timer 阶段](#timer-阶段)
+  _ [I/O callback 阶段](#io-callback-阶段)
+  _ [执行机制](#执行机制)
+  _ [几个队列](#几个队列)
+  _ [循环之前](#循环之前)
+  _ [开始循环](#开始循环)
+  _ [注意](#注意-1)
+  _ [伪代码](#伪代码-1)
+- [测试代码](#测试代码)
+  _ [定时器](#定时器)
+  _ [定时器的一些概念](#定时器的一些概念)
+  _ [深入了解定时器](#深入了解定时器)
+  _ [零延迟 setTimeout(func, 0)](#零延迟-settimeoutfunc-0)
+  _ [setTimeout(func, 0) 的作用](#settimeoutfunc-0-的作用)
+  _ [正版与翻版 setInterval 的区别](#正版与翻版-setinterval-的区别)
+  _ [总结](#总结)
+  _ [参考资料：](#参考资料)
 
 <!-- /code_chunk_output -->
 
@@ -209,10 +209,10 @@ while (queue.waitForMessage()) {
 
 ##### 伪代码
 
-```
+```js
 while (true) {
-宏任务队列.shift()
-微任务队列全部任务()
+  宏任务队列.shift();
+  微任务队列全部任务();
 }
 ```
 
@@ -610,7 +610,5 @@ var timer = setInterval(function() {
 12. [Node 定时器详解](http://www.ruanyifeng.com/blog/2018/02/node-event-loop.html)
 13. [从一道题浅说 JavaScript 的事件循环](https://github.com/dwqs/blog/issues/61)
 14. [从浏览器多进程到 JS 单线程，JS 运行机制最全面的一次梳理](https://segmentfault.com/a/1190000012925872)
-    [1]: http://images.51cto.com/files/uploadimg/20090804/1503300.jpg
-    [2]: https://developer.mozilla.org/files/4617/default.svg
 
 [来源](http://www.codeceo.com/article/javascript-threaded.html)

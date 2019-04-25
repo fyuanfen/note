@@ -17,7 +17,6 @@
 	* [解决方案](#解决方案)
 		* [环](#环)
 		* [特殊对象的拷贝](#特殊对象的拷贝)
-		* [函数的拷贝](#函数的拷贝)
 * [后记](#后记)
 * [参考文档:](#参考文档)
 
@@ -276,25 +275,48 @@ function deepCopy(obj, hash = new WeakMap()) {
 这个问题的解决比较麻烦，因为需要特别对待的对象种类实在太多，于是我参考了 MDN 上的结构化拷贝，然后结合解决环的方案：
 
 ```js
-// 只解决date，reg类型，其他的可以自己添加
+const obj = {
+  a: [23, 3, [4, 5]],
+  c: () => {
+    console.log(1);
+  },
+  reg: /^asd\$/,
+  str: "222",
+  da: new Date(),
+  nu: null,
+  obj
+};
 
-function deepCopy(obj, hash = new WeakMap()) {
-  let cloneObj;
-  let Constructor = obj.constructor;
-  switch (Constructor) {
-    case RegExp:
-      cloneObj = new Constructor(obj);
-      break;
-    case Date:
-      cloneObj = new Constructor(obj.getTime());
-      break;
+function getType(obj) {
+  return Object.prototype.toString.call(obj).slice(8, -1);
+}
+
+function deepClone(obj, hash = new WeakMap()) {
+  const type = getType(obj);
+  switch (type) {
+    case "Function":
+      return eval(obj.toString());
+    case "RegExp":
+      return new RegExp(obj);
+    case "Date":
+      return new Date(obj.getTime());
+    case "Null":
+    case "Undefined":
+    case "String":
+    case "Boolean":
+    case "Number":
+      return obj;
     default:
-      if (hash.has(obj)) return hash.get(obj);
-      cloneObj = new Constructor();
-      hash.set(obj, cloneObj);
-  }
-  for (let key in obj) {
-    cloneObj[key] = isObj(obj[key]) ? deepCopy(obj[key], hash) : obj[key];
+      //for Array, Object
+      if (hash.has(obj)) {
+        return hash.get(obj);
+      } else {
+        var cloneObj = Array.isArray(obj) ? [] : {};
+        hash.set(obj, cloneObj);
+        for (let key in obj) {
+          cloneObj[key] = deepClone(obj[key], hash);
+        }
+      }
   }
   return cloneObj;
 }
@@ -304,26 +326,8 @@ function deepCopy(obj, hash = new WeakMap()) {
 ![](https://github.com/fyuanfen/note/raw/master/images/js/deep-copy6.png)
 完整版可以查看[lodash 深拷贝](https://github.com/lodash/lodash/blob/master/cloneDeep.js)
 
-### 函数的拷贝
+但是以上方法依旧没有解决普通函数的拷贝，这种方法只能对箭头函数生效，如果是 `fun(){}`这种形式的则会出错
 
-但是 MDN 上的结构化拷贝依旧没有解决函数的拷贝
-![](https://github.com/fyuanfen/note/raw/master/images/js/deep-copy7.png)
-目前为止，我只想到使用 `eval` 的方法对函数进行拷贝，但是这种方法只能对箭头函数生效，如果是 `fun(){}`这种形式的则会出错
-
-拷贝函数增加函数类型
-
-```js
-case Date:
-    //........
-    break;
-case Function:
-    console.log(obj);
-    cloneObj = eval(obj.toString());
-    break;
-```
-
-拷贝结果
-![](https://github.com/fyuanfen/note/raw/master/images/js/deep-copy8.png)
 出错类型
 
 ![](https://github.com/fyuanfen/note/raw/master/images/js/deep-copy9.png)

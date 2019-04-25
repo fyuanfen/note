@@ -87,6 +87,8 @@
 		* [编写一个函数实现 form 的序列化(即将一个表单中的键值序列化为可提交的字符串)](#编写一个函数实现-form-的序列化即将一个表单中的键值序列化为可提交的字符串)
 		* [使用原生 javascript 给下面列表中的 li 节点绑定点击事件,点击时创建一个 Object 对象,兼容 IE 和标准浏览器](#使用原生-javascript-给下面列表中的-li-节点绑定点击事件点击时创建一个-object-对象兼容-ie-和标准浏览器)
 		* [有一个大数组,var a = ['1', '2', '3', ...];a 的长度是 100,内容填充随机整数的字符串.请先构造此数组 a,然后设计一个算法将其内容去重](#有一个大数组var-a-1-2-3-a-的长度是-100内容填充随机整数的字符串请先构造此数组-a然后设计一个算法将其内容去重)
+		* [['1', '2', '3'].map(parseInt) 解析](#1-2-3mapparseint-解析)
+		* [将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组](#将数组扁平化并去除其中重复数据最终得到一个升序且不重复的数组)
 
 <!-- /code_chunk_output -->
 
@@ -2371,4 +2373,54 @@ EventUtil.on(nav, 'click', function (event) {
 
     normalize(input);
     console.log(input);
+```
+### ['1', '2', '3'].map(parseInt) 解析
+答案是：[1, NaN, NaN]。
+
+首先让我们回顾一下，map函数的第一个参数callback：
+```js
+var new_array = arr.map(function callback(currentValue[, index[, array]]) { // Return element for new_array }[, thisArg])
+```
+这个callback一共可以接收三个参数，其中第一个参数代表当前被处理的元素，而第二个参数代表该元素的索引。
+
+而`parseInt`则是用来解析字符串的，使字符串成为指定基数的整数。
+`parseInt(string, radix)`
+接收两个参数，第一个表示被处理的值（字符串），第二个表示为解析时的基数。
+
+了解这两个函数后，我们可以模拟一下运行情况
+
+1. parseInt('1', 0) //radix为0时，且string参数不以“0x”和“0”开头时，按照10为基数处理。这个时候返回1
+2. parseInt('2', 1) //基数为1（1进制）表示的数中，最大值小于2，所以无法解析，返回NaN
+3. parseInt('3', 2) //基数为2（2进制）表示的数中，最大值小于3，所以无法解析，返回NaN
+
+map函数返回的是一个数组，所以最后结果为`[1, NaN, NaN]`
+
+最后附上MDN上对于这两个函数的链接，具体参数大家可以到里面看
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/parseInt
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Array/map
+
+### 将数组扁平化并去除其中重复数据，最终得到一个升序且不重复的数组
+```js
+var arr = [ [1, 2, 2], [3, 4, 5, 5], [6, 7, 8, 9, [11, 12, [12, 13, [14] ] ] ], 10];
+```
+
+
+解答：
+```js
+[...new Set(arr.flat(Infinity))].sort((a,b) => {return a-b;});
+
+function flatDeep(arr) {
+    return arr.reduce((a,b)=>{ Array.isArray(b) ? a.concat(flatDeep(b)) : a.concat(b)},[])
+}
+
+Array.prototype.flat = function() {
+    return this.reduce((a,b)=>{ Array.isArray(b) ? a.concat(flatDeep(b)) : a.concat(b)},[]);
+}
+
+Array.prototype.unique = function() {
+    return []...new Set(this)];
+}
+
+const sortFunc = (a,b) => a-b;
+console.log(arr.flat().unique().sort(sort));
 ```

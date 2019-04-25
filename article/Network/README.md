@@ -5,8 +5,8 @@
 4. [回流与重绘](https://github.com/fyuanfen/note/blob/master/article/Network/%E5%9B%9E%E6%B5%81%E4%B8%8E%E9%87%8D%E7%BB%98.md)
 
 5. [从输入 url 到显示页面的步骤](https://github.com/fyuanfen/note/blob/master/article/Network/%E4%BB%8E%E8%BE%93%E5%85%A5%20url%20%E5%88%B0%E6%98%BE%E7%A4%BA%E9%A1%B5%E9%9D%A2%E7%9A%84%E6%AD%A5%E9%AA%A4.md)
-6. [浅析 Web 跨域]
-7. [常见 Web 安全攻防总结]
+6. [浅析 Web 跨域](https://github.com/fyuanfen/note/blob/master/article/Network/%E6%B5%85%E6%9E%90Web%E8%B7%A8%E5%9F%9F.md)
+7. [常见 Web 安全攻防总结](https://github.com/fyuanfen/note/blob/master/article/Network/%E5%B8%B8%E8%A7%81%20Web%20%E5%AE%89%E5%85%A8%E6%94%BB%E9%98%B2%E6%80%BB%E7%BB%93.md)
 8. 浏览器存储
 9. Websocket
 10. Web Worker

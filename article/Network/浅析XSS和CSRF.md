@@ -2,23 +2,23 @@
 
 <!-- code_chunk_output -->
 
-* [XSS](#xss)
-	* [XSS 的类型](#xss-的类型)
-		* [反射型](#反射型)
-		* [存储型](#存储型)
-		* [基于 DOM](#基于-dom)
-	* [XSS 攻击的防范](#xss-攻击的防范)
-		* [HttpOnly 防止劫取 Cookie](#httponly-防止劫取-cookie)
-		* [输入检查](#输入检查)
-		* [输出检查](#输出检查)
-* [CSRF](#csrf)
-	* [浏览器的 Cookie 策略](#浏览器的-cookie-策略)
-	* [通过 Cookie 进行 CSRF 攻击](#通过-cookie-进行-csrf-攻击)
-	* [CSRF 攻击的防范](#csrf-攻击的防范)
-		* [验证码](#验证码)
-		* [Referer Check](#referer-check)
-		* [添加 token 验证](#添加-token-验证)
-* [总结](#总结)
+- [XSS](#xss)
+  _ [XSS 的类型](#xss-的类型)
+  _ [反射型](#反射型)
+  _ [存储型](#存储型)
+  _ [基于 DOM](#基于-dom)
+  _ [XSS 攻击的防范](#xss-攻击的防范)
+  _ [HttpOnly 防止劫取 Cookie](#httponly-防止劫取-cookie)
+  _ [输入检查](#输入检查)
+  _ [输出检查](#输出检查)
+- [CSRF](#csrf)
+  _ [浏览器的 Cookie 策略](#浏览器的-cookie-策略)
+  _ [通过 Cookie 进行 CSRF 攻击](#通过-cookie-进行-csrf-攻击)
+  _ [CSRF 攻击的防范](#csrf-攻击的防范)
+  _ [验证码](#验证码)
+  _ [Referer Check](#referer-check)
+  _ [Anti CSRF Token](#anti-csrf-token) \* [添加 token 验证](#添加-token-验证)
+- [总结](#总结)
 
 <!-- /code_chunk_output -->
 
@@ -326,6 +326,18 @@ if (req.headers.referer !== "http://www.c.com:8002/") {
 ![](../images/other/csrf3.png)
 
 `Referer Check` 不仅能防范 CSRF 攻击，另一个应用场景是 **"防止图片盗链"**。
+
+### Anti CSRF Token
+
+目前比较完善的解决方案是加入 Anti-CSRF-Token。即发送请求时在 HTTP 请求中以参数的形式加入一个随机产生的 token，并在服务器建立一个拦截器来验证这个 token。服务器读取浏览器当前域 cookie 中这个 token 值，会进行校验该请求当中的 token 和 cookie 当中的 token 值是否都存在且相等，才认为这是合法的请求。否则认为这次请求是违法的，拒绝该次服务。
+
+这种方法相比 Referer 检查要安全很多，token 可以在用户登陆后产生并放于 session 或 cookie 中，然后在每次请求时服务器把 token 从 session 或 cookie 中拿出，与本次请求中的 token 进行比对。由于 token 的存在，攻击者无法再构造出一个完整的 URL 实施 CSRF 攻击。但在处理多个页面共存问题时，当某个页面消耗掉 token 后，其他页面的表单保存的还是被消耗掉的那个 token，其他页面的表单提交时会出现 token 错误。
+具体方案如下：
+
+1. 服务端在收到路由请求时，生成一个随机数，在渲染请求页面时把随机数埋入页面（一般埋入 `form` 表单内，`<input type="hidden" name="_csrf_token" value="xxxx">`）
+2. 服务端设置 `setCookie`，把该随机数作为 `cookie` 或者 `session` 种入用户浏览器
+3. 当用户发送 `GET` 或者 `POST` 请求时带上`_csrf_token` 参数（对于 Form 表单直接提交即可，因为会自动把当前表单内所有的 input 提交给后台，包括`_csrf_token`）
+4. 后台在接受到请求后解析请求的 `cookie` 获取 `_csrf_token` 的值，然后和用户请求提交的 `_csrf_token` 做个比较，如果相等表示请求是合法的。
 
 ### 添加 token 验证
 

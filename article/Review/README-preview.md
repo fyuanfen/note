@@ -56,6 +56,7 @@
 		* [javascript 有哪些方法定义对象](#javascript-有哪些方法定义对象)
 		* [===运算符判断相等的流程是怎样的](#运算符判断相等的流程是怎样的)
 		* [==运算符判断相等的流程是怎样的](#运算符判断相等的流程是怎样的-1)
+		* [Javascript中的for-of和for-in循环的区别](#javascript中的for-of和for-in循环的区别)
 		* [对象到字符串的转换步骤](#对象到字符串的转换步骤)
 		* [对象到数字的转换步骤](#对象到数字的转换步骤)
 		* [<,>,<=,>=的比较规则](#的比较规则)
@@ -1241,7 +1242,17 @@ document.cookie = 'name=aaa; path=/; domain=domain; secure';
 5. 如果有布尔类型，将**true 转换为 1，false 转换为 0**，然后用==规则继续比较
 6. 如果一个值是对象，另一个是数字或字符串，将对象转换为原始值然后用==规则继续比较
 7. **其他所有情况都认为不相等**
+### Javascript中的for-of和for-in循环的区别
 
+1. 推荐在循环对象属性的时候，使用 `for...in`,在遍历数组的时候的时候使用 `for...of`。`for...in` 会遍历自定义属性,包括从原型继承来的属性
+
+2. `for...in`循环出的是 key，`for...of`循环出的是 value
+
+3. `for...of`是 ES6 新引入的特性。修复了 ES5 引入的`for...in`的不足
+
+4. `for...of`不能循环普通的对象，需要通过和`Object.keys()`搭配使用
+
+具体可参考[Javascript中的for-of和for-in循环的区别](https://github.com/fyuanfen/note/blob/master/article/Review/Javascript%E4%B8%AD%E7%9A%84for-of%E5%92%8Cfor-in%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 ### 对象到字符串的转换步骤
 
 1. 如果对象有 toString()方法，javascript 调用它。如果返回一个原始值（primitive value 如：string number boolean）,将这个值转换为字符串作为结果

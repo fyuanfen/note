@@ -28,9 +28,10 @@
 		* [执行机制](#执行机制)
 			* [几个队列](#几个队列)
 			* [循环之前](#循环之前)
-			* [开始循环](#开始循环)
+			* [微任务和宏任务在 Node 的执行顺序](#微任务和宏任务在-node-的执行顺序)
+				* [Node 10 以前：](#node-10-以前)
+				* [Node11 以后：](#node11-以后)
 		* [注意](#注意-1)
-		* [伪代码](#伪代码-1)
 * [测试代码](#测试代码)
 		* [定时器](#定时器)
 			* [定时器的一些概念](#定时器的一些概念)
@@ -185,8 +186,20 @@ while (queue.waitForMessage()) {
 异步任务分为 `task`（宏任务，也可称为 `macroTask`）和 `microtask`（微任务）两类。
 当满足执行条件时，`task` 和 `microtask` 会被放入各自的队列中等待放入主线程执行，我们把这两个队列称为 `Task Queue`(也叫 `Macrotask Queue`)和 `Microtask Queue`。
 
-- task：`script` 中代码、`setTimeout`、`setInterval`、I/O、`UI render`。
-- microtask: `promise`、`Object.observe`、`MutationObserver`。
+1. 宏任务
+   (macro)task（又称之为宏任务），可以理解是每次执行栈执行的代码就是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）。
+
+浏览器为了能够使得 JS 内部(macro)task 与 DOM 任务能够有序的执行，会在一个(macro)task 执行结束后，在下一个(macro)task 执行开始前，对页面进行重新渲染，流程如下：
+
+> (macro)task->渲染->(macro)task->...
+
+**task 主要包含：`script` 中代码、`setTimeout`、`setInterval`、I/O、`UI render`、`postMessage`、`MessageChannel`、`setImmediate`(Node.js 环境)。**
+
+2. 微任务
+   microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务。也就是说，在当前 task 任务后，下一个 task 之前，在渲染之前。
+
+所以它的响应速度相比 setTimeout（setTimeout 是 task）会更快，因为无需等渲染。也就是说，在某一个 macrotask 执行完后，就会将在它执行期间产生的所有 microtask 都执行完毕（在渲染前）。
+**microtask 主要包含: `promise`、`Object.observe`、`MutationObserver`。**
 
 ##### 具体过程
 
@@ -277,12 +290,12 @@ setTimeout
    └───────────────────────┘
 ```
 
-在 `node` 中事件**每一轮**循环按照**顺序**分为 6 个阶段，来自 libuv 的实现：
+在 `node` 中事件**每一轮**循环按照**顺序**分为 6 个阶段，来自 `libuv` 的实现：
 
 1. timers：执行满足条件的 `setTimeout`、`setInterval` 回调。
 2. I/O callbacks：是否有已完成的 I/O 操作的回调函数，来自上一轮的 poll 残留。
 3. idle，prepare：可忽略
-4. poll：等待还没完成的 I/O 事件，会因 timers 和超时时间等结束等待。
+4. poll：等待还没完成的 I/O 事件，会因 `timers` 和超时时间等结束等待。
 5. check：执行 `setImmediate` 的回调。
 6. close callbacks：关闭所有的 `closing handles`，一些 `onclose` 事件。
 
@@ -306,11 +319,11 @@ setTimeout
 
 #### timer 阶段
 
-这个阶段以先进先出的方式执行所有到期的 `timer` 加入 `timer` 队列里的 callback，一个 timer callback 指得是一个通过 setTimeout 或者 setInterval 函数设置的回调函数。
+这个阶段以先进先出的方式执行所有到期的 `timer` 加入 `timer` 队列里的 callback，一个 `timer callback` 指得是一个通过 `setTimeout` 或者 `setInterval` 函数设置的回调函数。
 
 #### I/O callback 阶段
 
-如上文所言，这个阶段主要执行大部分 I/O 事件的回调，包括一些为操作系统执行的回调。例如一个 TCP 连接生错误时，系统需要执行回调来获得这个错误的报告。
+如上文所言，这个阶段主要执行大部分 `I/O` 事件的回调，包括一些为操作系统执行的回调。例如一个 `TCP` 连接生错误时，系统需要执行回调来获得这个错误的报告。
 
 ### 执行机制
 
@@ -328,7 +341,9 @@ setTimeout
 - 规划定时器生效的时间
 - 执行 `process.nextTick()`
 
-#### 开始循环
+#### 微任务和宏任务在 Node 的执行顺序
+
+##### Node 10 以前：
 
 按照我们的循环的 6 个阶段依次执行，每次拿出当前阶段中的全部任务执行，清空 NextTick Queue，清空 Microtask Queue。再执行下一阶段，全部 6 个阶段执行完毕后，进入下轮循环。即：
 
@@ -338,25 +353,14 @@ setTimeout
 4. 清空当前循环内的 `Close Queue`，清空 `NextTick Queue`，清空 `Microtask Queue`。
 5. 进入下轮循环。
 
-可以看出，`nextTick` 优先级比 `promise` 等 `microtask` 高。`setTimeout` 和 `setInterval` 优先级比 `setImmediate` 高。
+##### Node11 以后：
+
+和浏览器的行为统一了，都是每执行一个宏任务就执行完微任务队列。
 
 ### 注意
 
 - 如果在 `timers` 阶段执行时创建了 `setImmediate` 则会在此轮循环的 `check` 阶段执行，如果在 `timers` 阶段创建了 `setTimeout`，由于 `timers` 已取出完毕，则会进入下轮循环，`check` 阶段创建 `timers` 任务同理。
 - `setTimeout` 优先级比 `setImmediate` 高，但是由于 `setTimeout(fn,0)`的真正延迟不可能完全为 0 秒，可能出现先创建的 `setTimeout(fn,0)`而比 `setImmediate` 的回调后执行的情况。
-
-### 伪代码
-
-```js
-while (true) {
-loop.forEach((阶段) => {
-    阶段全部任务()
-    nextTick 全部任务()
-    microTask 全部任务()
-  })
-  loop = loop.next
-}
-```
 
 # 测试代码
 
@@ -414,7 +418,7 @@ setTimeout - 1 //1 为单个 task
   1s over
 ```
 
-- node 输出：
+- **node10**以前 输出：
   ```
   setTimeout - 1
   1s over

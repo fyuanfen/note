@@ -11,6 +11,7 @@
 9. Websocket
 10. Web Worker
 11. V8 垃圾回收机制
+12. [为什么前端监控要用 GIF 打点]
 
 ## 安全
 

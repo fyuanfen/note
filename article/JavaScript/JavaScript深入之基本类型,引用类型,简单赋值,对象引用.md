@@ -2,19 +2,23 @@
 
 <!-- code_chunk_output -->
 
-- [1.基本类型](#1基本类型)
-  _ [1.基本类型的值是不可变得](#1基本类型的值是不可变得)
-  _ [2.基本类型的比较是值的比较](#2基本类型的比较是值的比较) \* [3.基本类型的变量存放在栈区](#3基本类型的变量存放在栈区)
-- [2.引用类型](#2引用类型)
-  _ [1.引用类型的值是可变的](#1引用类型的值是可变的)
-  _ [2.引用类型的值是同时保存在栈内存和堆内存中的对象](#2引用类型的值是同时保存在栈内存和堆内存中的对象) \* [3.引用类型的比较是引用的比较](#3引用类型的比较是引用的比较)
-- [3. 基本包装类型(包装对象)：](#3-基本包装类型包装对象)
-- [4.简单赋值](#4简单赋值)
-- [5.对象引用](#5对象引用)
-- [类型判断](#类型判断)
-  _ [1.用 typeof 运算符来判断](#1用-typeof-运算符来判断)
-  _ [2. 用 Object.prototype.toString 判断](#2-用-objectprototypetostring-判断)
-- [参考文档](#参考文档)
+* [1.基本类型](#1基本类型)
+	* [1.基本类型的值是不可变得](#1基本类型的值是不可变得)
+	* [2.基本类型的比较是值的比较](#2基本类型的比较是值的比较)
+	* [3.基本类型的变量存放在栈区](#3基本类型的变量存放在栈区)
+* [2.引用类型](#2引用类型)
+	* [1.引用类型的值是可变的](#1引用类型的值是可变的)
+	* [2.引用类型的值是同时保存在栈内存和堆内存中的对象](#2引用类型的值是同时保存在栈内存和堆内存中的对象)
+	* [3.引用类型的比较是引用的比较](#3引用类型的比较是引用的比较)
+* [3. 基本包装类型(包装对象)：](#3-基本包装类型包装对象)
+* [4.简单赋值](#4简单赋值)
+* [5.对象引用](#5对象引用)
+* [类型判断](#类型判断)
+	* [1.用 typeof 运算符来判断](#1用-typeof-运算符来判断)
+	* [2 instanceof](#2-instanceof)
+	* [3 constructor](#3-constructor)
+	* [4 Object.prototype.toString.call()](#4-objectprototypetostringcall)
+* [参考文档](#参考文档)
 
 <!-- /code_chunk_output -->
 
@@ -217,13 +221,42 @@ console.log(a == b); // true
 
 ## 1.用 typeof 运算符来判断
 
-`typeof` 是 `javascript` 原生提供的判断数据类型的运算符，它会返回一个表示参数的数据类型的字符串，例如：
+`typeof` 是 `javascript` 原生提供的判断数据类型的运算符，，返回结果包括：`number`、`boolean`、`string`、`symbol`、`object`、`undefined`、`function` 等 7 种数据类型，**但不能判断 null、array 等**
 
-以下是我在 MDN 的文档中找到的一张包含 `typeof` 运算法的针对不同参数的输出结果的表格：
+```js
+typeof Symbol(); // symbol 有效
+typeof ""; // string 有效
+typeof 1; // number 有效
+typeof true; //boolean 有效
+typeof undefined; //undefined 有效
+typeof new Function(); // function 有效
+typeof null; //object 无效
+typeof []; //object 无效
+typeof new Date(); //object 无效
+typeof new RegExp(); //object 无效
+```
 
-![](https://github.com/fyuanfen/note/raw/master/images/other/typeof.jpg)
+## 2 instanceof
 
-## 2. 用 Object.prototype.toString 判断
+`instanceof` 是用来判断 A 是否为 B 的实例，表达式为：`A instanceof B`，如果 A 是 B 的实例，则返回 true,否则返回 false。instanceof 运算符用来测试一个对象在其原型链中是否存在一个构造函数的 prototype 属性，但 instanceof 只能用来判断对象类型，原始类型不可以。**它不能检测 null 和 undefined**
+
+```js
+[] instanceof Array; //true
+{} instanceof Object;//true
+new Date() instanceof Date;//true
+new RegExp() instanceof RegExp//true
+null instanceof Null//报错
+undefined instanceof undefined//报错
+```
+
+## 3 constructor
+
+`constructor` 作用和 instanceof 非常相似。但 `constructor` 检测 `Object` 与 `instanceof` 不一样，还可以处理基本数据类型的检测。
+不过函数的 `constructor` 是不稳定的，这个主要体现在把类的原型进行重写，在重写的过程中很有可能出现把之前的 `constructor` 给覆盖了，这样检测出来的结果就是不准确的。
+
+## 4 Object.prototype.toString.call()
+
+`Object.prototype.toString.call()` 是最准确最常用的方式。
 
 `[[Class]]`是一个内部属性，值为一个类型字符串，可以用来判断值的类型。在 JavaScript 代码里，唯一可以访问该属性的方法就是通过 `Object.prototype.toString` ，通常方法如下：
 

@@ -124,6 +124,7 @@ console.log(obj);
 
 9. 如何实现 JS 的深拷贝
    参考[JavaScript 深入之深拷贝与浅拷贝](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript%E6%B7%B1%E5%85%A5%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D.md)
+
 10. 简单实现 Node 的 EventEmitter 模块
     解析[EventEmitter 实现原理和源码](https://github.com/fyuanfen/note/blob/master/article/Server/Node%E7%9A%84EventEmitter%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90.md)
 

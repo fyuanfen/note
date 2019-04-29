@@ -1,5 +1,18 @@
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 
+<!-- code_chunk_output -->
+
+* [JavaScript 深入之 bind 的模拟实现](#javascript-深入之-bind-的模拟实现)
+	* [bind](#bind)
+	* [返回函数的模拟实现](#返回函数的模拟实现)
+	* [传参的模拟实现](#传参的模拟实现)
+	* [构造函数效果的模拟实现](#构造函数效果的模拟实现)
+	* [构造函数效果的优化实现](#构造函数效果的优化实现)
+	* [三个小问题](#三个小问题)
+	* [最终代码](#最终代码)
+	* [深入系列](#深入系列)
+
+<!-- /code_chunk_output -->
 
 # JavaScript 深入之 bind 的模拟实现
 

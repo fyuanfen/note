@@ -2,7 +2,6 @@
 
 <h2 id="series">系列专题</h2>
 
-- [前端工程——基础篇](https://github.com/fouber/blog/issues/10)
 - [JavaScript 深入系列全 11 篇](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)
 - [React 深入系列（2019.4 更新中）](https://github.com/fyuanfen/note/blob/master/article/React/README.md)
 - [前端算法专题](https://github.com/fyuanfen/note/blob/master/article/Algorithm/README.md)
@@ -41,6 +40,8 @@
 - [Simple resume](https://github.com/DIYgod/Resume)
 
 <h2 id="project">工程杂谈</h2>
+
+- [前端工程化——基础篇](https://github.com/fouber/blog/issues/10)
 
 - [浅谈前端集成解决方案](https://github.com/fouber/blog/issues/1)
 

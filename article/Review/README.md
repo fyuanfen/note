@@ -117,11 +117,16 @@ console.log(obj);
 解析 [JS 中类数组的使用](https://github.com/fyuanfen/note/blob/master/article/Review/JS%E4%B8%AD%E7%B1%BB%E6%95%B0%E7%BB%84%E7%9A%84%E4%BD%BF%E7%94%A8.md)
 
 8. cookie 和 token 都存放在 header 中，为什么不会劫持 token？
-   1、首先 token 不是防止 XSS 的，而是为了防止 CSRF 的；
-   2、CSRF 攻击的原因是浏览器会自动带上 cookie，而浏览器不会自动带上 token
-   我可以把 token 放在 body 中啊.我也可以不用 token 这个关键字.主要还是 cookie 会被浏览器自动带上, 劫持了才容易攻击.
+
+- 首先 token 不是防止 XSS 的，而是为了防止 CSRF 的；
+- CSRF 攻击的原因是浏览器会自动带上 cookie，而浏览器不会自动带上 token
+  我可以把 token 放在 body 中啊.我也可以不用 token 这个关键字.主要还是 cookie 会被浏览器自动带上, 劫持了才容易攻击.
+
+9. 如何实现 JS 的深拷贝
+   参考[JavaScript 深入之深拷贝与浅拷贝](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript%E6%B7%B1%E5%85%A5%E4%B9%8B%E6%B7%B1%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B5%85%E6%8B%B7%E8%B4%9D.md)
+10. 简单实现 Node 的 EventEmitter 模块
+    解析[EventEmitter 实现原理和源码](https://github.com/fyuanfen/note/blob/master/article/Server/Node%E7%9A%84EventEmitter%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90.md)
 
 # 参考
 
 [前端面试之道](https://juejin.im/book/5bdc715fe51d454e755f75ef/section/5bdc715f6fb9a049c15ea4e0#heading-2)
-[](https://github.com/yygmind/blog)

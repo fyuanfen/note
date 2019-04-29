@@ -3,4 +3,4 @@
 
 3. [require 和 import 的区别](https://github.com/fyuanfen/note/blob/master/article/Server/require%E5%92%8C%20import%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 
-4. [Node 的 EventEmitter 模块实现解析]
+4. [Node 的 EventEmitter 模块实现解析](https://github.com/fyuanfen/note/blob/master/article/Server/Node%E7%9A%84EventEmitter%E6%A8%A1%E5%9D%97%E5%AE%9E%E7%8E%B0%E8%A7%A3%E6%9E%90.md)

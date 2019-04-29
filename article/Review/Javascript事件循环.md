@@ -43,7 +43,7 @@ setTimeout
 */
 ```
 
-这道题主要考察的是事件循环中函数执行顺序的问题，其中包括 async ，await，setTimeout，Promise 函数。下面来说一下本题中涉及到的知识点。
+这道题主要考察的是事件循环中函数执行顺序的问题，其中包括 `async` ，`await`，`setTimeout`，`Promise` 函数。下面来说一下本题中涉及到的知识点。
 
 # 任务队列
 
@@ -135,7 +135,7 @@ async function async1() {
 
 # 变式一
 
-在第一个变式中我将 async2 中的函数也变成了 Promise 函数，代码如下：
+在第一个变式中我将 async2 中的函数也变成了 `Promise` 函数，代码如下：
 
 ```js
 async function async1() {
@@ -187,7 +187,7 @@ setTimeout
 
 # 变式二
 
-在第二个变式中，我将 async1 中 await 后面的代码和 async2 的代码都改为异步的，代码如下：
+在第二个变式中，我将 `async1` 中 `await` 后面的代码和 `async2` 的代码都改为异步的，代码如下：
 
 ```js
 async function async1() {
@@ -233,7 +233,7 @@ setTimeout2
 setTimeout1
 ```
 
-在输出为 promise2 之后，接下来会按照加入 setTimeout 队列的顺序来依次输出，通过代码我们可以看到加入顺序为 3 2 1，所以会按 3，2，1 的顺序来输出。
+在输出为 `promise2` 之后，接下来会按照加入 setTimeout 队列的顺序来依次输出，通过代码我们可以看到加入顺序为 3 2 1，所以会按 3，2，1 的顺序来输出。
 
 # 变式三
 
@@ -289,5 +289,3 @@ promise2.then
 promise3
 setTimeout
 ```
-
-解析: [Javascript 事件循环]()

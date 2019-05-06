@@ -2,16 +2,16 @@
 
 <!-- code_chunk_output -->
 
-- [区别](#区别)
-  _ [CommonJS](#commonjs)
-  _ [ES6 模块](#es6-模块)
-- [实例详解](#实例详解)
-  _ [CommonJS](#commonjs-1)
-  _ [require 基础数据类型](#require-基础数据类型)
-  _ [require 引用数据类型](#require-引用数据类型)
-  _ [require 缓存和循环引用](#require-缓存和循环引用)
-  _ [ES6 模块](#es6-模块-1)
-  _ [import 动态引用](#import-动态引用)
+* [区别](#区别)
+	* [CommonJS](#commonjs)
+	* [ES6 模块](#es6-模块)
+* [实例详解](#实例详解)
+	* [CommonJS](#commonjs-1)
+		* [require 基础数据类型](#require-基础数据类型)
+		* [require 引用数据类型](#require-引用数据类型)
+		* [require 缓存和循环引用](#require-缓存和循环引用)
+	* [ES6 模块](#es6-模块-1)
+		* [import 动态引用](#import-动态引用)
 
 <!-- /code_chunk_output -->
 
@@ -174,7 +174,7 @@ c.js-1 执行完毕 true true
 
 1. es6 模块中的值属于【动态只读引用】。只说明一下复杂数据类型。
 2. 对于只读来说，即不允许修改引入变量的值，`import` 的变量是只读的，不论是基本数据类型还是复杂数据类型。当模块遇到 `import` 命令时，就会生成一个只读引用。等到脚本真正执行时，再根据这个只读引用，到被加载的那个模块里面去取值。
-3. 对于动态来说，原始值发生变化，import 加载的值也会发生变化。不论是基本数据类型还是复杂数据类型。
+3. 对于动态来说，原始值发生变化，`import` 加载的值也会发生变化。不论是基本数据类型还是复杂数据类型。
 
 ```js
 // b.js

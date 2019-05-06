@@ -7,6 +7,7 @@
 - [前端精读](https://github.com/dt-fe/weekly)
 - [zwwill](https://github.com/zwwill/blog)
 - [forthealllight](https://github.com/forthealllight/blog)
+- [happylindz](https://github.com/happylindz/blog)
 
 # 后台
 

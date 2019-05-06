@@ -7,8 +7,8 @@
 
 ## Leetcode 专题系列
 
-1. [二叉树路径之和]
-2. [n 个数之和]
+1. [二叉树路径之和](https://github.com/fyuanfen/note/blob/master/article/Algorithm/%E4%BA%8C%E5%8F%89%E6%A0%91%E8%B7%AF%E5%BE%84%E4%B9%8B%E5%92%8C.md)
+2. [n 个数之和](https://github.com/fyuanfen/note/blob/master/article/Algorithm/n%E4%B8%AA%E6%95%B0%E4%B9%8B%E5%92%8C.md)
 3. 字符串查找之 KMP 算法
 4. 回文
 

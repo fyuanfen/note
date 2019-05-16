@@ -30,7 +30,7 @@
 
 # 一、前言
 
-浏览器缓存机制，是一个很大的话题，详见[九种浏览器端缓存机制概览](http://www.zyy1217.com/2017/05/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%AB%AF%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6/) 。但其中比较重要的是 **HTTP 协议定义的缓存机制**。这些规则是在**HTTP 协议头**和**HTML 页面的 Meta 标签**中定义的。
+浏览器缓存机制，是一个很大的话题，详见[彻底理解前端缓存之一缓存机制汇总](https://github.com/fyuanfen/note/blob/master/article/Network/%E5%BD%BB%E5%BA%95%E7%90%86%E8%A7%A3%E5%89%8D%E7%AB%AF%E7%BC%93%E5%AD%98%E4%B9%8B%E4%B8%80%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E6%B1%87%E6%80%BB.md 。但其中比较重要的是 **HTTP 协议定义的缓存机制**。这些规则是在**HTTP 协议头**和**HTML 页面的 Meta 标签**中定义的。
 
 ## 使用 HTML Meta 标签
 

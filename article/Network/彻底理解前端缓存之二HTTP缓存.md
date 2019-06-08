@@ -2,29 +2,31 @@
 
 <!-- code_chunk_output -->
 
-- [一、前言](#一-前言)
-  _ [使用 HTML Meta 标签](#使用-html-meta-标签)
-  _ [使用缓存有关的 HTTP 消息报头](#使用缓存有关的-http-消息报头)
-- [二、缓存位置](#二-缓存位置)
-  _ [1.Service Worker](#1service-worker)
-  _ [2.Memory Cache](#2memory-cache)
-  _ [3.Disk Cache](#3disk-cache)
-  _ [4.Push Cache](#4push-cache)
-- [三、缓存过程分析](#三-缓存过程分析)
-- [四、强缓存](#四-强缓存)
-  _ [1.Expires](#1expires)
-  _ [2. Cache-Control](#2-cache-control)
-  _ [3.Expires 和 Cache-Control 两者对比](#3expires-和-cache-control-两者对比)
-  _ [Expires](#expires) \* [4. 适用性](#4-适用性)
-- [五、协商缓存](#五-协商缓存)
-  _ [1.Last-Modified 和 If-Modified-Since](#1last-modified-和-if-modified-since)
-  _ [2.ETag 和 If-None-Match](#2etag-和-if-none-match) \* [3.两者之间对比：](#3两者之间对比)
-- [六、缓存机制](#六-缓存机制)
-- [七、实际场景应用缓存策略](#七-实际场景应用缓存策略)
-  _ [1.频繁变动的资源](#1频繁变动的资源)
-  _ [2.不常变化的资源](#2不常变化的资源)
-- [八、用户行为对浏览器缓存的影响](#八-用户行为对浏览器缓存的影响)
-- [参考文章](#参考文章)
+* [一、前言](#一-前言)
+	* [使用 HTML Meta 标签](#使用-html-meta-标签)
+	* [使用缓存有关的 HTTP 消息报头](#使用缓存有关的-http-消息报头)
+* [二、缓存位置](#二-缓存位置)
+	* [1.Service Worker](#1service-worker)
+	* [2.Memory Cache](#2memory-cache)
+	* [3.Disk Cache](#3disk-cache)
+	* [4.Push Cache](#4push-cache)
+* [三、缓存过程分析](#三-缓存过程分析)
+* [四、强缓存](#四-强缓存)
+	* [1.Expires](#1expires)
+	* [2. Cache-Control](#2-cache-control)
+	* [3.Expires 和 Cache-Control 两者对比](#3expires-和-cache-control-两者对比)
+		* [Expires](#expires)
+		* [4. 适用性](#4-适用性)
+* [五、协商缓存](#五-协商缓存)
+	* [1.Last-Modified 和 If-Modified-Since](#1last-modified-和-if-modified-since)
+	* [2.ETag 和 If-None-Match](#2etag-和-if-none-match)
+	* [3.两者之间对比：](#3两者之间对比)
+* [六、缓存机制](#六-缓存机制)
+* [七、实际场景应用缓存策略](#七-实际场景应用缓存策略)
+	* [1.频繁变动的资源](#1频繁变动的资源)
+	* [2.不常变化的资源](#2不常变化的资源)
+* [八、用户行为对浏览器缓存的影响](#八-用户行为对浏览器缓存的影响)
+* [参考文章](#参考文章)
 
 <!-- /code_chunk_output -->
 
@@ -45,7 +47,7 @@
 
 ## 使用缓存有关的 HTTP 消息报头
 
-一个 URI 的完整 HTTP 协议交互过程是由 HTTP 请求和 HTTP 响应组成的。有关 HTTP 详细内容可参考[《HTTP 协议详解》](http://kb.cnblogs.com/page/130970/)。
+一个 `URI` 的完整 `HTTP` 协议交互过程是由 `HTTP` 请求和 `HTTP` 响应组成的。有关 `HTTP` 详细内容可参考[《HTTP 协议详解》](http://kb.cnblogs.com/page/130970/)。
 
 对于一个数据请求来说，可以分为发起网络请求、后端处理、浏览器响应三个步骤。浏览器缓存可以帮助我们在第一和第三步骤中优化性能。比如说直接使用缓存而不发起请求，或者发起了请求但后端存储的数据和前端一致，那么就没有必要再将数据回传回来，这样就减少了响应数据。
 
@@ -72,7 +74,7 @@
 
 ## 2.Memory Cache
 
-Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源,例如页面上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快,内存缓存虽然读取高效，可是缓存持续性很短，会随着进程的释放而释放。 **一旦我们关闭 Tab 页面，内存中的缓存也就被释放了。**
+`Memory Cache` 也就是内存中的缓存，主要包含的是当前中页面中已经抓取到的资源,例如页面上已经下载的样式、脚本、图片等。读取内存中的数据肯定比磁盘快,内存缓存虽然读取高效，可是缓存持续性很短，会随着进程的释放而释放。 **一旦我们关闭 Tab 页面，内存中的缓存也就被释放了。**
 
 那么既然内存缓存这么高效，我们是不是能让数据都存放在内存中呢？
 这是不可能的。计算机中的内存一定比硬盘容量小得多，操作系统需要精打细算内存的使用，所以能让我们使用的内存必然不多。
@@ -99,7 +101,7 @@ Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中�
 
 ## 4.Push Cache
 
-`Push Cache`（推送缓存）是 HTTP/2 中的内容，当以上三种缓存都没有命中时，它才会被使用。**它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂**，在 `Chrome` 浏览器中只有 5 分钟左右，同时它也并非严格执行 HTTP 头中的缓存指令。
+`Push Cache`（推送缓存）是 HTTP/2 中的内容，当以上三种缓存都没有命中时，它才会被使用。**它只在会话（Session）中存在，一旦会话结束就被释放，并且缓存时间也很短暂**，在 `Chrome` 浏览器中只有 5 分钟左右，同时它也并非严格执行 `HTTP` 头中的缓存指令。
 
 `Push Cache` 在国内能够查到的资料很少，也是因为 HTTP/2 在国内不够普及。这里推荐阅读 Jake Archibald 的 [HTTP/2 push is tougher than I thought](https://jakearchibald.com/2017/h2-push-tougher-than-i-thought/) 这篇文章，文章中的几个结论：
 
@@ -107,7 +109,7 @@ Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中�
 - 可以推送 `no-cache` 和 `no-store` 的资源
 - 一旦连接被关闭，Push Cache 就被释放
 - 多个页面可以使用同一个 HTTP/2 的连接，也就可以使用同一个 `Push Cache`。这主要还是依赖浏览器的实现而定，出于对性能的考虑，有的浏览器会对相同域名但不同的 `tab` 标签使用同一个 `HTTP` 连接。
-- Push Cache 中的缓存只能被使用一次
+- `Push Cache` 中的缓存只能被使用一次
 - 浏览器可以拒绝接受已经存在的资源推送
 - 你可以给其他域名推送资源
 
@@ -132,7 +134,7 @@ Memory Cache 也就是内存中的缓存，主要包含的是当前中页面中�
 
 # 四、强缓存
 
-强缓存：不会向服务器发送请求，直接从缓存中读取资源，在 `chrome` 控制台的 `Network` 选项中可以看到该请求返回 `200` 的状态码，并且 Size 显示 from disk cache 或 from memory cache。强缓存可以通过设置两种 HTTP Header 实现：`Expires` 和 `Cache-Control`。
+强缓存：不会向服务器发送请求，直接从缓存中读取资源，在 `chrome` 控制台的 `Network` 选项中可以看到该请求返回 `200` 的状态码，并且 Size 显示 `from disk cache` 或 from memory cache。强缓存可以通过设置两种 `HTTP Header` 实现：`Expires` 和 `Cache-Control`。
 
 ## 1.Expires
 

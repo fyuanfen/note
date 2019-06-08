@@ -2,23 +2,21 @@
 
 <!-- code_chunk_output -->
 
-* [一、数据类型](#一-数据类型)
-* [二、浅拷贝与深拷贝](#二-浅拷贝与深拷贝)
-* [三、赋值和浅拷贝的区别](#三-赋值和浅拷贝的区别)
-* [四、浅拷贝的实现方式](#四-浅拷贝的实现方式)
-	* [1、Object.assign()](#1-objectassign)
-	* [2、Array.prototype.concat()](#2-arrayprototypeconcat)
-	* [3、Array.prototype.slice()](#3-arrayprototypeslice)
-* [五、深拷贝的实现方式](#五-深拷贝的实现方式)
-	* [JSON.stringify 和 JSON.parse](#jsonstringify-和-jsonparse)
-		* [不能复制 `function`、正则、`Symbol`](#不能复制-function-正则-symbol)
-		* [循环引用报错](#循环引用报错)
-		* [相同的引用会被重复复制](#相同的引用会被重复复制)
-	* [解决方案](#解决方案)
-		* [环](#环)
-		* [特殊对象的拷贝](#特殊对象的拷贝)
-* [后记](#后记)
-* [参考文档:](#参考文档)
+- [一、数据类型](#一-数据类型)
+- [二、浅拷贝与深拷贝](#二-浅拷贝与深拷贝)
+- [三、赋值和浅拷贝的区别](#三-赋值和浅拷贝的区别)
+- [四、浅拷贝的实现方式](#四-浅拷贝的实现方式)
+  _ [1、Object.assign()](#1-objectassign)
+  _ [2、Array.prototype.concat()](#2-arrayprototypeconcat) \* [3、Array.prototype.slice()](#3-arrayprototypeslice)
+- [五、深拷贝的实现方式](#五-深拷贝的实现方式)
+  _ [JSON.stringify 和 JSON.parse](#jsonstringify-和-jsonparse)
+  _ [不能复制 `function`、正则、`Symbol`](#不能复制-function-正则-symbol)
+  _ [循环引用报错](#循环引用报错)
+  _ [相同的引用会被重复复制](#相同的引用会被重复复制)
+  _ [解决方案](#解决方案)
+  _ [环](#环) \* [特殊对象的拷贝](#特殊对象的拷贝)
+- [后记](#后记)
+- [参考文档:](#参考文档)
 
 <!-- /code_chunk_output -->
 
@@ -157,7 +155,7 @@ console.log(arr);
 
 - 如果该元素是个对象引用(不是实际的对象)，`slice` 会拷贝这个对象引用到新的数组里。两个对象引用都引用了同一个对象。如果被引用的对象发生改变，则新的和原来的数组中的这个元素也会发生改变。
 
-- 对于字符串、数字及布尔值来说（不是 `String`、Number 或者 Boolean 对象），`slice` 会拷贝这些值到新的数组里。在别的数组里修改这些字符串或数字或是布尔值，将不会影响另一个数组。
+- 对于字符串、数字及布尔值来说（不是 `String`、`Number` 或者 `Boolean` 对象），`slice` 会拷贝这些值到新的数组里。在别的数组里修改这些字符串或数字或是布尔值，将不会影响另一个数组。
 
 可能这段话晦涩难懂，我们举个例子，将上面的例子小作修改：
 
@@ -182,7 +180,7 @@ JS 的原生不支持深拷贝，`Object.assign` 和`{...obj}`都属于浅拷贝
 
 ## JSON.stringify 和 JSON.parse
 
-这是 JS 实现深拷贝最简单的方法了，原理就是先将对象转换为字符串，再通过 JSON.parse 重新建立一个对象。 但是这种方法的局限也很多：
+这是 JS 实现深拷贝最简单的方法了，原理就是先将对象转换为字符串，再通过 `JSON.parse` 重新建立一个对象。 但是这种方法的局限也很多：
 
 - 不能复制 `function`、正则、`Symbol`
 - 循环引用报错
@@ -206,7 +204,7 @@ console.log(cp);
 结果：
 ![](https://github.com/fyuanfen/note/raw/master/images/js/deep-copy1.jpg)
 
-可以看到，函数、正则、Symbol 都没有被正确的复制。
+可以看到，函数、正则、`Symbol` 都没有被正确的复制。
 
 ### 循环引用报错
 

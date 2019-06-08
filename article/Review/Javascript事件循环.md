@@ -54,7 +54,7 @@ setTimeout
 - 主线程之外，事件触发线程管理着一个任务队列，只要异步任务有了运行结果，就在任务队列之中放置一个事件。
 - 一旦执行栈中的所有同步任务执行完毕（此时 JS 引擎空闲），系统就会读取任务队列，将可运行的异步任务添加到可执行栈中，开始执行。
 
-根据规范，事件循环是通过任务队列的机制来进行协调的。一个 Event Loop 中，可以有一个或者多个任务队列(task queue)，一个任务队列便是一系列有序任务(task)的集合；**每个任务都有一个任务源(task source)，源自同一个任务源的 task 必须放到同一个任务队列，从不同源来的则被添加到不同队列**。 setTimeout/Promise 等 API 便是任务源，而进入任务队列的是他们指定的具体执行任务。
+根据规范，事件循环是通过任务队列的机制来进行协调的。一个 `Event Loop` 中，可以有一个或者多个任务队列(task queue)，一个任务队列便是一系列有序任务(task)的集合；**每个任务都有一个任务源(task source)，源自同一个任务源的 task 必须放到同一个任务队列，从不同源来的则被添加到不同队列**。 setTimeout/Promise 等 API 便是任务源，而进入任务队列的是他们指定的具体执行任务。
 
 ![](https://github.com/fyuanfen/note/raw/master/images/other/queue1.png)
 
@@ -66,25 +66,25 @@ setTimeout
 
 > (macro)task->渲染->(macro)task->...
 
-(macro)task 主要包含：script(整体代码)、setTimeout、setInterval、I/O、UI 交互事件、postMessage、MessageChannel、setImmediate(Node.js 环境)
+(macro)task 主要包含：`script`(整体代码)、`setTimeout`、`setInterval`、I/O、UI 交互事件、`postMessage`、`MessageChannel`、`setImmediate`(Node.js 环境)
 
 # 微任务
 
-microtask（又称为微任务），**可以理解是在当前 task 执行结束后立即执行的任务**。也就是说，在当前 task 任务后，下一个 task 之前，在渲染之前。
+`microtask`（又称为微任务），**可以理解是在当前 task 执行结束后立即执行的任务**。也就是说，在当前 task 任务后，下一个 task 之前，在渲染之前。
 
-所以它的响应速度相比 setTimeout（setTimeout 是 task）会更快，因为无需等渲染。也就是说，在某一个 macrotask 执行完后，就会将在它执行期间产生的所有 microtask 都执行完毕（在渲染前）。
+所以它的响应速度相比 `setTimeout`（setTimeout 是 task）会更快，因为无需等渲染。也就是说，在某一个 `macrotask` 执行完后，就会将在它执行期间产生的所有 `microtask` 都执行完毕（在渲染前）。
 
-microtask 主要包含：Promise.then、MutaionObserver、process.nextTick(Node.js 环境)
+microtask 主要包含：`Promise.then`、`MutaionObserver`、`process.nextTick`(Node.js 环境)
 
 # Promise 和 async 中的立即执行
 
-我们知道 Promise 中的异步体现在 then 和 catch 中，所以写在 Promise 中的代码是被当做同步任务立即执行的。而在 async/await 中，在出现 await 出现之前，其中的代码也是立即执行的。那么出现了 await 时候发生了什么呢？
+我们知道 `Promise` 中的异步体现在 `then` 和 `catch` 中，所以写在 `Promise` 中的代码是被当做同步任务立即执行的。而在 `async`/`await` 中，在出现 `await` 出现之前，其中的代码也是立即执行的。那么出现了 `await` 时候发生了什么呢？
 
 ## await 做了什么
 
-从字面意思上看 `await` 就是等待，`await` 等待的是一个表达式，这个表达式的返回值可以是一个 promise 对象也可以是其他值。
+从字面意思上看 `await` 就是等待，`await` 等待的是一个表达式，这个表达式的返回值可以是一个 `promise` 对象也可以是其他值。
 
-很多人以为 await 会一直等待之后的表达式执行完之后才会继续执行后面的代码，**实际上 因为 async await 本身就是 promise+generator 的语法糖。所以 await 后面的代码是 microtask**。所以对于本题中的
+很多人以为 `await` 会一直等待之后的表达式执行完之后才会继续执行后面的代码，**实际上 因为 `async` `await` 本身就是 promise+generator 的语法糖。所以 `await` 后面的代码是 microtask**。所以对于本题中的
 
 ```js
 async function async1() {
@@ -109,33 +109,33 @@ async function async1() {
 
 以上就本道题涉及到的所有相关知识点了，下面我们再回到这道题来一步一步看看怎么回事儿。
 
-1. 首先，事件循环从宏任务(macrotask)队列开始，这个时候，宏任务队列中，只有一个 script(整体代码)任务；当遇到任务源(task source)时，则会先分发任务到对应的任务队列中去。所以，上面例子的第一步执行如下图所示：
+1. 首先，事件循环从宏任务(macrotask)队列开始，这个时候，宏任务队列中，只有一个 `script`(整体代码)任务；当遇到任务源(task source)时，则会先分发任务到对应的任务队列中去。所以，上面例子的第一步执行如下图所示：
    ![](https://github.com/fyuanfen/note/raw/master/images/other/event-loop2.png)
 
-2. 然后我们看到首先定义了两个 `async` 函数，接着往下看，然后遇到了 `console` 语句，直接输出 script start。输出之后，script 任务继续往下执行，遇到 setTimeout，其作为一个宏任务源，则会先将其任务分发到对应的队列中：
+2. 然后我们看到首先定义了两个 `async` 函数，接着往下看，然后遇到了 `console` 语句，直接输出 `script start`。输出之后，`script` 任务继续往下执行，遇到 `setTimeout`，其作为一个宏任务源，则会先将其任务分发到对应的队列中：
    ![](https://github.com/fyuanfen/note/raw/master/images/other/event-loop3.png)
 
-3. script 任务继续往下执行，执行了 async1()函数，前面讲过 async 函数中在 await 之前的代码是立即执行的，所以会立即输出 async1 start。
+3. `script` 任务继续往下执行，执行了 `async1()` 函数，前面讲过 `async` 函数中在 `await` 之前的代码是立即执行的，所以会立即输出 `async1 start`。
 
-遇到了 await 时，会将 await 后面的表达式执行一遍，所以就紧接着输出 async2，然后将 await 后面的代码也就是 console.log('async1 end')加入到 microtask 中的 Promise 队列中，接着跳出 async1 函数来执行后面的代码。
+遇到了 `await` 时，会将 `await` 后面的表达式执行一遍，所以就紧接着输出 `async2`，然后将 `await` 后面的代码也就是 `console.log('async1 end')`加入到 `microtask` 中的 Promise 队列中，接着跳出 async1 函数来执行后面的代码。
 ![](https://github.com/fyuanfen/note/raw/master/images/other/event-loop4.png)
 
-4. script 任务继续往下执行，遇到 Promise 实例。由于 Promise 中的函数是立即执行的，而后续的 .then 则会被分发到 microtask 的 Promise 队列中去。所以会先输出 promise1，然后执行 resolve，将 promise2 分配到对应队列。
+4. `script` 任务继续往下执行，遇到 `Promise` 实例。由于 **Promise 中的函数是立即执行的**，而后续的 `.then` 则会被分发到 `microtask` 的 `Promise` 队列中去。所以会先输出 `promise1`，然后执行 `resolve`，将 `promise2` 分配到对应队列。
    ![](https://github.com/fyuanfen/note/raw/master/images/other/event-loop5.png)
 
-5. script 任务继续往下执行，最后只有一句输出了 script end，至此，全局任务就执行完毕了。
+5. `script` 任务继续往下执行，最后只有一句输出了 `script end`，至此，全局任务就执行完毕了。
 
-根据上述，每次执行完一个宏任务之后，会去检查是否存在 Microtasks；如果有，则执行 Microtasks 直至清空 Microtask Queue。
+根据上述，每次执行完一个宏任务之后，会去检查是否存在 `Microtasks`；如果有，则执行 `Microtasks` 直至清空 `Microtask Queue`。
 
-因而在 script 任务执行完毕之后，开始查找清空微任务队列。此时，微任务中， Promise 队列有的两个任务 async1 end 和 promise2，因此按先后顺序输出 async1 end，promise2。当所有的 Microtasks 执行完毕之后，表示第一轮的循环就结束了。
+因而在 `script` 任务执行完毕之后，开始查找清空微任务队列。此时，微任务中， `Promise` 队列有的两个任务 `async1 end` 和 `promise2`，因此按先后顺序输出 `async1 end`，`promise2`。当所有的 `Microtasks` 执行完毕之后，表示第一轮的循环就结束了。
 
-6. 第二轮循环依旧从宏任务队列开始。此时宏任务中只有一个 setTimeout，取出直接输出即可，至此整个流程结束。
+6. 第二轮循环依旧从宏任务队列开始。此时宏任务中只有一个 `setTimeout`，取出直接输出即可，至此整个流程结束。
 
 下面我会改变一下代码来加深印象。
 
 # 变式一
 
-在第一个变式中我将 async2 中的函数也变成了 `Promise` 函数，代码如下：
+在第一个变式中我将 `async2` 中的函数也变成了 `Promise` 函数，代码如下：
 
 ```js
 async function async1() {
@@ -183,7 +183,7 @@ promise4
 setTimeout
 ```
 
-在第一次 macrotask 执行完之后，也就是输出 script end 之后，会去清理所有 microtask。所以会相继输出 promise2， async1 end ，promise4，其余不再多说。
+在第一次 `macrotask` 执行完之后，也就是输出 `script end` 之后，会去清理所有 `microtask`。所以会相继输出 `promise2`， `async1 end` ，`promise4`，其余不再多说。
 
 # 变式二
 
@@ -233,7 +233,7 @@ setTimeout2
 setTimeout1
 ```
 
-在输出为 `promise2` 之后，接下来会按照加入 setTimeout 队列的顺序来依次输出，通过代码我们可以看到加入顺序为 3 2 1，所以会按 3，2，1 的顺序来输出。
+在输出为 `promise2` 之后，接下来会按照加入 `setTimeout` 队列的顺序来依次输出，通过代码我们可以看到加入顺序为 3 2 1，所以会按 3，2，1 的顺序来输出。
 
 # 变式三
 

@@ -2,25 +2,25 @@
 
 <!-- code_chunk_output -->
 
-* [JavaScript 深入之从原型到原型链](#javascript-深入之从原型到原型链)
-	* [构造函数创建对象](#构造函数创建对象)
-	* [prototype](#prototype)
-	* [\_\_proto\_\_](#__proto__)
-	* [constructor](#constructor)
-	* [实例与原型](#实例与原型)
-	* [原型的原型](#原型的原型)
-	* [原型链](#原型链)
-	* [补充](#补充)
-		* [constructor](#constructor-1)
-		* [\_\_proto\_\_](#__proto__)
-		* [真的是继承吗？](#真的是继承吗)
-	* [深入系列](#深入系列)
+- [JavaScript 深入之从原型到原型链](#javascript-深入之从原型到原型链)
+  _ [构造函数创建对象](#构造函数创建对象)
+  _ [prototype](#prototype)
+  _ [`__proto__`](#__proto__)
+  _ [constructor](#constructor)
+  _ [实例与原型](#实例与原型)
+  _ [原型的原型](#原型的原型)
+  _ [原型链](#原型链)
+  _ [补充](#补充)
+  _ [constructor](#constructor-1)
+  _ [`__proto__`](#__proto__)
+  _ [真的是继承吗？](#真的是继承吗)
+  _ [深入系列](#深入系列)
 
 <!-- /code_chunk_output -->
 
 # JavaScript 深入之从原型到原型链
 
-> JavaScript 深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。
+> `JavaScript` 深入系列的第一篇，从原型与原型链开始讲起，如果你想知道构造函数的实例的原型，原型的原型，原型的原型的原型是什么，就来看看这篇文章吧。
 
 ## 构造函数创建对象
 
@@ -33,13 +33,13 @@ person.name = "Kevin";
 console.log(person.name); // Kevin
 ```
 
-在这个例子中，Person 就是一个构造函数，我们使用 new 创建了一个实例对象 person。
+在这个例子中，`Person` 就是一个构造函数，我们使用 `new` 创建了一个实例对象 `person`。
 
 很简单吧，接下来进入正题：
 
 ## prototype
 
-每个函数都有一个 prototype 属性，就是我们经常在各种例子中看到的那个 prototype ，比如：
+每个函数都有一个 `prototype` 属性，就是我们经常在各种例子中看到的那个 `prototype` ，比如：
 
 ```js
 function Person() {}
@@ -52,23 +52,23 @@ console.log(person1.name); // Kevin
 console.log(person2.name); // Kevin
 ```
 
-那这个函数的 prototype 属性到底指向的是什么呢？是这个函数的原型吗？
+那这个函数的 `prototype` 属性到底指向的是什么呢？是这个函数的原型吗？
 
-其实，函数的 prototype 属性指向了一个对象，这个对象正是调用该构造函数而创建的**实例**的原型，也就是这个例子中的 person1 和 person2 的原型。
+其实，函数的 `prototype` 属性指向了一个对象，这个对象正是调用该构造函数而创建的**实例**的原型，也就是这个例子中的 `person1` 和 `person2` 的原型。
 
-那什么是原型呢？你可以这样理解：每一个 JavaScript 对象(null 除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型"继承"属性。
+那什么是原型呢？你可以这样理解：每一个 `JavaScript` 对象(null 除外)在创建的时候就会与之关联另一个对象，这个对象就是我们所说的原型，每一个对象都会从原型"继承"属性。
 
 让我们用一张图表示构造函数和实例原型之间的关系：
 
 ![构造函数和实例原型的关系图](https://github.com/fyuanfen/note/raw/master/images/js/prototype1.png)
 
-在这张图中我们用 Object.prototype 表示实例原型。
+在这张图中我们用 `Object.prototype` 表示实例原型。
 
-那么我们该怎么表示实例与实例原型，也就是 person 和 Person.prototype 之间的关系呢，这时候我们就要讲到第二个属性：
+那么我们该怎么表示实例与实例原型，也就是 `person` 和 `Person.prototype` 之间的关系呢，这时候我们就要讲到第二个属性：
 
-## \_\_proto\_\_
+## `__proto__`
 
-这是每一个 JavaScript 对象(除了 null )都具有的一个属性，叫\_\_proto\_\_，这个属性会指向该对象的原型。
+这是每一个 `JavaScript` 对象(除了 `null` ,**null 为对象原型链的终点**)都具有的一个属性，叫`__proto__`，这个属性会指向该对象的原型。
 
 为了证明这一点,我们可以在火狐或者谷歌中输入：
 
@@ -86,7 +86,7 @@ console.log(person.__proto__ === Person.prototype); // true
 
 ## constructor
 
-指向实例倒是没有，因为一个构造函数可以生成多个实例，但是原型指向构造函数倒是有的，这就要讲到第三个属性：constructor，每个原型都有一个 constructor 属性指向关联的构造函数。
+指向实例倒是没有，因为一个构造函数可以生成多个实例，但是原型指向构造函数倒是有的，这就要讲到第三个属性：`constructor`，每个原型都有一个 `constructor` 属性指向关联的构造函数。
 
 为了验证这一点，我们可以尝试：
 
@@ -136,7 +136,7 @@ console.log(person.name); // Kevin
 
 在这个例子中，我们给实例对象 `person` 添加了 `name` 属性，当我们打印 `person.name` 的时候，结果自然为 Daisy。
 
-但是当我们删除了 `person` 的 `name` 属性时，读取 `person.name`，从 `person` 对象中找不到 `name` 属性就会从 `person` 的原型也就是 person.\_\_proto\_\_ ，也就是 Person.prototype 中查找，幸运的是我们找到了 name 属性，结果为 Kevin。
+但是当我们删除了 `person` 的 `name` 属性时，读取 `person.name`，从 `person` 对象中找不到 `name` 属性就会从 `person` 的原型也就是 `person.__proto__` ，也就是 `Person.prototype` 中查找，幸运的是我们找到了 `name` 属性，结果为 `Kevin`。
 
 但是万一还没有找到呢？原型的原型又是什么呢？
 
@@ -150,29 +150,29 @@ obj.name = "Kevin";
 console.log(obj.name); // Kevin
 ```
 
-所以原型对象是通过 Object 构造函数生成的，结合之前所讲，实例的 \_\_proto\_\_ 指向构造函数的 prototype ，所以我们再更新下关系图：
+所以原型对象是通过 `Object` 构造函数生成的，结合之前所讲，实例的 `__proto__` 指向构造函数的 `prototype` ，所以我们再更新下关系图：
 
 ![原型的原型关系图](https://github.com/fyuanfen/note/raw/master/images/js/prototype4.png)
 
 ## 原型链
 
-那 Object.prototype 的原型呢？
+那 `Object.prototype` 的原型呢？
 
-null，我们可以打印：
+`null`，我们可以打印：
 
 ```js
 console.log(Object.prototype.__proto__ === null); // true
 ```
 
-然而 null 究竟代表了什么呢？
+然而 `null` 究竟代表了什么呢？
 
 引用阮一峰老师的 [《undefined 与 null 的区别》](http://www.ruanyifeng.com/blog/2014/03/undefined-vs-null.html) 就是：
 
-> null 表示“没有对象”，即该处不应该有值。
+> `null` 表示“没有对象”，即该处不应该有值。
 
-所以 Object.prototype.\_\_proto\_\_ 的值为 null 跟 Object.prototype 没有原型，其实表达了一个意思。
+所以 `Object.prototype.__proto__` 的值为 `null` 跟 `Object.prototype` 没有原型，其实表达了一个意思。
 
-所以查找属性的时候查到 Object.prototype 就可以停止查找了。
+所以查找属性的时候查到 `Object.prototype` 就可以停止查找了。
 
 最后一张关系图也可以更新为：
 
@@ -186,7 +186,7 @@ console.log(Object.prototype.__proto__ === null); // true
 
 ### constructor
 
-首先是 constructor 属性，我们看个例子：
+首先是 `constructor` 属性，我们看个例子：
 
 ```js
 function Person() {}
@@ -194,15 +194,15 @@ var person = new Person();
 console.log(person.constructor === Person); // true
 ```
 
-当获取 person.constructor 时，其实 person 中并没有 constructor 属性,当不能读取到 constructor 属性时，会从 person 的原型也就是 Person.prototype 中读取，正好原型中有该属性，所以：
+当获取 `person.constructor` 时，其实 `person` 中并没有 `constructor` 属性,当不能读取到 `constructor` 属性时，会从 `person` 的原型也就是 `Person.prototype` 中读取，正好原型中有该属性，所以：
 
 ```js
 person.constructor === Person.prototype.constructor;
 ```
 
-### \_\_proto\_\_
+### `__proto__`
 
-其次是 \_\_proto\_\_ ，绝大部分浏览器都支持这个非标准的方法访问原型，然而它并不存在于 Person.prototype 中，实际上，它是来自于 Object.prototype ，与其说是一个属性，不如说是一个 getter/setter，当使用 obj.\_\_proto\_\_ 时，可以理解成返回了 Object.getPrototypeOf(obj)。
+其次是 `__proto__` ，绝大部分浏览器都支持这个非标准的方法访问原型，然而它并不存在于 `Person.prototype` 中，实际上，它是来自于 `Object.prototype` ，与其说是一个属性，不如说是一个 `getter/setter`，当使用 `obj.__proto__` 时，可以理解成返回了 `Object.getPrototypeOf(obj)`。
 
 ### 真的是继承吗？
 

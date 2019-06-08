@@ -1,11 +1,11 @@
 # 循序渐进教你实现一个完整的 node 的 EventEmitter 模块
 
-node 的事件模块只包含了一个类：`EventEmitter`。这个类在 `node` 的内置模块和第三方模块中大量使用。EventEmitter 本质上是一个观察者模式的实现，这种模式可以扩展 node 在多个进程或网络中运行。本文从 node 的 EventEmitter 的使用出发，循序渐进的实现一个完整的 EventEmitter 模块。
+node 的事件模块只包含了一个类：`EventEmitter`。这个类在 `node` 的内置模块和第三方模块中大量使用。`EventEmitter` 本质上是一个观察者模式的实现，这种模式可以扩展 node 在多个进程或网络中运行。本文从 `node` 的 `EventEmitter` 的使用出发，循序渐进的实现一个完整的 `EventEmitter` 模块。
 
-- EventEmitter 模块的基本用法和简单实现
-- node 中常用的 EventEmitter 模块的 API
-- EventEmitter 模块的异常处理
-- 完整的实现一个 EventEmitter 模块
+- `EventEmitter` 模块的基本用法和简单实现
+- node 中常用的 `EventEmitter` 模块的 API
+- `EventEmitter` 模块的异常处理
+- 完整的实现一个 `EventEmitter` 模块
 
 ## 一、EventEmitter 模块的基本用法和简单实现
 
@@ -15,7 +15,7 @@ node 的事件模块只包含了一个类：`EventEmitter`。这个类在 `node`
 
 **它定义了对象间的一种一对多的关系，让多个观察者对象同时监听某一个主题对象，当一个对象发生改变时，所有依赖于它的对象都将得到通知。**
 
-因此最基本的 EventEmitter 功能，包含了一个观察者和一个被监听的对象，对应的实现就是 EventEmitter 中的 on 和 emit：
+因此最基本的 `EventEmitter` 功能，包含了一个观察者和一个被监听的对象，对应的实现就是 `EventEmitter` 中的 `on` 和 `emit`：
 
 ```js
 var events = require("events");
@@ -32,9 +32,9 @@ eventEmitter.emit("say", "Jony yu");
 
 根据上述的例子，我们知道了 `EventEmitter` 模块的基础功能 `emit` 和 `on`。下面我们实现一个包含 `emit` 和 `on` 方法的 `EventEmitter` 类。
 
-`on(eventName,callback)`方法传入两个参数，一个是事件名（eventName），另一个是相应的回调函数，我们选择在 on 的时候针对事件名添加监听函数，用对象来包含所有事件。在这个对象中对象名表示事件名（eventName),而对象的值是一个数组，表示该事件名所对应的执行函数。
+`on(eventName,callback)`方法传入两个参数，一个是事件名（eventName），另一个是相应的回调函数，我们选择在 `on` 的时候针对事件名添加监听函数，用对象来包含所有事件。在这个对象中对象名表示事件名（eventName),而对象的值是一个数组，表示该事件名所对应的执行函数。
 
-`emit(eventName,...arg)`方法传入的参数，第一个为事件名，其他参数事件对应的执行函数中的实参，emit 方法的功能就是从事件对象中，寻找对应 key 为 eventName 的属性，执行该属性所对应的数组里面每一个执行函数。
+`emit(eventName,...arg)`方法传入的参数，第一个为事件名，其他参数事件对应的执行函数中的实参，`emit` 方法的功能就是从事件对象中，寻找对应 `key` 为 `eventName` 的属性，执行该属性所对应的数组里面每一个执行函数。
 
 下面来实现一个 `EventEmitter` 类
 
@@ -66,7 +66,7 @@ listeners(event) |返回指定事件的监听器数组。
 emit(event, [arg1], [arg2], [...]) |按参数的顺序执行每个监听器，如果事件有注册监听返回 true，否则返回 false。
 除此之外，还有 2 个特殊的，不需要手动添加，node 的 EventEmitter 模块自带的特殊事件：
 
-| 事件名         | 事件描述 /                                                                                         |
+| 事件名         | 事件描述                                                                                           |
 | -------------- | -------------------------------------------------------------------------------------------------- |
 | newListener    | 该事件在添加新事件监听器的时候触发                                                                 |
 | removeListener | 从指定监听器数组中删除一个监听器。需要注意的是，此操作将会改变处于被删监听器之后的那些监听器的索引 |

@@ -2,30 +2,31 @@
 
 <!-- code_chunk_output -->
 
-- [Node.js 中模块化的工作原理](#nodejs-中模块化的工作原理)
-  _ [解析本地路径](#解析本地路径)
-  _ [引入文件夹](#引入文件夹)
-  _ [require.resolve 方法](#requireresolve-方法)
-  _ [相对路径和绝对路径](#相对路径和绝对路径)
-  _ [文件间的父子关系](#文件间的父子关系)
-  _ [exports、module.exports 和模块异步加载](#exports-moduleexports-和模块异步加载)
-  _ [模块的循环依赖](#模块的循环依赖)
-  _ [使用 JSON 文件和 C/C++ 插件](#使用-json-文件和-cc-插件)
-  _ [你在 Node 中写的所有代码都将被封装成函数](#你在-node-中写的所有代码都将被封装成函数)
-  _ [require 对象](#require-对象) \* [所有模块都将被缓存](#所有模块都将被缓存)
+* [Node.js 中模块化的工作原理](#nodejs-中模块化的工作原理)
+	* [解析本地路径](#解析本地路径)
+	* [引入文件夹](#引入文件夹)
+	* [require.resolve 方法](#requireresolve-方法)
+	* [相对路径和绝对路径](#相对路径和绝对路径)
+	* [文件间的父子关系](#文件间的父子关系)
+	* [exports、module.exports 和模块异步加载](#exports-moduleexports-和模块异步加载)
+	* [模块的循环依赖](#模块的循环依赖)
+	* [使用 JSON 文件和 C/C++ 插件](#使用-json-文件和-cc-插件)
+	* [你在 Node 中写的所有代码都将被封装成函数](#你在-node-中写的所有代码都将被封装成函数)
+	* [require 对象](#require-对象)
+	* [所有模块都将被缓存](#所有模块都将被缓存)
 
 <!-- /code_chunk_output -->
 
 # Node.js 中模块化的工作原理
 
-Node 提供了两个核心模块来管理模块依赖：
+`Node` 提供了两个核心模块来管理模块依赖：
 
 - require 模块在全局范围内可用，不需要写 `require('require')`.
 - `module` 模块同样在全局范围内可用，不需要写 `require('module')`.
 
 你可以将 `require` 模块理解为命令，将 `module` 模块理解为所有引入模块的组织者。
 
-在 Node 中引入一个模块其实并不是个多么复杂的概念。
+在 `Node` 中引入一个模块其实并不是个多么复杂的概念。
 
 ```js
 const config = require("/path/to/file");

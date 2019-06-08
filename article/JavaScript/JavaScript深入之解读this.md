@@ -2,22 +2,21 @@
 
 <!-- code_chunk_output -->
 
-* [JavaScript 深入之从 ECMAScript 规范解读 this](#javascript-深入之从-ecmascript-规范解读-this)
-	* [前言](#前言)
-	* [Types](#types)
-	* [Reference](#reference)
-	* [GetValue](#getvalue)
-	* [如何确定 this 的值](#如何确定-this-的值)
-	* [具体分析](#具体分析)
-		* [foo.bar()](#foobar)
-		* [(foo.bar)()](#foobar-1)
-		* [(foo.bar = foo.bar)()](#foobar-foobar)
-		* [(false || foo.bar)()](#false-foobar)
-		* [(foo.bar, foo.bar)()](#foobar-foobar-1)
-		* [揭晓结果](#揭晓结果)
-		* [补充](#补充)
-	* [多说一句](#多说一句)
-	* [深入系列](#深入系列)
+- [JavaScript 深入之从 ECMAScript 规范解读 this](#javascript-深入之从-ecmascript-规范解读-this)
+  _ [前言](#前言)
+  _ [Types](#types)
+  _ [Reference](#reference)
+  _ [GetValue](#getvalue)
+  _ [如何确定 this 的值](#如何确定-this-的值)
+  _ [具体分析](#具体分析)
+  _ [foo.bar()](#foobar)
+  _ [(foo.bar)()](#foobar-1)
+  _ [(foo.bar = foo.bar)()](#foobar-foobar)
+  _ [(false || foo.bar)()](#false-foobar)
+  _ [(foo.bar, foo.bar)()](#foobar-foobar-1)
+  _ [揭晓结果](#揭晓结果)
+  _ [补充](#补充)
+  _ [多说一句](#多说一句) \* [深入系列](#深入系列)
 
 <!-- /code_chunk_output -->
 
@@ -27,7 +26,7 @@
 
 ## 前言
 
-当 JavaScript 代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。
+当 `JavaScript` 代码执行一段可执行代码(executable code)时，会创建对应的执行上下文(execution context)。
 
 对于每个执行上下文，都有三个重要属性
 
@@ -35,7 +34,7 @@
 - 作用域链(Scope chain)
 - this
 
-今天重点讲讲 this，然而不好讲。
+今天重点讲讲 `this`，然而不好讲。
 
 ……
 

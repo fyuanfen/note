@@ -2,29 +2,28 @@
 
 <!-- code_chunk_output -->
 
-* [前言](#前言)
-	* [1. 当数据发生变化时，Vue 是怎么更新节点的？](#1-当数据发生变化时vue-是怎么更新节点的)
-	* [2. virtual DOM 和真实 DOM 的区别？](#2-virtual-dom-和真实-dom-的区别)
-	* [3. diff 的比较方式？](#3-diff-的比较方式)
-* [diff 流程图](#diff-流程图)
-* [具体分析](#具体分析)
-	* [patch](#patch)
-	* [patchVnode](#patchvnode)
-	* [updateChildren](#updatechildren)
-		* [图解 updateChildren](#图解-updatechildren)
-* [总结](#总结)
-* [参考文章](#参考文章)
+- [前言](#前言)
+  _ [1. 当数据发生变化时，Vue 是怎么更新节点的？](#1-当数据发生变化时vue-是怎么更新节点的)
+  _ [2. virtual DOM 和真实 DOM 的区别？](#2-virtual-dom-和真实-dom-的区别) \* [3. diff 的比较方式？](#3-diff-的比较方式)
+- [diff 流程图](#diff-流程图)
+- [具体分析](#具体分析)
+  _ [patch](#patch)
+  _ [patchVnode](#patchvnode)
+  _ [updateChildren](#updatechildren)
+  _ [图解 updateChildren](#图解-updatechildren)
+- [总结](#总结)
+- [参考文章](#参考文章)
 
 <!-- /code_chunk_output -->
 
 # 前言
 
-目标是写一个非常详细的关于 diff 的干货，所以本文有点长。也会用到大量的图片以及代码举例，一起来 get 吧。
+目标是写一个非常详细的关于 `diff` 的干货，所以本文有点长。也会用到大量的图片以及代码举例，一起来 get 吧。
 先来了解几个点...
 
 ## 1. 当数据发生变化时，Vue 是怎么更新节点的？
 
-要知道渲染真实 DOM 的开销是很大的，比如有时候我们修改了某个数据，如果直接渲染到真实 `dom` 上会引起整个 `dom` 树的重绘和重排，有没有可能我们只更新我们修改的那一小块 `dom` 而不要更新整个 `dom` 呢？diff 算法能够帮助我们。
+要知道渲染真实 `DOM` 的开销是很大的，比如有时候我们修改了某个数据，如果直接渲染到真实 `dom` 上会引起整个 `dom` 树的重绘和重排，有没有可能我们只更新我们修改的那一小块 `dom` 而不要更新整个 `dom` 呢？diff 算法能够帮助我们。
 我们先根据真实 `DOM` 生成一颗 `virtual DOM`，当 `virtual DOM` 某个节点的数据改变后会生成一个新的 `Vnode`，然后 `Vnode` 和 `oldVnode` 作对比，发现有不一样的地方就直接修改在真实的 `DOM` 上，然后使 `oldVnode` 的值为 `Vnode`。
 `diff` 的过程就是调用名为 `patch` 的函数，比较新旧节点，一边比较一边给真实的 `DOM` 打补丁。
 

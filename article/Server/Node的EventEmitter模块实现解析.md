@@ -155,7 +155,7 @@ emitter.emit("say", "me");
 
 ### (4) 两个特殊的事件 newListener 和 removeListener
 
-我们知道当实例化 EventEmitter 模块之后，监听对象是一个对象，包含了所有的监听事件，而这两个特殊的方法就是针对监听事件的添加和移除的。
+我们知道当实例化 `EventEmitter` 模块之后，监听对象是一个对象，包含了所有的监听事件，而这两个特殊的方法就是针对监听事件的添加和移除的。
 
 - newListener：在添加新事件监听器触发
 - removeListener：在移除事件监听器时触发
@@ -265,6 +265,8 @@ process.on("uncaughtException", function(err) {
 每一个 `EventEmitter` 实例都有一个包含所有事件的对象`_events`,
 事件的监听和监听事件的触发，以及监听事件的移除等都在这个对象`_events` 的基础上实现。
 
+### Solution1:
+
 ```js
 class eventEmitter {
   constructor() {
@@ -307,6 +309,57 @@ class eventEmitter {
   }
   once(taskname, func) {
     this.register(taskname, func, true);
+  }
+}
+```
+
+### Solution2:
+
+```js
+class EventEmitter {
+  constructor() {
+    this._events = Object.create(null);
+  }
+  on(event, fn) {
+    (this._events[event] || (this._events[event] = [])).push(fn);
+  }
+  off(event, fn) {
+    const cbs = this._events[event];
+    if (!cbs) {
+      return this;
+    }
+    if (!fn) {
+      this._events[event] = null;
+      return this;
+    }
+    // specific handler
+    let cb;
+    let i = cbs.length;
+    while (i--) {
+      cb = cbs[i];
+      if (cb === fn || cb.fn === fn) {
+        cbs.splice(i, 1);
+        break;
+      }
+    }
+    return this;
+  }
+  emit(taskname, ...args) {
+    if (this._events[taskname]) {
+      this._events[taskname].forEach(one => {
+        one.apply(this, args);
+      });
+    }
+  }
+  once(event, fn) {
+    const self = this;
+    function on() {
+      self.off(event, on);
+      fn.apply(self, arguments);
+    }
+    on.fn = fn;
+    this.on(event, on);
+    return this;
   }
 }
 ```

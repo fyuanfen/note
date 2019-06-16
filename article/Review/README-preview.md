@@ -68,7 +68,7 @@
 		* [请用原生 js 实现一个函数,给页面制定的任意一个元素添加一个透明遮罩(透明度可变,默认 0.2),使这个区域点击无效,要求兼容 IE8+及各主流浏览器,遮罩层效果如下图所示:](#请用原生-js-实现一个函数给页面制定的任意一个元素添加一个透明遮罩透明度可变默认-02使这个区域点击无效要求兼容-ie8及各主流浏览器遮罩层效果如下图所示)
 		* [请用代码写出(今天是星期 x)其中 x 表示当天是星期几,如果当天是星期一,输出应该是"今天是星期一"](#请用代码写出今天是星期-x其中-x-表示当天是星期几如果当天是星期一输出应该是今天是星期一)
 		* [下面这段代码想要循环延时输出结果 0 1 2 3 4,请问输出结果是否正确,如果不正确,请说明为什么,并修改循环内的代码使其输出正确结果](#下面这段代码想要循环延时输出结果-0-1-2-3-4请问输出结果是否正确如果不正确请说明为什么并修改循环内的代码使其输出正确结果)
-		* [现有一个 Page 类,其原型对象上有许多以 post 开头的方法(如 postMsg);另有一拦截函数 chekc,只返回 ture 或 false.请设计一个函数,该函数应批量改造原 Page 的 postXXX 方法,在保留其原有功能的同时,为每个 postXXX 方法增加拦截验证功能,当 chekc 返回 true 时继续执行原 postXXX 方法,返回 false 时不再执行原 postXXX 方法](#现有一个-page-类其原型对象上有许多以-post-开头的方法如-postmsg另有一拦截函数-chekc只返回-ture-或-false请设计一个函数该函数应批量改造原-page-的-postxxx-方法在保留其原有功能的同时为每个-postxxx-方法增加拦截验证功能当-chekc-返回-true-时继续执行原-postxxx-方法返回-false-时不再执行原-postxxx-方法)
+		* [现有一个 Page 类,其原型对象上有许多以 post 开头的方法(如 postMsg);另有一拦截函数 check,只返回 ture 或 false.请设计一个函数,该函数应批量改造原 Page 的 postXXX 方法,在保留其原有功能的同时,为每个 postXXX 方法增加拦截验证功能,当 check 返回 true 时继续执行原 postXXX 方法,返回 false 时不再执行原 postXXX 方法](#现有一个-page-类其原型对象上有许多以-post-开头的方法如-postmsg另有一拦截函数-check只返回-ture-或-false请设计一个函数该函数应批量改造原-page-的-postxxx-方法在保留其原有功能的同时为每个-postxxx-方法增加拦截验证功能当-check-返回-true-时继续执行原-postxxx-方法返回-false-时不再执行原-postxxx-方法)
 		* [完成下面的 tool-tip](#完成下面的-tool-tip)
 		* [编写 javascript 深度克隆函数 deepClone](#编写-javascript-深度克隆函数-deepclone)
 		* [补充代码,鼠标单击 Button1 后将 Button1 移动到 Button2 的后面](#补充代码鼠标单击-button1-后将-button1-移动到-button2-的后面)
@@ -228,7 +228,7 @@ css 命名的语义化是指：为 html 标签添加有意义的 class，id 补�
 10. 处理程序读取完整请求并准备 HTTP 响应，可能需要查询数据库等操作
 11. 服务器将**响应报文通过 TCP 连接发送回浏览器**
 12. 浏览器接收 HTTP 响应，然后根据情况选择**关闭 TCP 连接或者保留重用，关闭 TCP 连接的四次握手如下**：
-    1. 主动方发送**Fin=1， Ack=Z， Seq= X**报文
+    1. 主动方发送**Fin=1， Ack=Z， Seq=X**报文
     2. 被动方发送**ACK=X+1， Seq=Z**报文
     3. 被动方发送**Fin=1， ACK=X， Seq=Y**报文
     4. 主动方发送**ACK=Y， Seq=X**报文
@@ -236,7 +236,7 @@ css 命名的语义化是指：为 html 标签添加有意义的 class，id 补�
 14. 如果资源可缓存，**进行缓存**
 15. 对响应进行**解码**（例如 gzip 压缩）
 16. 根据资源类型决定如何处理（假设资源为 HTML 文档）
-17. **解析 HTML 文档，构件 DOM 树，下载资源，构造 CSSOM 树，执行 js 脚本**，这些操作没有严格的先后顺序，以下分别解释
+17. **解析 HTML 文档，构建 DOM 树，下载资源，构造 CSSOM 树，执行 js 脚本**，这些操作没有严格的先后顺序，以下分别解释
 18. **构建 DOM 树**：
     1. **Tokenizing**：根据 HTML 规范将字符流解析为标记
     2. **Lexing**：词法分析将标记转换为对象并定义属性和规则
@@ -344,7 +344,7 @@ Content-Type: text/html; charset=iso-8859-1
 - css 方面
   1. 将样式表放到页面顶部
   2. 不使用 CSS 表达式
-  3. 使用`<link>`不使用@import
+  3. 使用`<link>`不使用`@import`
   4. 不使用 IE 的 Filter
 - Javascript 方面
   1. 将脚本放到页面底部
@@ -484,10 +484,10 @@ Content-Type: text/html; charset=iso-8859-1
 
 区别：
 
-1. display:none;会让元素完全从渲染树中消失，渲染的时候不占据任何空间；visibility: hidden;不会让元素从渲染树消失，渲染师元素继续占据空间，只是内容不可见
-2. display: none;是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；visibility: hidden;是继承属性，子孙节点消失由于继承了 hidden，通过设置 visibility: visible;可以让子孙节点显式
-3. 修改常规流中元素的 display 通常会造成文档重排。修改 visibility 属性只会造成本元素的重绘。
-4. 读屏器不会读取 display: none;元素内容；会读取 visibility: hidden;元素内容
+1. `display:none;`会让元素完全从渲染树中消失，渲染的时候不占据任何空间；`visibility: hidden;`不会让元素从渲染树消失，渲染时元素继续占据空间，只是内容不可见
+2. `display: none;`是非继承属性，子孙节点消失由于元素从渲染树消失造成，通过修改子孙节点属性无法显示；`visibility: hidden;`是继承属性，子孙节点消失由于继承了 `hidden`，通过设置 `visibility: visible;`可以让子孙节点显式
+3. 修改常规流中元素的 `display` 通常会造成文档重排。修改 `visibility` 属性只会造成本元素的重绘。
+4. 读屏器不会读取 `display: none;`元素内容；会读取 `visibility: hidden;`元素内容
 
 ### css hack 原理及常用 hack
 
@@ -606,18 +606,29 @@ html[xmlns*=""]:root #trece  { color: red  }
 2. `link`最大限度支持并行下载，`@import`过多嵌套导致串行下载，出现[FOUC](http://www.bluerobot.com/web/css/fouc.asp/)
 3. `link`可以通过`rel="alternate stylesheet"`指定候选样式
 4. 浏览器对`link`支持早于`@import`，可以使用`@import`对老浏览器隐藏样式
-5. `@import`必须在样式规则之前，可以在 css 文件中引用其他文件
+5. `@import`必须在样式规则之前，可以在 `css` 文件中引用其他文件
 6. 总体来说：**[link 优于@import](http://www.stevesouders.com/blog/2009/04/09/dont-use-import/)**
 
 ### `display: block;`和`display: inline;`的区别
 
 `block`元素特点：
 
-1.处于常规流中时，如果`width`没有设置，会自动填充满父容器 2.可以应用`margin/padding` 3.在没有设置高度的情况下会扩展高度以包含常规流中的子元素 4.处于常规流中时布局时在前后元素位置之间（独占一个水平空间） 5.忽略`vertical-align`
+1. 处于常规流中时，如果`width`没有设置，会自动填充满父容器
+2. 可以应用`margin/padding`
+3. 在没有设置高度的情况下会扩展高度以包含常规流中的子元素
+4. 处于常规流中时布局时在前后元素位置之间（独占一个水平空间）
+5. 忽略`vertical-align`
 
 `inline`元素特点
 
-1.水平方向上根据`direction`依次布局 2.不会在元素前后进行换行 3.受`white-space`控制 4.`margin/padding`在竖直方向上无效，水平方向上有效 5.`width/height`属性对非替换行内元素无效，宽度由元素内容决定 6.非替换行内元素的行框高由`line-height`确定，替换行内元素的行框高由`height`,`margin`,`padding`,`border`决定 6.浮动或绝对定位时会转换为`block` 7.`vertical-align`属性生效
+1. 水平方向上根据`direction`依次布局
+2. 不会在元素前后进行换行
+3. 受`white-space`控制
+4. `margin/padding`在竖直方向上无效，水平方向上有效
+5. `width/height`属性对非替换行内元素无效，宽度由元素内容决定
+6. 非替换行内元素的行框高由`line-height`确定，替换行内元素的行框高由`height`,`margin`,`padding`,`border`决定
+7. 浮动或绝对定位时会转换为`block`
+8. `vertical-align`属性生效
 
 ### PNG,GIF,JPG 的区别及如何选
 
@@ -820,9 +831,9 @@ Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默�
 
 ### display,float,position 的关系
 
-1. 如果`display`为 none，那么 position 和 float 都不起作用，这种情况下元素不产生框
-2. 否则，如果 position 值为 absolute 或者 fixed，框就是绝对定位的，float 的计算值为 none，display 根据下面的表格进行调整。
-3. 否则，如果 float 不是 none，框是浮动的，display 根据下表进行调整
+1. 如果`display`为 none，那么 `position` 和 `float` 都不起作用，这种情况下元素不产生框
+2. 否则，如果 `position` 值为 `absolute` 或者 fixed，框就是绝对定位的，`float` 的计算值为 none，display 根据下面的表格进行调整。
+3. 否则，如果 `float` 不是 `none`，框是浮动的，display 根据下表进行调整
 4. 否则，如果元素是根元素，display 根据下表进行调整
 5. 其他情况下 display 的值为指定值
    总结起来：**绝对定位、浮动、根元素都需要调整`display`**
@@ -832,9 +843,9 @@ Flash Of Unstyled Content：用户定义样式表加载之前浏览器使用默�
 
 毗邻的两个或多个`margin`会合并成一个 margin，叫做外边距折叠。规则如下：
 
-1. 两个或多个毗邻的普通流中的块元素垂直方向上的 margin 会折叠
+1. 两个或多个毗邻的普通流中的块元素垂直方向上的 `margin` 会折叠
 2. 浮动元素/inline-block 元素/绝对定位元素的 margin 不会和垂直方向上的其他元素的 margin 折叠
-3. 创建了块级格式化上下文的元素，不会和它的子元素发生 margin 折叠
+3. 创建了块级格式化上下文的元素，不会和它的子元素发生 `margin` 折叠
 4. 元素自身的 margin-bottom 和 margin-top 相邻时也会折叠
 
 ### 如何确定一个元素的包含块(containing block)
@@ -1226,21 +1237,21 @@ document.cookie = 'name=aaa; path=/; domain=domain; secure';
 ### ===运算符判断相等的流程是怎样的
 
 1. 如果两个值不是相同类型，它们不相等
-2. 如果两个值都是 null 或者都是 undefined，它们相等
-3. 如果两个值都是布尔类型 true 或者都是 false，它们相等
+2. 如果两个值都是 `null` 或者都是 `undefined`，它们相等
+3. 如果两个值都是布尔类型 `true` 或者都是 `false`，它们相等
 4. 如果其中有一个是**NaN**，它们不相等
-5. 如果都是数值型并且数值相等，他们相等， -0 等于 0
-6. 如果他们都是字符串并且在相同位置包含相同的 16 位值，他它们相等；如果在长度或者内容上不等，它们不相等；两个字符串显示结果相同但是编码不同==和===都认为他们不相等
+5. 如果都是数值型并且数值相等，他们相等， `-0` 等于 `0`
+6. 如果他们都是字符串并且在相同位置包含相同的 16 位值，他它们相等；如果在长度或者内容上不等，它们不相等；两个字符串显示结果相同但是编码不同`==`和`===`都认为他们不相等
 7. 如果他们指向相同对象、数组、函数，它们相等；如果指向不同对象，他们不相等
 
 ### ==运算符判断相等的流程是怎样的
 
-1. 如果两个值类型相同，按照===比较方法进行比较
+1. 如果两个值类型相同，按照`===`比较方法进行比较
 2. 如果类型不同，使用如下规则进行比较
-3. 如果其中一个值是 null，另一个是 undefined，它们相等
+3. 如果其中一个值是 `null`，另一个是 `undefined`，它们相等
 4. 如果一个值是**数字**另一个是**字符串**，将**字符串转换为数字**进行比较
-5. 如果有布尔类型，将**true 转换为 1，false 转换为 0**，然后用==规则继续比较
-6. 如果一个值是对象，另一个是数字或字符串，将对象转换为原始值然后用==规则继续比较
+5. 如果有布尔类型，将**true 转换为 1，false 转换为 0**，然后用`==`规则继续比较
+6. 如果一个值是对象，另一个是数字或字符串，将对象转换为原始值然后用`==`规则继续比较
 7. **其他所有情况都认为不相等**
 ### Javascript中的for-of和for-in循环的区别
 
@@ -1255,13 +1266,13 @@ document.cookie = 'name=aaa; path=/; domain=domain; secure';
 具体可参考[Javascript中的for-of和for-in循环的区别](https://github.com/fyuanfen/note/blob/master/article/Review/Javascript%E4%B8%AD%E7%9A%84for-of%E5%92%8Cfor-in%E5%BE%AA%E7%8E%AF%E7%9A%84%E5%8C%BA%E5%88%AB.md)
 ### 对象到字符串的转换步骤
 
-1. 如果对象有 toString()方法，javascript 调用它。如果返回一个原始值（primitive value 如：string number boolean）,将这个值转换为字符串作为结果
-2. 如果对象没有 toString()方法或者返回值不是原始值，javascript 寻找对象的 valueOf()方法，如果存在就调用它，返回结果是原始值则转为字符串作为结果
-3. 否则，javascript 不能从 toString()或者 valueOf()获得一个原始值，此时 throws a TypeError
+1. 如果对象有 `toString()`方法，javascript 调用它。如果返回一个原始值（primitive value 如：string number boolean）,将这个值转换为字符串作为结果
+2. 如果对象没有 `toString()`方法或者返回值不是原始值，javascript 寻找对象的 `valueOf()`方法，如果存在就调用它，返回结果是原始值则转为字符串作为结果
+3. 否则，javascript 不能从 `toString()`或者 `valueOf()`获得一个原始值，此时 throws a TypeError
 
 ### 对象到数字的转换步骤
 
-    1. 如果对象有valueOf()方法并且返回元素值，javascript将返回值转换为数字作为结果
+    1. 如果对象有`valueOf()`方法并且返回元素值，javascript将返回值转换为数字作为结果
     2. 否则，如果对象有toString()并且返回原始值，javascript将返回结果转换为数字作为结果
     3. 否则，throws a TypeError
 
@@ -1291,11 +1302,11 @@ document.cookie = 'name=aaa; path=/; domain=domain; secure';
 ### DOM 事件模型是如何的,编写一个 EventUtil 工具类实现事件管理兼容
 
 - DOM 事件包含捕获（capture）和冒泡（bubble）两个阶段：捕获阶段事件从 window 开始触发事件然后通过祖先节点一次传递到触发事件的 DOM 元素上；冒泡阶段事件从初始元素依次向祖先节点传递直到 window
-- 标准事件监听 elem.addEventListener(type, handler, capture)/elem.removeEventListener(type, handler, capture)：handler 接收保存事件信息的 event 对象作为参数，event.target 为触发事件的对象，handler 调用上下文 this 为绑定监听器的对象，event.preventDefault()取消事件默认行为，event.stopPropagation()/event.stopImmediatePropagation()取消事件传递
-- 老版本 IE 事件监听 elem.attachEvent('on'+type, handler)/elem.detachEvent('on'+type, handler)：handler 不接收 event 作为参数，事件信息保存在 window.event 中，触发事件的对象为 event.srcElement，handler 执行上下文 this 为 window 使用闭包中调用 handler.call(elem, event)可模仿标准模型，然后返回闭包，保证了监听器的移除。event.returnValue 为 false 时取消事件默认行为，event.cancleBubble 为 true 时取消时间传播
+- 标准事件监听 `elem.addEventListener(type, handler, capture)/elem.removeEventListener(type, handler, capture)`：handler 接收保存事件信息的 event 对象作为参数，`event.target` 为触发事件的对象，`handler` 调用上下文 this 为绑定监听器的对象，`event.preventDefault()`取消事件默认行为，`event.stopPropagation()`/`event.stopImmediatePropagation()`取消事件传递
+- 老版本 IE 事件监听 elem.attachEvent('on'+type, handler)/elem.detachEvent('on'+type, handler)：handler 不接收 event 作为参数，事件信息保存在 window.event 中，触发事件的对象为 event.srcElement，handler 执行上下文 this 为 window 使用闭包中调用 handler.call(elem, event)可模仿标准模型，然后返回闭包，保证了监听器的移除。`event.returnValue` 为 false 时取消事件默认行为，`event.cancleBubble` 为 true 时取消时间传播
 - 通常利用事件冒泡机制托管事件处理程序提高程序性能。
 
-```
+```js
 /**
  * 跨浏览器事件处理工具。只支持冒泡。不支持捕获
  * @author  (qiu_deqing@126.com)
@@ -1364,7 +1375,7 @@ var EventUtil = {
 
 ### 评价一下三种方法实现继承的优缺点,并改进
 
-```
+```js
 function Shape() {}
 
 function Rect() {}
@@ -1405,7 +1416,7 @@ Rect.prototype.area = function () {
 
 1. 所有三种方法应该在子类构造函数中调用父类构造函数实现实例属性初始化
 
-```
+```js
 function Rect() {
     Shape.call(this);
 }
@@ -1414,7 +1425,7 @@ function Rect() {
 2. 用新创建的对象替代子类默认原型，设置`Rect.prototype.constructor = Rect;`保证一致性
 3. 第三种方法的 polyfill：
 
-```
+```js
 function create(obj) {
     if (Object.create) {
         return Object.create(obj);
@@ -1491,7 +1502,7 @@ console.log('今天是星期' + days[date.getDay()]);
 
 ### 下面这段代码想要循环延时输出结果 0 1 2 3 4,请问输出结果是否正确,如果不正确,请说明为什么,并修改循环内的代码使其输出正确结果
 
-```
+```js
 for (var i = 0; i < 5; ++i) {
   setTimeout(function () {
     console.log(i + ' ');
@@ -1502,7 +1513,7 @@ for (var i = 0; i < 5; ++i) {
 不能输出正确结果，因为循环中 setTimeout 接受的参数函数通过闭包访问变量 i。javascript 运行环境为单线程，setTimeout 注册的函数需要等待线程空闲才能执行，此时 for 循环已经结束，i 值为 5.五个定时输出都是 5
 修改方法：将 setTimeout 放在函数立即调用表达式中，将 i 值作为参数传递给包裹函数，创建新闭包
 
-```
+```js
 for (var i = 0; i < 5; ++i) {
   (function (i) {
     setTimeout(function () {
@@ -1512,9 +1523,9 @@ for (var i = 0; i < 5; ++i) {
 }
 ```
 
-### 现有一个 Page 类,其原型对象上有许多以 post 开头的方法(如 postMsg);另有一拦截函数 chekc,只返回 ture 或 false.请设计一个函数,该函数应批量改造原 Page 的 postXXX 方法,在保留其原有功能的同时,为每个 postXXX 方法增加拦截验证功能,当 chekc 返回 true 时继续执行原 postXXX 方法,返回 false 时不再执行原 postXXX 方法
+### 现有一个 Page 类,其原型对象上有许多以 post 开头的方法(如 postMsg);另有一拦截函数 check,只返回 ture 或 false.请设计一个函数,该函数应批量改造原 Page 的 postXXX 方法,在保留其原有功能的同时,为每个 postXXX 方法增加拦截验证功能,当 check 返回 true 时继续执行原 postXXX 方法,返回 false 时不再执行原 postXXX 方法
 
-```
+```js
 function Page() {}
 
 Page.prototype = {
@@ -1564,193 +1575,193 @@ obj.postC('checkfy');
 ![](https://github.com/fyuanfen/note/raw/master/images/other/tip-box.jpg)
 ### 编写 javascript 深度克隆函数 deepClone
 ```js
-    function deepClone(obj) {
-        var _toString = Object.prototype.toString;
+function deepClone(obj) {
+    var _toString = Object.prototype.toString;
 
-        // null, undefined, non-object, function
-        if (!obj || typeof obj !== 'object') {
-            return obj;
-        }
-
-        // DOM Node
-        if (obj.nodeType && 'cloneNode' in obj) {
-            return obj.cloneNode(true);
-        }
-
-        // Date
-        if (_toString.call(obj) === '[object Date]') {
-            return new Date(obj.getTime());
-        }
-
-        // RegExp
-        if (_toString.call(obj) === '[object RegExp]') {
-            var flags = [];
-            if (obj.global) { flags.push('g'); }
-            if (obj.multiline) { flags.push('m'); }
-            if (obj.ignoreCase) { flags.push('i'); }
-
-            return new RegExp(obj.source, flags.join(''));
-        }
-
-        var result = Array.isArray(obj) ? [] :
-            obj.constructor ? new obj.constructor() : {};
-
-        for (var key in obj ) {
-            result[key] = deepClone(obj[key]);
-        }
-
-        return result;
+    // null, undefined, non-object, function
+    if (!obj || typeof obj !== 'object') {
+        return obj;
     }
 
-    function A() {
-        this.a = a;
+    // DOM Node
+    if (obj.nodeType && 'cloneNode' in obj) {
+        return obj.cloneNode(true);
     }
 
-    var a = {
-        name: 'qiu',
-        birth: new Date(),
-        pattern: /qiu/gim,
-        container: document.body,
-        hobbys: ['book', new Date(), /aaa/gim, 111]
-    };
+    // Date
+    if (_toString.call(obj) === '[object Date]') {
+        return new Date(obj.getTime());
+    }
 
-    var c = new A();
-    var b = deepClone(c);
-    console.log(c.a === b.a);
-    console.log(c, b);
+    // RegExp
+    if (_toString.call(obj) === '[object RegExp]') {
+        var flags = [];
+        if (obj.global) { flags.push('g'); }
+        if (obj.multiline) { flags.push('m'); }
+        if (obj.ignoreCase) { flags.push('i'); }
+
+        return new RegExp(obj.source, flags.join(''));
+    }
+
+    var result = Array.isArray(obj) ? [] :
+        obj.constructor ? new obj.constructor() : {};
+
+    for (var key in obj ) {
+        result[key] = deepClone(obj[key]);
+    }
+
+    return result;
+}
+
+function A() {
+    this.a = a;
+}
+
+var a = {
+    name: 'qiu',
+    birth: new Date(),
+    pattern: /qiu/gim,
+    container: document.body,
+    hobbys: ['book', new Date(), /aaa/gim, 111]
+};
+
+var c = new A();
+var b = deepClone(c);
+console.log(c.a === b.a);
+console.log(c, b);
 ```
 ### 补充代码,鼠标单击 Button1 后将 Button1 移动到 Button2 的后面
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TEst</title>
+</head>
+<body>
 
-    <!doctype html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>TEst</title>
-    </head>
-    <body>
+<div>
+    <input type="button" id ="button1" value="1" />
+    <input type="button" id ="button2" value="2" />
+</div>
 
-    <div>
-       <input type="button" id ="button1" value="1" />
-       <input type="button" id ="button2" value="2" />
-    </div>
+<script type="text/javascript">
+    var btn1 = document.getElementById('button1');
+    var btn2 = document.getElementById('button2');
 
-    <script type="text/javascript">
-        var btn1 = document.getElementById('button1');
-        var btn2 = document.getElementById('button2');
+    addListener(btn1, 'click', function (event) {
+        btn1.parentNode.insertBefore(btn2, btn1);
+    });
 
-        addListener(btn1, 'click', function (event) {
-            btn1.parentNode.insertBefore(btn2, btn1);
-        });
-
-        function addListener(elem, type, handler) {
-            if (elem.addEventListener) {
-                elem.addEventListener(type, handler, false);
-                return handler;
-            } else if (elem.attachEvent) {
-                function wrapper() {
-                    var event = window.event;
-                    event.target = event.srcElement;
-                    handler.call(elem, event);
-                }
-                elem.attachEvent('on' + type, wrapper);
-                return wrapper;
+    function addListener(elem, type, handler) {
+        if (elem.addEventListener) {
+            elem.addEventListener(type, handler, false);
+            return handler;
+        } else if (elem.attachEvent) {
+            function wrapper() {
+                var event = window.event;
+                event.target = event.srcElement;
+                handler.call(elem, event);
             }
+            elem.attachEvent('on' + type, wrapper);
+            return wrapper;
         }
+    }
 
-    </script>
-    </body>
-    </html>
-
+</script>
+</body>
+</html>
+```
 ### 网页中实现一个计算当年还剩多少时间的倒数计时程序,要求网页上实时动态显示"×× 年还剩 ×× 天 ×× 时 ×× 分 ×× 秒"
+```html
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>TEst</title>
+</head>
+<body>
 
-    <!doctype html>
-    <html>
-    <head>
-        <meta charset="utf-8">
-        <title>TEst</title>
-    </head>
-    <body>
-
-        <span id="target"></span>
+    <span id="target"></span>
 
 
-    <script type="text/javascript">
-        // 为了简化。每月默认30天
-        function getTimeString() {
-            var start = new Date();
-            var end = new Date(start.getFullYear() + 1, 0, 1);
-            var elapse = Math.floor((end - start) / 1000);
+<script type="text/javascript">
+    // 为了简化。每月默认30天
+    function getTimeString() {
+        var start = new Date();
+        var end = new Date(start.getFullYear() + 1, 0, 1);
+        var elapse = Math.floor((end - start) / 1000);
 
-            var seconds = elapse % 60 ;
-            var minutes = Math.floor(elapse / 60) % 60;
-            var hours = Math.floor(elapse / (60 * 60)) % 24;
-            var days = Math.floor(elapse / (60 * 60 * 24)) % 30;
-            var months = Math.floor(elapse / (60 * 60 * 24 * 30)) % 12;
-            var years = Math.floor(elapse / (60 * 60 * 24 * 30 * 12));
+        var seconds = elapse % 60 ;
+        var minutes = Math.floor(elapse / 60) % 60;
+        var hours = Math.floor(elapse / (60 * 60)) % 24;
+        var days = Math.floor(elapse / (60 * 60 * 24)) % 30;
+        var months = Math.floor(elapse / (60 * 60 * 24 * 30)) % 12;
+        var years = Math.floor(elapse / (60 * 60 * 24 * 30 * 12));
 
-            return start.getFullYear() + '年还剩' + years + '年' + months + '月' + days + '日'
-                + hours + '小时' + minutes + '分' + seconds + '秒';
-        }
+        return start.getFullYear() + '年还剩' + years + '年' + months + '月' + days + '日'
+            + hours + '小时' + minutes + '分' + seconds + '秒';
+    }
 
-        function domText(elem, text) {
-            if (text == undefined) {
+    function domText(elem, text) {
+        if (text == undefined) {
 
-                if (elem.textContent) {
-                    return elem.textContent;
-                } else if (elem.innerText) {
-                    return elem.innerText;
-                }
+            if (elem.textContent) {
+                return elem.textContent;
+            } else if (elem.innerText) {
+                return elem.innerText;
+            }
+        } else {
+            if (elem.textContent) {
+                elem.textContent = text;
+            } else if (elem.innerText) {
+                elem.innerText = text;
             } else {
-                if (elem.textContent) {
-                    elem.textContent = text;
-                } else if (elem.innerText) {
-                    elem.innerText = text;
-                } else {
-                    elem.innerHTML = text;
-                }
+                elem.innerHTML = text;
             }
         }
+    }
 
-        var target = document.getElementById('target');
+    var target = document.getElementById('target');
 
-        setInterval(function () {
-            domText(target, getTimeString());
-        }, 1000)
-    </script>
+    setInterval(function () {
+        domText(target, getTimeString());
+    }, 1000)
+</script>
 
-    </body>
-    </html>
-
+</body>
+</html>
+```
 ### 完成一个函数,接受数组作为参数,数组元素为整数或者数组,数组元素包含整数或数组,函数返回扁平化后的数组
 
 如：[1, [2, [ [3, 4], 5], 6]] => [1, 2, 3, 4, 5, 6]
 
-```
-    var data =  [1, [2, [ [3, 4], 5], 6]];
+```js
+var data =  [1, [2, [ [3, 4], 5], 6]];
 
-    function flat(data, result) {
-        var i, d, len;
-        for (i = 0, len = data.length; i < len; ++i) {
-            d = data[i];
-            if (typeof d === 'number') {
-                result.push(d);
-            } else {
-                flat(d, result);
-            }
+function flat(data, result) {
+    var i, d, len;
+    for (i = 0, len = data.length; i < len; ++i) {
+        d = data[i];
+        if (typeof d === 'number') {
+            result.push(d);
+        } else {
+            flat(d, result);
         }
     }
+}
 
-    var result = [];
-    flat(data, result);
+var result = [];
+flat(data, result);
 
-    console.log(result);
+console.log(result);
 ```
 
 ### 如何判断一个对象是否为数组
 
-如果浏览器支持 Array.isArray()可以直接判断否则需进行必要判断
+如果浏览器支持 `Array.isArray()`可以直接判断否则需进行必要判断
 
-```
+```js
 /**
  * 判断一个对象是否是数组，参数不是对象或者不是数组，返回false
  *
@@ -1767,7 +1778,7 @@ function isArray(arg) {
 
 ### 请评价以下事件监听器代码并给出改进意见
 
-```
+```js
 if (window.addEventListener) {
   var addListener = function (el, type, listener, useCapture) {
     el.addEventListener(type, listener, useCapture);
@@ -1792,14 +1803,14 @@ else if (document.all) {
 
 缺点：
 
-1. document.all 作为 IE 检测不可靠，应该使用 if(el.attachEvent)
-2. addListener 在不同浏览器下 API 不一样
+1. `document.all` 作为 IE 检测不可靠，应该使用 if(el.attachEvent)
+2. `addListener` 在不同浏览器下 API 不一样
 3. `listener.apply`使 this 与标准一致但监听器无法移除
-4. 未解决 IE 下 listener 参数 event。 target 问题
+4. 未解决 IE 下 `listener` 参数 event。 target 问题
 
 改进:
 
-```
+```js
 var addListener;
 
 if (window.addEventListener) {

@@ -2,27 +2,28 @@
 
 <!-- code_chunk_output -->
 
-- [XSS](#xss)
-  _ [XSS 的类型](#xss-的类型)
-  _ [反射型](#反射型)
-  _ [存储型](#存储型)
-  _ [基于 DOM](#基于-dom)
-  _ [XSS 攻击的防范](#xss-攻击的防范)
-  _ [HttpOnly 防止劫取 Cookie](#httponly-防止劫取-cookie)
-  _ [输入检查](#输入检查)
-  _ [输出检查](#输出检查)
-- [CSRF](#csrf)
-  _ [浏览器的 Cookie 策略](#浏览器的-cookie-策略)
-  _ [通过 Cookie 进行 CSRF 攻击](#通过-cookie-进行-csrf-攻击)
-  _ [CSRF 攻击的防范](#csrf-攻击的防范)
-  _ [验证码](#验证码)
-  _ [Referer Check](#referer-check)
-  _ [Anti CSRF Token](#anti-csrf-token) \* [添加 token 验证](#添加-token-验证)
-- [总结](#总结)
+* [XSS](#xss)
+	* [XSS 的类型](#xss-的类型)
+		* [反射型](#反射型)
+		* [存储型](#存储型)
+		* [基于 DOM](#基于-dom)
+	* [XSS 攻击的防范](#xss-攻击的防范)
+		* [HttpOnly 防止劫取 Cookie](#httponly-防止劫取-cookie)
+		* [输入检查](#输入检查)
+		* [输出检查](#输出检查)
+* [CSRF](#csrf)
+	* [浏览器的 Cookie 策略](#浏览器的-cookie-策略)
+	* [通过 Cookie 进行 CSRF 攻击](#通过-cookie-进行-csrf-攻击)
+	* [CSRF 攻击的防范](#csrf-攻击的防范)
+		* [验证码](#验证码)
+		* [Referer Check](#referer-check)
+		* [Anti CSRF Token](#anti-csrf-token)
+		* [添加 token 验证](#添加-token-验证)
+* [总结](#总结)
 
 <!-- /code_chunk_output -->
 
-在 Web 安全领域中，XSS 和 CSRF 是最常见的攻击方式。本文将会简单介绍 XSS 和 CSRF 的攻防问题。
+在 Web 安全领域中，`XSS` 和 `CSRF` 是最常见的攻击方式。本文将会简单介绍 `XSS` 和 `CSRF` 的攻防问题。
 
 - xss 原理上利用的是浏览器可以拼接成任意的 javascript，然后黑客拼接好 javascript 让浏览器自动地给服务器端发出多个请求（get、post 请求）。
 

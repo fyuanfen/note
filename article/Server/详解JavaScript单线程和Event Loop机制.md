@@ -2,11 +2,12 @@
 
 <!-- code_chunk_output -->
 
-* [关于 JavaScript 单线程的一些事](#关于-javascript-单线程的一些事)
+* [详解 JavaScript 单线程和 Event Loop 机制](#详解-javascript-单线程和-event-loop-机制)
 	* [建议](#建议)
 	* [JavaScript 是单线程的](#javascript-是单线程的)
 	* [浏览器不是单线程的](#浏览器不是单线程的)
 	* [浏览器环境下 js 引擎的事件循环机制](#浏览器环境下-js-引擎的事件循环机制)
+		* [并发与并行](#并发与并行)
 		* [Runtime 概念](#runtime-概念)
 			* [Stack（栈）](#stack栈)
 			* [Heap（堆）](#heap堆)
@@ -44,7 +45,7 @@
 
 <!-- /code_chunk_output -->
 
-# 关于 JavaScript 单线程的一些事
+# 详解 JavaScript 单线程和 Event Loop 机制
 
 ## 建议
 
@@ -56,19 +57,19 @@
 
 ## JavaScript 是单线程的
 
-总所周知，JavaScript 是以单线程的方式运行的。所谓单线程，是指在 JS 引擎中负责解释和执行 JavaScript 代码的线程只有一个。不妨叫它**主线程**。说到线程就自然联想到进程。那它们有什么联系呢？
+`JavaScript` 是以单线程的方式运行的。单线程是指在 JS 引擎中负责解释和执行 JavaScript 代码的线程只有一个，也可以称为**主线程**。说到线程就自然联想到进程。那它们有什么联系呢？
 
 > 进程和线程都是操作系统的概念。进程是应用程序的执行实例，每一个进程都是由私有的虚拟地址空间、代码、数据和其它系统资源所组成；进程在运行过程中能够申请创建和使用系统资源（如独立的内存区域等），这些资源也会随着进程的终止而被销毁。而线程则是进程内的一个独立执行单元，在不同的线程之间是可以共享进程资源的，所以在多线程的情况下，需要特别注意对临界资源的访问控制。在系统创建进程之后就开始启动执行进程的主线程，而进程的生命周期和这个主线程的生命周期一致，主线程的退出也就意味着进程的终止和销毁。主线程是由系统进程所创建的，同时用户也可以自主创建其它线程，这一系列的线程都会并发地运行于同一个进程中。
 
-显然，在多线程操作下可以实现应用的**并行处理**，从而以更高的 CPU 利用率提高整个应用程序的性能和吞吐量。特别是现在很多语言都支持多核并行处理技术，然而 `JavaScript` 却以单线程执行，为什么呢？
+显然，在多线程操作下可以实现应用的**并行处理**，从而以更高的 `CPU` 利用率提高整个应用程序的性能和吞吐量。特别是现在很多语言都支持多核并行处理技术，然而 `JavaScript` 却以单线程执行，为什么呢？
 
-其实这与它的用途有关。作为浏览器脚本语言，JavaScript 的主要用途是与用户互动，以及操作 DOM。若以多线程的方式操作这些 DOM，则可能出现操作的冲突。假设有两个线程同时操作一个 DOM 元素，线程 1 要求浏览器删除 DOM，而线程 2 却要求修改 DOM 样式，这时浏览器就无法决定采用哪个线程的操作。当然，我们可以为浏览器引入“锁”的机制来解决这些冲突，但这会大大提高复杂性，所以 JavaScript 从诞生开始就选择了单线程执行。
+其实这与它的用途有关。作为浏览器脚本语言，`JavaScript` 的主要用途是与用户互动，以及操作 DOM。若以多线程的方式操作这些 DOM，则可能出现操作的冲突。假设有两个线程同时操作一个 DOM 元素，线程 1 要求浏览器删除 DOM，而线程 2 却要求修改 DOM 样式，这时浏览器就无法决定采用哪个线程的操作。当然，我们可以为浏览器引入“锁”的机制来解决这些冲突，但这会大大提高复杂性，所以 JavaScript 从诞生开始就选择了单线程执行。
 
-因为 JS 运行在浏览器中，是单线程的，每个 window 一个 JS 线程，既然是单线程的，在某个特定的时刻只有特定的代码能够被执行，并阻塞其它的代码。而**浏览器是事件驱动的（**Event driven），浏览器中很多行为是异步（Asynchronized）的，会创建事件并放入执行队列中。**javascript 引擎是单线程处理它的任务队列**，你可以理解成就是普通函数和回调函数构成的队列。当异步事件发生时，如 mouse click, a timer firing, or an XMLHttpRequest completing（鼠标点击事件发生、定时器触发事件发生、XMLHttpRequest 完成回调触发等），将他们放入执行队列，等待当前代码执行完成。
+因为 JS 运行在浏览器中，是单线程的，每个 window 一个 JS 线程，既然是单线程的，在某个特定的时刻只有特定的代码能够被执行，并阻塞其它的代码。而**浏览器是事件驱动的（**Event driven），浏览器中很多行为是异步（Asynchronized）的，会创建事件并放入执行队列中。**javascript 引擎是单线程处理它的任务队列**，你可以理解成就是普通函数和回调函数构成的队列。当异步事件发生时，如 mouse click, a timer firing, or an `XMLHttpRequest completing`（鼠标点击事件发生、定时器触发事件发生、`XMLHttpRequest` 完成回调触发等），将他们放入执行队列，等待当前代码执行完成。
 
-另外，因为 `JavaScript` 是单线程的，在某一时刻内只能执行特定的一个任务，并且会阻塞其它任务执行。那么对于类似 I/O 等耗时的任务，就没必要等待他们执行完后才继续后面的操作。在这些任务完成前，JavaScript 完全可以往下执行其他操作，当这些耗时的任务完成后则以回调的方式执行相应处理。这些就是 `JavaScript` 与生俱来的特性：**异步与回调**。
+另外，因为 `JavaScript` 是单线程的，在某一时刻内只能执行特定的一个任务，并且会阻塞其它任务执行。那么对于类似 I/O 等耗时的任务，就没必要等待他们执行完后才继续后面的操作。在这些任务完成前，`JavaScript` 完全可以往下执行其他操作，当这些耗时的任务完成后则以回调的方式执行相应处理。这些就是 `JavaScript` 与生俱来的特性：**异步与回调**。
 
-当然对于不可避免的耗时操作（如：繁重的运算，多重循环），`HTML5` 提出了**Web Worker**，它会在当前 `JavaScript` 的执行主线程中利用 `Worker` 类新开辟一个额外的线程来加载和运行特定的 `JavaScript` 文件，这个新的线程和 `JavaScript` 的主线程之间并不会互相影响和阻塞执行，而且在 Web Worker 中提供了这个新线程和 `JavaScript` 主线程之间数据交换的接口：postMessage 和 `onMessage` 事件。但在 HTML5 Web Worker 中是不能操作 `DOM` 的，任何需要操作 DOM 的任务都需要委托给 `JavaScript` 主线程来执行，所以虽然引入 HTML5 Web Worker，但仍然没有改变 `JavaScript` 单线程的本质。
+当然对于不可避免的耗时操作（如：繁重的运算，多重循环），`HTML5` 提出了**Web Worker**，它会在当前 `JavaScript` 的执行主线程中利用 `Worker` 类新开辟一个额外的线程来加载和运行特定的 `JavaScript` 文件，这个新的线程和 `JavaScript` 的主线程之间并不会互相影响和阻塞执行，而且在 Web Worker 中提供了这个新线程和 `JavaScript` 主线程之间数据交换的接口：`postMessage` 和 `onMessage` 事件。但在 HTML5 Web Worker 中是不能操作 `DOM` 的，任何需要操作 DOM 的任务都需要委托给 `JavaScript` 主线程来执行，所以虽然引入 HTML5 Web Worker，但仍然没有改变 `JavaScript` 单线程的本质。
 
 ## 浏览器不是单线程的
 
@@ -101,7 +102,7 @@ for (var i = 0; i < 100000000; i++);
 
 ![](https://github.com/fyuanfen/note/raw/master/images/other/concur1.jpg)
 
-并发与并行
+### 并发与并行
 
 并行大家都好理解，而**所谓“并发”是指两个或两个以上的事件在同一时间间隔中发生**。如上图的第一个表，由于计算机系统只有一个 CPU，故 ABC 三个程序从“微观”上是交替使用 CPU，但交替时间很短，用户察觉不到，形成了“宏观”意义上的并发操作。
 
@@ -199,7 +200,7 @@ while (queue.waitForMessage()) {
    microtask（又称为微任务），可以理解是在当前 task 执行结束后立即执行的任务。也就是说，在当前 task 任务后，下一个 task 之前，在渲染之前。
 
 所以它的响应速度相比 setTimeout（setTimeout 是 task）会更快，因为无需等渲染。也就是说，在某一个 macrotask 执行完后，就会将在它执行期间产生的所有 microtask 都执行完毕（在渲染前）。
-**microtask 主要包含: `promise`、`Object.observe`、`MutationObserver`。**
+**microtask 主要包含: `Promise.then`、`MutaionObserver`、`process.nextTick`(Nodejs 环境)、`Object.observe`(已废弃)。**
 
 ##### 具体过程
 
@@ -305,7 +306,7 @@ setTimeout
 
 当个 v8 引擎将 js 代码解析后传入 `libuv` 引擎后，循环首先进入 `poll` 阶段。`poll` 阶段的执行逻辑如下：
 先查看 `poll queue` 中是否有事件，有任务就按先进先出的顺序依次执行回调。
-当 `queue` 为空时，会检查是否有 `setImmediate()`的 `callback`，如果有就进入 `check` 阶段执行这些 `callback`。但同时也会检查是否有到期的 `timer`，如果有，就把这些到期的 `timer` 的 `callback` 按照调用顺序放到 `timer queue` 中，之后循环会进入 `timer` 阶段执行 `queue` 中的 `callback`。 这两者的顺序是不固定的，受到代码运行的环境的影响。如果两者的 `queue` 都是空的，那么 `loop` 会在 poll 阶段停留，直到有一个 i/o 事件返回，循环会进入 i/o callback 阶段并立即执行这个事件的 `callback`。
+当 `queue` 为空时，会检查是否有 `setImmediate()`的 `callback`，如果有就进入 `check` 阶段执行这些 `callback`。但同时也会检查是否有到期的 `timer`，如果有，就把这些到期的 `timer` 的 `callback` 按照调用顺序放到 `timer queue` 中，之后循环会进入 `timer` 阶段执行 `queue` 中的 `callback`。 这两者的顺序是不固定的，受到代码运行的环境的影响。如果两者的 `queue` 都是空的，那么 `loop` 会在 `poll` 阶段停留，直到有一个 i/o 事件返回，循环会进入 i/o callback 阶段并立即执行这个事件的 `callback`。
 
 值得注意的是，`poll` 阶段在执行 `poll queue` 中的回调时实际上不会无限的执行下去。有两种情况 `poll` 阶段会终止执行 `poll queue` 中的下一个回调：1. 所有回调执行完毕。2. 执行数超过了 `node` 的限制。
 
@@ -345,7 +346,7 @@ setTimeout
 
 ##### Node 10 以前：
 
-按照我们的循环的 6 个阶段依次执行，每次拿出当前阶段中的全部任务执行，清空 NextTick Queue，清空 Microtask Queue。再执行下一阶段，全部 6 个阶段执行完毕后，进入下轮循环。即：
+按照我们的循环的 6 个阶段依次执行，每次拿出当前阶段中的全部任务执行，清空 `NextTick Queue`，清空 `Microtask Queue`。再执行下一阶段，全部 6 个阶段执行完毕后，进入下轮循环。即：
 
 1. 清空当前循环内的 `Timers Queue`，清空 `NextTick Queue`，清空 `Microtask Queue`。
 2. 清空当前循环内的 `I/O Queue`，清空 `NextTick Queue`，清空 `Microtask Queue`。

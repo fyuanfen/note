@@ -22,7 +22,7 @@
 
 以下场景往往由于事件频繁被触发，因而频繁执行 DOM 操作、资源加载等重行为，导致 UI 停顿甚至浏览器崩溃。
 
-1. `window` 对象的 `resize`、`scrol`l 事件
+1. `window` 对象的 `resize`、`scroll` 事件
 
 2. 拖拽时的 `mousemove` 事件
 

@@ -35,11 +35,11 @@ React 中最值得称道的部分莫过于 Virtual DOM 与 diff 的完美结合�
 
 计算一棵树形结构转换成另一棵树形结构的最少操作，是一个复杂且值得研究的问题。[传统 diff 算法](https://grfia.dlsi.ua.es/ml/algorithms/references/editsurvey_bille.pdf)通过循环递归对节点进行依次对比，效率低下，算法复杂度达到 O(n^3)，其中 n 是树中节点的总数。O(n^3) 到底有多可怕，这意味着如果要展示 1000 个节点，就要依次执行上十亿次的比较。这种指数型的性能消耗对于前端渲染场景来说代价太高了！现今的 CPU 每秒钟能执行大约 30 亿条指令，即便是最高效的实现，也不可能在一秒内计算出差异情况。
 
-如果 React 只是单纯的引入 diff 算法而没有任何的优化改进，那么其效率是远远无法满足前端渲染所要求的性能。
+如果 `React` 只是单纯的引入 `diff` 算法而没有任何的优化改进，那么其效率是远远无法满足前端渲染所要求的性能。
 
-因此，想要将 diff 思想引入 Virtual DOM，就需要设计一种稳定高效的 diff 算法，而 React 做到了！
+因此，想要将 `diff` 思想引入 Virtual DOM，就需要设计一种稳定高效的 `diff` 算法，而 React 做到了！
 
-那么，React diff 到底是如何实现的呢？
+那么，`React diff` 到底是如何实现的呢？
 
 ## 详解 React diff
 
@@ -65,7 +65,7 @@ React 中最值得称道的部分莫过于 Virtual DOM 与 diff 的完美结合�
 
 基于策略一，React 对树的算法进行了简洁明了的优化，即对树进行分层比较，两棵树只会对同一层次的节点进行比较。
 
-既然 DOM 节点跨层级的移动操作少到可以忽略不计，针对这一现象，React 通过 `updateDepth` 对 `Virtual DOM` 树进行层级控制，只会对相同颜色方框内的 DOM 节点进行比较，即同一个父节点下的所有子节点。当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不会用于进一步的比较。这样只需要对树进行一次遍历，便能完成整个 DOM 树的比较。
+既然 `DOM` 节点跨层级的移动操作少到可以忽略不计，针对这一现象，React 通过 `updateDepth` 对 `Virtual DOM` 树进行层级控制，只会对相同颜色方框内的 DOM 节点进行比较，即同一个父节点下的所有子节点。当发现节点已经不存在，则该节点及其子节点会被完全删除掉，不会用于进一步的比较。这样只需要对树进行一次遍历，便能完成整个 DOM 树的比较。
 ![](https://github.com/fyuanfen/note/raw/master/images/react/reactdiff1.png)
 
 ```js
@@ -171,17 +171,17 @@ React 发现这类操作繁琐冗余，因为这些都是相同的节点，但�
 
 ![](https://github.com/fyuanfen/note/raw/master/images/react/reactdiff5.png)
 
-那么，如此高效的 diff 到底是如何运作的呢？让我们通过源码进行详细分析。
+那么，如此高效的 `diff` 到底是如何运作的呢？让我们通过源码进行详细分析。
 
-首先对新集合的节点进行循环遍历，`for (name in nextChildren)`，通过唯一 key 可以判断新老集合中是否存在相同的节点，`if (prevChild === nextChild)`，如果存在相同节点，则进行移动操作，但在移动前需要将当前节点在老集合中的位置与 lastIndex 进行比较，`if (child.\_mountIndex < lastIndex)`，则进行节点移动操作，否则不执行该操作。这是一种顺序优化手段，lastIndex 一直在更新，表示访问过的节点在老集合中最右的位置（即最大的位置），如果新集合中当前访问的节点比 lastIndex 大，说明当前访问节点在老集合中就比上一个节点位置靠后，则该节点不会影响其他节点的位置，因此不用添加到差异队列中，即不执行移动操作，只有当访问的节点比 lastIndex 小时，才需要进行移动操作。
+首先对新集合的节点进行循环遍历，`for (name in nextChildren)`，通过唯一 key 可以判断新老集合中是否存在相同的节点，`if (prevChild === nextChild)`，如果存在相同节点，则进行移动操作，但在移动前需要将当前节点在老集合中的位置与 lastIndex 进行比较，`if (child._mountIndex < lastIndex)`，则进行节点移动操作，否则不执行该操作。这是一种顺序优化手段，`lastIndex` 一直在更新，表示访问过的节点在老集合中最右的位置（即最大的位置），如果新集合中当前访问的节点比 lastIndex 大，说明当前访问节点在老集合中就比上一个节点位置靠后，则该节点不会影响其他节点的位置，因此不用添加到差异队列中，即不执行移动操作，只有当访问的节点比 lastIndex 小时，才需要进行移动操作。
 
-以上图为例，可以更为清晰直观的描述 diff 的差异对比过程：
+以上图为例，可以更为清晰直观的描述 `diff` 的差异对比过程：
 
-- 从新集合中取得 B，判断老集合中存在相同节点 B，通过对比节点位置判断是否进行移动操作，B 在老集合中的位置 `B.\_mountIndex = 1`，此时 `lastIndex = 0`，不满足 `child.\_mountIndex < lastIndex` 的条件，因此不对 B 进行移动操作；更新 `lastIndex = Math.max(prevChild.\_mountIndex`, `lastIndex`)，其中 `prevChild.\_mountIndex` 表示 B 在老集合中的位置，则 `lastIndex ＝ 1`，并将 B 的位置更新为新集合中的位置 `prevChild.\_mountIndex = nextIndex`，此时新集合中 `B.\_mountIndex = 0，nextIndex++` 进入下一个节点的判断。
+- 从新集合中取得 B，判断老集合中存在相同节点 B，通过对比节点位置判断是否进行移动操作，B 在老集合中的位置 `B._mountIndex = 1`，此时 `lastIndex = 0`，不满足 `child._mountIndex < lastIndex` 的条件，因此不对 B 进行移动操作；更新 `lastIndex = Math.max(prevChild._mountIndex`, `lastIndex`)，其中 `prevChild._mountIndex` 表示 B 在老集合中的位置，则 `lastIndex ＝ 1`，并将 B 的位置更新为新集合中的位置 `prevChild._mountIndex = nextIndex`，此时新集合中 `B._mountIndex = 0，nextIndex++` 进入下一个节点的判断。
 
-- 从新集合中取得 A，判断老集合中存在相同节点 A，通过对比节点位置判断是否进行移动操作，A 在老集合中的位置 `A.\_mountIndex = 0`，此时 `lastIndex = 1`，满足 `child.\_mountIndex < lastIndex` 的条件，因此对 A 进行移动操作 `enqueueMove(this, child.\_mountIndex`, `toIndex`)，其中 `toIndex` 其实就是 nextIndex，表示 A 需要移动到的位置；更新 `lastIndex = Math.max(prevChild.\_mountIndex`, `lastIndex`)，则 lastIndex ＝ 1，并将 A 的位置更新为新集合中的位置 `prevChild.\_mountIndex = nextIndex`，此时新集合中 `A.\_mountIndex = 1`，`nextIndex++`进入下一个节点的判断。
+- 从新集合中取得 A，判断老集合中存在相同节点 A，通过对比节点位置判断是否进行移动操作，A 在老集合中的位置 `A._mountIndex = 0`，此时 `lastIndex = 1`，满足 `child._mountIndex < lastIndex` 的条件，因此对 A 进行移动操作 `enqueueMove(this, child._mountIndex`, `toIndex`)，其中 `toIndex` 其实就是 nextIndex，表示 A 需要移动到的位置；更新 `lastIndex = Math.max(prevChild._mountIndex`, `lastIndex`)，则 lastIndex ＝ 1，并将 A 的位置更新为新集合中的位置 `prevChild._mountIndex = nextIndex`，此时新集合中 `A._mountIndex = 1`，`nextIndex++`进入下一个节点的判断。
 
-- 从新集合中取得 D，判断老集合中存在相同节点 D，通过对比节点位置判断是否进行移动操作，D 在老集合中的位置 D.\_mountIndex = 3，此时 `lastIndex = 1`，不满足 `child.\_mountIndex < lastIndex` 的条件，因此不对 D 进行移动操作；更新 `lastIndex = Math.max(prevChild.\_mountIndex`, `lastIndex`)，则 lastIndex ＝ 3，并将 D 的位置更新为新集合中的位置 `prevChild.\_mountIndex = nextIndex`，此时新集合中 `D.\_mountIndex = 2`，`nextIndex++` 进入下一个节点的判断。
+- 从新集合中取得 D，判断老集合中存在相同节点 D，通过对比节点位置判断是否进行移动操作，D 在老集合中的位置 `D._mountIndex = 3`，此时 `lastIndex = 1`，不满足 `child._mountIndex < lastIndex` 的条件，因此不对 D 进行移动操作；更新 `lastIndex = Math.max(prevChild._mountIndex`, `lastIndex`)，则 lastIndex ＝ 3，并将 D 的位置更新为新集合中的位置 `prevChild._mountIndex = nextIndex`，此时新集合中 `D._mountIndex = 2`，`nextIndex++` 进入下一个节点的判断。
 
 - 从新集合中取得 C，判断老集合中存在相同节点 C，通过对比节点位置判断是否进行移动操作，C 在老集合中的位置 C.\_mountIndex = 2，此时 lastIndex = 3，满足 child.\_mountIndex < lastIndex 的条件，因此对 C 进行移动操作 enqueueMove(this, child.\_mountIndex, toIndex)；更新 lastIndex = Math.max(prevChild.\_mountIndex, lastIndex)，则 lastIndex ＝ 3，并将 C 的位置更新为新集合中的位置 prevChild.\_mountIndex = nextIndex，此时新集合中 C.\_mountIndex = 3，nextIndex++ 进入下一个节点的判断，由于 C 已经是最后一个节点，因此 diff 到此完成。
 
@@ -189,13 +189,13 @@ React 发现这类操作繁琐冗余，因为这些都是相同的节点，但�
 
 以下图为例：
 
-- 从新集合中取得 B，判断老集合中存在相同节点 B，由于 B 在老集合中的位置 B.\_mountIndex = 1，此时 lastIndex = 0，因此不对 B 进行移动操作；更新 lastIndex ＝ 1，并将 B 的位置更新为新集合中的位置 B.\_mountIndex = 0，nextIndex++进入下一个节点的判断。
+- 从新集合中取得 B，判断老集合中存在相同节点 B，由于 B 在老集合中的位置 `B._mountIndex = 1`，此时 lastIndex = 0，因此不对 B 进行移动操作；更新 lastIndex ＝ 1，并将 B 的位置更新为新集合中的位置 `B._mountIndex = 0`，nextIndex++进入下一个节点的判断。
 
-- 从新集合中取得 E，判断老集合中不存在相同节点 E，则创建新节点 E；更新 lastIndex ＝ 1，并将 E 的位置更新为新集合中的位置，nextIndex++进入下一个节点的判断。
+- 从新集合中取得 E，判断老集合中不存在相同节点 E，则创建新节点 E；更新 lastIndex ＝ 1，并将 E 的位置更新为新集合中的位置，`nextIndex++`进入下一个节点的判断。
 
-- 从新集合中取得 C，判断老集合中存在相同节点 C，由于 C 在老集合中的位置 C.\_mountIndex = 2，lastIndex = 1，此时 C.\_mountIndex > lastIndex，因此不对 C 进行移动操作；更新 lastIndex ＝ 2，并将 C 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
+- 从新集合中取得 C，判断老集合中存在相同节点 C，由于 C 在老集合中的位置 `C._mountIndex = 2`，lastIndex = 1，此时 `C._mountIndex > lastIndex`，因此不对 C 进行移动操作；更新 lastIndex ＝ 2，并将 C 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
 
-- 从新集合中取得 A，判断老集合中存在相同节点 A，由于 A 在老集合中的位置 A.\_mountIndex = 0，lastIndex = 2，此时 A.\_mountIndex < lastIndex，因此对 A 进行移动操作；更新 lastIndex ＝ 2，并将 A 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
+- 从新集合中取得 A，判断老集合中存在相同节点 A，由于 A 在老集合中的位置 `A._mountIndex = 0`，lastIndex = 2，此时 `A._mountIndex < lastIndex`，因此对 A 进行移动操作；更新 lastIndex ＝ 2，并将 A 的位置更新为新集合中的位置，nextIndex++ 进入下一个节点的判断。
 
 - 当完成新集合中所有节点 diff 时，最后还需要对老集合进行循环遍历，判断是否存在新集合中没有但老集合中仍存在的节点，发现存在这样的节点 D，因此删除节点 D，到此 diff 全部完成。
 
@@ -285,7 +285,7 @@ _mountChildAtIndex: function(
 },
 ```
 
-当然，React diff 还是存在些许不足与待优化的地方，如下图所示，若新集合的节点更新为：D、A、B、C，与老集合对比只有 D 节点移动，而 A、B、C 仍然保持原有的顺序，理论上 diff 应该只需对 D 执行移动操作，然而由于 D 在老集合的位置是最大的，导致其他节点的 \_mountIndex < lastIndex，造成 D 没有执行移动操作，而是 A、B、C 全部移动到 D 节点后面的现象。
+当然，React diff 还是存在些许不足与待优化的地方，如下图所示，若新集合的节点更新为：D、A、B、C，与老集合对比只有 D 节点移动，而 A、B、C 仍然保持原有的顺序，理论上 diff 应该只需对 D 执行移动操作，然而由于 D 在老集合的位置是最大的，导致其他节点的 `_mountIndex < lastIndex`，造成 D 没有执行移动操作，而是 A、B、C 全部移动到 D 节点后面的现象。
 
 在此，读者们可以讨论思考：如何优化上述问题？
 

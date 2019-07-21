@@ -22,7 +22,7 @@
 
 13. 字符串查找之 KMP 算法
 14. 回文
-15. [合并 K 个排序链表]
+15. [合并 K 个排序链表](https://github.com/fyuanfen/note/blob/master/article/Algorithm/%E5%90%88%E5%B9%B6K%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.md)
 
 ## 动态规划 DP
 

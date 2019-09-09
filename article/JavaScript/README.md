@@ -28,3 +28,5 @@
 1. [Javascript 专题之节流 throttle 与防抖 debounce](https://github.com/fyuanfen/note/blob/master/article/JavaScript/Javascript%E4%B8%93%E9%A2%98%E4%B9%8B%E8%8A%82%E6%B5%81throttle%E4%B8%8E%E9%98%B2%E6%8A%96debounce.md)
 
 2. [JavaScript 专题之柯里化](https://github.com/fyuanfen/note/blob/master/article/JavaScript/JavaScript%E4%B8%93%E9%A2%98%E4%B9%8B%E6%9F%AF%E9%87%8C%E5%8C%96.md)
+
+3. [Object.create vs new Function() 的区别](https://github.com/fyuanfen/note/blob/master/article/JavaScript/Object.create%20vs%20new%20Function()%20%E7%9A%84%E5%8C%BA%E5%88%AB.md)

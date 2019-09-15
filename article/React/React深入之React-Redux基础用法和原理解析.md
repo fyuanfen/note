@@ -3,36 +3,37 @@
 <!-- code_chunk_output -->
 
 - [React-Redux 基础用法](#react-redux-基础用法)
-  _ [一、UI 组件](#一-ui-组件)
-  _ [二、容器组件](#二-容器组件)
-  _ [三、connect()](#三-connect)
-  _ [四、mapStateToProps()](#四-mapstatetoprops)
-  _ [五、mapDispatchToProps()](#五-mapdispatchtoprops)
-  _ [六、<Provider> 组件](#六-provider-组件)
-  _ [七、实例：计数器](#七-实例计数器)
-  _ [八、React-Router 路由库](#八-react-router-路由库)
-- [React-Redux 原理分析](#react-redux-原理分析) \* [Provider](#provider)
+  - [一、UI 组件](#一-ui-组件)
+  - [二、容器组件](#二-容器组件)
+  - [三、connect()](#三-connect)
+  - [四、mapStateToProps()](#四-mapstatetoprops)
+  - [五、mapDispatchToProps()](#五-mapdispatchtoprops)
+  - [六、<Provider> 组件](#六-provider-组件)
+  - [七、实例：计数器](#七-实例计数器)
+  - [八、React-Router 路由库](#八-react-router-路由库)
+- [React-Redux 原理分析](#react-redux-原理分析)
+  - [Provider](#provider)
 - [Reference:](#reference)
 
 <!-- /code_chunk_output -->
 
-为了方便使用，Redux 的作者封装了一个 React 专用的库 [React-Redux](https://github.com/reduxjs/react-redux)，本文主要介绍它。
+为了方便使用，`Redux` 的作者封装了一个 `React` 专用的库 [React-Redux](https://github.com/reduxjs/react-redux)，本文主要介绍它。
 
-这个库是可以选用的。实际项目中，你应该权衡一下，是直接使用 Redux，还是使用 React-Redux。后者虽然提供了便利，但是需要掌握额外的 API，并且要遵守它的组件拆分规范。
+这个库是可以选用的。实际项目中，你应该权衡一下，是直接使用 `Redux`，还是使用 `React-Redux`。后者虽然提供了便利，但是需要掌握额外的 `API`，并且要遵守它的组件拆分规范。
 
 # React-Redux 基础用法
 
 ## 一、UI 组件
 
-React-Redux 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。
+`React-Redux` 将所有组件分成两大类：UI 组件（presentational component）和容器组件（container component）。
 
 UI 组件有以下几个特征。
 
-- 只负责 UI 的呈现，不带有任何业务逻辑
-- 没有状态（即不使用 this.state 这个变量）
-- 所有数据都由参数（this.props）提供
-- 不使用任何 Redux 的 API
-  下面就是一个 UI 组件的例子。
+- 只负责 `UI` 的呈现，不带有任何业务逻辑
+- 没有状态（即不使用 `this.state` 这个变量）
+- 所有数据都由参数（`this.props`）提供
+- 不使用任何 `Redux` 的 `API`
+  下面就是一个 `UI` 组件的例子。
 
 ```js
 const Title = value => <h1>{value}</h1>;
@@ -44,26 +45,27 @@ const Title = value => <h1>{value}</h1>;
 
 容器组件的特征恰恰相反。
 
-- 负责管理数据和业务逻辑，不负责 UI 的呈现
+- 负责管理数据和业务逻辑，不负责 `UI` 的呈现
 - 带有内部状态
-- 使用 Redux 的 API
-  总之，只要记住一句话就可以了：UI 组件负责 UI 的呈现，容器组件负责管理数据和逻辑。
+- 使用 `Redux` 的 `API`
 
-你可能会问，如果一个组件既有 UI 又有业务逻辑，那怎么办？回答是，将它拆分成下面的结构：外面是一个容器组件，里面包了一个 UI 组件。前者负责与外部的通信，将数据传给后者，由后者渲染出视图。
+总之，只要记住一句话就可以了：`UI` 组件负责 `UI` 的呈现，容器组件负责管理数据和逻辑。
 
-React-Redux 规定，所有的 UI 组件都由用户提供，容器组件则是由 React-Redux 自动生成。也就是说，用户负责视觉层，状态管理则是全部交给它。
+你可能会问，如果一个组件既有 `UI` 又有业务逻辑，那怎么办？回答是，将它拆分成下面的结构：外面是一个容器组件，里面包了一个 `UI` 组件。前者负责与外部的通信，将数据传给后者，由后者渲染出视图。
+
+`React-Redux` 规定，所有的 `UI` 组件都由用户提供，容器组件则是由 `React-Redux` 自动生成。也就是说，用户负责视觉层，状态管理则是全部交给它。
 
 ## 三、connect()
 
-React-Redux 提供 `connect` 方法，用于从 UI 组件生成容器组件。`connect` 的意思，就是将这两种组件连起来。
+`React-Redux` 提供 `connect` 方法，用于从 UI 组件生成容器组件。`connect` 的意思，就是将这两种组件连起来。
 
-`connect` 是一个高阶函数，首先传入 `mapStateToProps`、`mapDispatchToProps`，然后返回一个生产 `Component` 的函数(wrapWithConnect)，然后再将真正的 `Component` 作为参数传入 wrapWithConnect(MyComponent)，这样就生产出一个经过包裹的 Connect 组件，该组件具有如下特点:
+`connect` 是一个高阶函数，首先传入 `mapStateToProps`、`mapDispatchToProps`，然后返回一个生产 `Component` 的函数(wrapWithConnect)，然后再将真正的 `Component` 作为参数传入 `wrapWithConnect(MyComponent)`，这样就生产出一个经过包裹的 `Connect` 组件，该组件具有如下特点:
 
-- 通过 `this.context` 获取祖先 Component 的 store
-- props 包括 `stateProps`、`dispatchProps`、`parentProps`,合并在一起得到 `nextState`，作为 `props` 传给真正的 Component
-- componentDidMount 时，添加事件 this.store.subscribe(this.handleChange)，实现页面交互
-- shouldComponentUpdate 时判断是否有避免进行渲染，提升页面性能，并得到 nextState
-- componentWillUnmount 时移除注册的事件 this.handleChange
+- 通过 `this.context` 获取祖先 `Component` 的 `store`
+- `props` 包括 `stateProps`、`dispatchProps`、`parentProps`,合并在一起得到 `nextState`，作为 `props` 传给真正的 Component
+- `componentDidMount` 时，添加事件 `this.store.subscribe(this.handleChange)`，实现页面交互
+- `shouldComponentUpdate` 时判断是否有避免进行渲染，提升页面性能，并得到 `nextState`
+- `componentWillUnmount` 时移除注册的事件 `this.handleChange`
 - 在非生产环境下，带有热重载功能
 
 主要代码逻辑：

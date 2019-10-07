@@ -4,7 +4,7 @@
 
 - [JavaScript 深入系列全 11 篇](https://github.com/fyuanfen/note/blob/master/article/JavaScript/README.md)
 - [React 深入系列（2019.9 更新中）](https://github.com/fyuanfen/note/blob/master/article/React/README.md)
-- [前端算法专题（2019.5 更新中）](https://github.com/fyuanfen/note/blob/master/article/Algorithm/README.md)
+- [前端算法专题（2019.10 更新中）](https://github.com/fyuanfen/note/blob/master/article/Algorithm/README.md)
 - [服务器端](https://github.com/fyuanfen/note/blob/master/article/Server/README.md)
 - [浏览器与网络](https://github.com/fyuanfen/note/blob/master/article/Network/README.md)
 

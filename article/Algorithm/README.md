@@ -24,6 +24,7 @@
 14. 回文
 15. [合并 K 个排序链表](https://github.com/fyuanfen/note/blob/master/article/Algorithm/%E5%90%88%E5%B9%B6K%E4%B8%AA%E6%8E%92%E5%BA%8F%E9%93%BE%E8%A1%A8.md)
 
+16. [扁平数组与树结构相互转化](https://github.com/fyuanfen/note/blob/master/article/Algorithm/扁平数组与树结构相互转化.md)
 ## 动态规划 DP
 
 1. [动态规划之最长公共子串](https://github.com/fyuanfen/note/blob/master/article/Algorithm/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B9%8B%E6%9C%80%E9%95%BF%E5%85%AC%E5%85%B1%E5%AD%90%E4%B8%B2.md)

@@ -198,7 +198,7 @@ server.on("request", handleReequest);
 用户提交之后，页面代码就变成了：
 
 ```html
-<a href onlick="alert(/xss/)">testLink</a>
+<a href onclick="alert(/xss/)">testLink</a>
 ```
 
 此时，用户点击生成的链接，就会执行对应的脚本：
